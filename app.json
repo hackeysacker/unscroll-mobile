@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "FocusFlow",
+    "slug": "focusflow-mobile",
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#030712",
+      "image": "./assets/splash.png"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "scheme": "focusflow",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.focusflow.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "FocusFlow uses your camera to track your gaze during focus exercises and measure your attention."
+      }
+    },
+    "android": {
+      "package": "com.focusflow.app"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "color": "#ffffff"
+        }
+      ],
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "FocusFlow uses your camera to track your gaze during focus exercises."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
