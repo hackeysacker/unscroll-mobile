@@ -355,6 +355,121 @@ export async function logHeartTransaction(userId: string, changeAmount: number, 
 }
 
 // ============================================
+// GEMS SYSTEM
+// ============================================
+
+export async function getUserGems(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('user_gems')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+
+    if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
+      console.error('Error fetching user gems:', error.message, error.details);
+    }
+    return data;
+  } catch (err) {
+    console.error('Error fetching user gems:', err);
+    return null;
+  }
+}
+
+export async function updateUserGems(userId: string, updates: {
+  balance?: number;
+  total_earned?: number;
+  total_spent?: number;
+}) {
+  try {
+    const { data, error } = await supabase
+      .from('user_gems')
+      .upsert({
+        user_id: userId,
+        ...updates,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'user_id' })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error updating user gems:', error.message, error.details);
+    }
+    return data;
+  } catch (err) {
+    console.error('Error updating user gems:', err);
+    return null;
+  }
+}
+
+export async function addGems(userId: string, amount: number, reason: string) {
+  try {
+    // First get current gems
+    const currentGems = await getUserGems(userId);
+    const newBalance = (currentGems?.balance || 0) + amount;
+    const newTotalEarned = (currentGems?.total_earned || 0) + amount;
+
+    // Update balance
+    await updateUserGems(userId, {
+      balance: newBalance,
+      total_earned: newTotalEarned,
+    });
+
+    // Log transaction
+    await logGemTransaction(userId, amount, reason);
+
+    return newBalance;
+  } catch (err) {
+    console.error('Error adding gems:', err);
+    return null;
+  }
+}
+
+export async function spendGems(userId: string, amount: number, reason: string) {
+  try {
+    // First get current gems
+    const currentGems = await getUserGems(userId);
+    const currentBalance = currentGems?.balance || 0;
+
+    if (currentBalance < amount) {
+      console.error('Insufficient gems');
+      return null;
+    }
+
+    const newBalance = currentBalance - amount;
+    const newTotalSpent = (currentGems?.total_spent || 0) + amount;
+
+    // Update balance
+    await updateUserGems(userId, {
+      balance: newBalance,
+      total_spent: newTotalSpent,
+    });
+
+    // Log transaction (negative amount for spending)
+    await logGemTransaction(userId, -amount, reason);
+
+    return newBalance;
+  } catch (err) {
+    console.error('Error spending gems:', err);
+    return null;
+  }
+}
+
+export async function logGemTransaction(userId: string, changeAmount: number, reason: string) {
+  const { error } = await supabase
+    .from('gem_transactions')
+    .insert({
+      user_id: userId,
+      change_amount: changeAmount,
+      reason,
+    });
+
+  if (error) {
+    console.error('Error logging gem transaction:', error);
+  }
+}
+
+// ============================================
 // BADGES
 // ============================================
 

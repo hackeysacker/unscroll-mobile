@@ -313,6 +313,42 @@ export type HeartGainReason =
   | 'hourly_refill'; // 1 heart every 4 hours
 
 // ============================================
+// GEMS SYSTEM
+// ============================================
+
+export interface GemsState {
+  userId: string;
+  balance: number; // Current gem balance
+  totalEarned: number; // Lifetime gems earned
+  totalSpent: number; // Lifetime gems spent
+}
+
+export interface GemTransaction {
+  id: string;
+  userId: string;
+  timestamp: number;
+  amount: number; // positive for earned, negative for spent
+  reason: string;
+}
+
+export type GemGainReason =
+  | 'daily_challenge_complete' // Completed daily challenge
+  | 'daily_challenge_perfect' // Perfect score on daily challenge
+  | 'daily_challenge_speed' // Speed bonus on daily challenge
+  | 'streak_reward' // Streak milestone bonus
+  | 'achievement_reward' // Badge unlock bonus
+  | 'premium_bonus' // Premium user bonus
+  | 'gift'; // Gifted gems
+
+export type GemSpendReason =
+  | 'unlock_premium' // Unlock premium features
+  | 'unlock_avatar' // Unlock avatar item
+  | 'unlock_theme' // Unlock theme
+  | 'streak_freeze' // Use streak freeze
+  | 'heart_refill' // Instant heart refill
+  | 'boost'; // Activity boost
+
+// ============================================
 // ATTENTION AVATAR SYSTEM
 // ============================================
 

@@ -18,6 +18,7 @@ import type {
   WindDownSettings,
   DeepAnalytics,
   PersonalizedTrainingPlan,
+  GemsState,
 } from '@/types';
 import { STORAGE_KEYS, saveToStorage, loadFromStorage } from '@/lib/storage';
 import {
@@ -75,6 +76,7 @@ async function syncToSupabase(
     skillTree?: SkillTreeProgress;
     stats?: UserStats;
     heartState?: HeartState;
+    gemsState?: GemsState;
     challengeResult?: ChallengeResult;
     badgeProgress?: BadgeProgress;
     progressTree?: ProgressTreeState;
@@ -139,6 +141,15 @@ async function syncToSupabase(
         perfect_streak_count: data.heartState.perfectStreakCount,
         total_lost: data.heartState.totalHeartsLost,
         total_gained: data.heartState.totalHeartsGained,
+      }));
+    }
+
+    // Sync gems state
+    if (data.gemsState) {
+      promises.push(db.updateUserGems(userId, {
+        balance: data.gemsState.balance,
+        total_earned: data.gemsState.totalEarned,
+        total_spent: data.gemsState.totalSpent,
       }));
     }
 
@@ -280,6 +291,7 @@ interface GameContextType {
   todaySession: DailySession | null;
   progressTree: ProgressTreeState | null;
   heartState: HeartState | null;
+  gemsState: GemsState | null;
   badgeProgress: BadgeProgress | null;
   newlyUnlockedBadges: Badge[];
   completeChallenge: (type: ChallengeType, score: number, duration: number) => Promise<void>;
@@ -292,6 +304,8 @@ interface GameContextType {
   clearNewBadges: () => void;
   setCurrentNodeId: (nodeId: string) => Promise<void>;
   resetProgress: () => Promise<void>;
+  addGems: (amount: number, reason: string) => Promise<void>;
+  spendGems: (amount: number, reason: string) => Promise<boolean>;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -304,6 +318,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const [todaySession, setTodaySession] = useState<DailySession | null>(null);
   const [progressTree, setProgressTree] = useState<ProgressTreeState | null>(null);
   const [heartState, setHeartState] = useState<HeartState | null>(null);
+  const [gemsState, setGemsState] = useState<GemsState | null>(null);
   const [badgeProgress, setBadgeProgress] = useState<BadgeProgress | null>(null);
   const [newlyUnlockedBadges, setNewlyUnlockedBadges] = useState<Badge[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -423,6 +438,22 @@ export function GameProvider({ children }: { children: ReactNode }) {
           setBadgeProgress(newBadgeProgress);
           await saveToStorage(STORAGE_KEYS.BADGE_PROGRESS, newBadgeProgress);
         }
+
+        // Load gems state
+        const savedGemsState = await loadFromStorage<GemsState>(STORAGE_KEYS.GEMS_STATE);
+        if (savedGemsState && savedGemsState.userId === user.id) {
+          setGemsState(savedGemsState);
+        } else if (user) {
+          // Initialize gems state for new user with starting bonus
+          const newGemsState: GemsState = {
+            userId: user.id,
+            balance: 10, // Starting bonus for new users
+            totalEarned: 10,
+            totalSpent: 0,
+          };
+          setGemsState(newGemsState);
+          await saveToStorage(STORAGE_KEYS.GEMS_STATE, newGemsState);
+        }
       } catch (error) {
         console.error('Error loading game data:', error);
       } finally {
@@ -467,6 +498,12 @@ export function GameProvider({ children }: { children: ReactNode }) {
     const newProgressTree = generateProgressTree(user.id, baselineLevel);
     const newHeartState = initializeHeartState(user.id);
     const newBadgeProgress = initializeBadgeProgress(user.id);
+    const newGemsState: GemsState = {
+      userId: user.id,
+      balance: 10,
+      totalEarned: 10,
+      totalSpent: 0,
+    };
 
     setProgress(newProgress);
     setSkillTree(newSkillTree);
@@ -474,6 +511,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     setProgressTree(newProgressTree);
     setHeartState(newHeartState);
     setBadgeProgress(newBadgeProgress);
+    setGemsState(newGemsState);
 
     await saveToStorage(STORAGE_KEYS.GAME_PROGRESS, newProgress);
     await saveToStorage(STORAGE_KEYS.SKILL_TREE, newSkillTree);
@@ -481,6 +519,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     await saveToStorage(STORAGE_KEYS.PROGRESS_TREE, newProgressTree);
     await saveToStorage(STORAGE_KEYS.HEART_STATE, newHeartState);
     await saveToStorage(STORAGE_KEYS.BADGE_PROGRESS, newBadgeProgress);
+    await saveToStorage(STORAGE_KEYS.GEMS_STATE, newGemsState);
 
     // Sync to Supabase
     syncToSupabase(user.id, session, {
@@ -488,6 +527,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       skillTree: newSkillTree,
       stats: newStats,
       heartState: newHeartState,
+      gemsState: newGemsState,
     }).catch((error) => {
       console.error('Failed to sync initial progress to Supabase:', error);
     });
@@ -971,6 +1011,65 @@ export function GameProvider({ children }: { children: ReactNode }) {
     setNewlyUnlockedBadges([]);
   };
 
+  // Add gems to user's balance
+  const addGems = async (amount: number, reason: string): Promise<void> => {
+    if (!user || !gemsState) return;
+
+    const updatedGemsState: GemsState = {
+      ...gemsState,
+      balance: gemsState.balance + amount,
+      totalEarned: gemsState.totalEarned + amount,
+    };
+
+    setGemsState(updatedGemsState);
+    await saveToStorage(STORAGE_KEYS.GEMS_STATE, updatedGemsState);
+
+    // Sync to Supabase
+    syncToSupabase(user.id, session, { gemsState: updatedGemsState }).catch((error) => {
+      console.error('Failed to sync gems to Supabase:', error);
+    });
+
+    // Log transaction
+    if (session) {
+      db.logGemTransaction(user.id, amount, reason).catch((error) => {
+        console.error('Failed to log gem transaction:', error);
+      });
+    }
+  };
+
+  // Spend gems (returns false if insufficient gems)
+  const spendGems = async (amount: number, reason: string): Promise<boolean> => {
+    if (!user || !gemsState) return false;
+
+    if (gemsState.balance < amount) {
+      console.warn('Insufficient gems');
+      return false;
+    }
+
+    const updatedGemsState: GemsState = {
+      ...gemsState,
+      balance: gemsState.balance - amount,
+      totalSpent: gemsState.totalSpent + amount,
+    };
+
+    setGemsState(updatedGemsState);
+    await saveToStorage(STORAGE_KEYS.GEMS_STATE, updatedGemsState);
+
+    // Sync to Supabase
+    syncToSupabase(user.id, session, { gemsState: updatedGemsState }).catch((error) => {
+      console.error('Failed to sync gems to Supabase:', error);
+    });
+
+    // Log transaction
+    if (session) {
+      db.logGemTransaction(user.id, -amount, reason).catch((error) => {
+        console.error('Failed to log gem transaction:', error);
+      });
+    }
+
+    return true;
+  };
+
   const setCurrentNodeId = async (nodeId: string): Promise<void> => {
     if (!progressTree || !user) return;
 
@@ -1002,6 +1101,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         todaySession,
         progressTree,
         heartState,
+        gemsState,
         badgeProgress,
         newlyUnlockedBadges,
         completeChallenge,
@@ -1014,6 +1114,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
         clearNewBadges,
         setCurrentNodeId,
         resetProgress,
+        addGems,
+        spendGems,
       }}
     >
       {children}

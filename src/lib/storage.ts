@@ -20,6 +20,8 @@ const STORAGE_KEYS = {
   USER_THEME: 'focusflow_user_theme',
   HEART_STATE: 'focusflow_heart_state',
   HEART_TRANSACTIONS: 'focusflow_heart_transactions',
+  GEMS_STATE: 'focusflow_gems_state',
+  GEM_TRANSACTIONS: 'focusflow_gem_transactions',
   BADGE_PROGRESS: 'focusflow_badge_progress',
   AVATAR_STATE: 'focusflow_avatar_state',
 } as const;

@@ -143,6 +143,28 @@ CREATE TABLE IF NOT EXISTS heart_transactions (
 );
 
 -- ============================================
+-- GEMS SYSTEM
+-- ============================================
+
+-- User Gems (currency earned from challenges)
+CREATE TABLE IF NOT EXISTS user_gems (
+  user_id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  balance INTEGER DEFAULT 0,
+  total_earned INTEGER DEFAULT 0,
+  total_spent INTEGER DEFAULT 0,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Gem Transactions (audit log for gem changes)
+CREATE TABLE IF NOT EXISTS gem_transactions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  change_amount INTEGER NOT NULL,
+  reason TEXT NOT NULL,
+  timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ============================================
 -- ACHIEVEMENTS & BADGES
 -- ============================================
 
@@ -328,6 +350,8 @@ ALTER TABLE wind_down_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE wind_down_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE deep_analytics ENABLE ROW LEVEL SECURITY;
 ALTER TABLE analytics_data_points ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_gems ENABLE ROW LEVEL SECURITY;
+ALTER TABLE gem_transactions ENABLE ROW LEVEL SECURITY;
 
 -- Create policies for all tables (users can only access their own data)
 
@@ -379,6 +403,15 @@ CREATE POLICY "Users can delete own refill slots" ON heart_refill_slots FOR DELE
 -- Heart Transactions
 CREATE POLICY "Users can view own heart transactions" ON heart_transactions FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can insert own heart transactions" ON heart_transactions FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- User Gems
+CREATE POLICY "Users can view own gems" ON user_gems FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can update own gems" ON user_gems FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert own gems" ON user_gems FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- Gem Transactions
+CREATE POLICY "Users can view own gem transactions" ON gem_transactions FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert own gem transactions" ON gem_transactions FOR INSERT WITH CHECK (auth.uid() = user_id);
 
 -- Badges
 CREATE POLICY "Users can view own badges" ON badges FOR SELECT USING (auth.uid() = user_id);
