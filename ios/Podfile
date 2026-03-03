@@ -22,10 +22,6 @@ prepare_react_native_project!
 
 target 'FocusFlow' do
   use_expo_modules!
-  
-  # Local native modules
-  pod 'FaceTracking', :path => './FaceTracking'
-  pod 'FocusShieldModule', :path => './FocusShieldModule'
 
   if ENV['EXPO_USE_COMMUNITY_AUTOLINKING'] == '1'
     config_command = ['node', '-e', "process.argv=['', '', 'config'];require('@react-native-community/cli').run()"];

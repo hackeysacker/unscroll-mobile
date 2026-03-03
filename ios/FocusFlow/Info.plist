@@ -34,6 +34,8 @@
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
     <key>LSMinimumSystemVersion</key>
     <string>12.0</string>
     <key>LSRequiresIPhoneOS</key>
@@ -48,9 +50,11 @@
     <key>NSCameraUsageDescription</key>
     <string>FocusFlow uses your camera to track your gaze during focus exercises.</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to access your microphone</string>
+    <string>FocusFlow uses the microphone for voice-based focus exercises.</string>
     <key>NSMotionUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to access your device motion</string>
+    <string>FocusFlow uses motion sensors to detect phone orientation during focus exercises.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>FocusFlow needs access to your photo library to save achievements and progress.</string>
     <key>NSUserActivityTypes</key>
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
