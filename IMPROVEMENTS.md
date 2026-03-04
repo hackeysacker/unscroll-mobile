@@ -2,6 +2,13 @@
 
 Last updated: 2026-03-04
 
+## 2026-03-04 Overnight Session
+- ✅ **Google Sign-In Support** (v1.1 - 2026-03-04)
+  - Added signInWithGoogle method to AuthContext
+  - Uses Supabase OAuth flow for Google authentication
+  - Handles cancellation and errors gracefully
+- Build verified: iOS bundle exports successfully
+
 ## 2026-03-04 Morning Session
 - ✅ **Apple Sign-In Support** (v1.1 - 2026-03-04)
   - Added expo-apple-authentication dependency
@@ -45,9 +52,9 @@ Last updated: 2026-03-04
 ### High Priority
 1. TestFlight setup and deployment
 2. Push notification server configuration
-3. Social auth (Apple, Google)
 
 ### Medium Priority
+3. ~~Social auth (Apple, Google)~~ - ✅ Complete (v1.1)
 4. Focus reminder notifications (in progress)
 5. Widget support (home screen widgets)
 6. Widgets for iOS 17+ (Smart Stack)

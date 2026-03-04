@@ -18,6 +18,7 @@ interface AuthContextType {
   signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signInWithApple: () => Promise<{ error: Error | null }>;
+  signInWithGoogle: () => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   completeOnboarding: (goal: GoalType) => Promise<void>;
   updateOnboardingData: (data: Partial<OnboardingData>) => Promise<void>;
@@ -211,6 +212,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: 'focusflow://auth/callback',
+          scopes: ['email', 'profile'],
+        },
+      });
+
+      if (error) {
+        return { error };
+      }
+
+      // The OAuth flow will redirect, so we just return success
+      // The onAuthStateChange listener will handle the session update
+      return { error: null };
+    } catch (error: any) {
+      if (error?.message?.includes('cancelled') || error?.code === 'ERR_CANCELED') {
+        return { error: new Error('Google Sign-In was cancelled') };
+      }
+      return { error: error as Error };
+    }
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
     setUser(null);
@@ -389,6 +415,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signUp,
         signIn,
         signInWithApple,
+        signInWithGoogle,
         signOut,
         completeOnboarding,
         updateOnboardingData,
