@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import * as AppleAuthentication from 'expo-apple-authentication';
 import type { User, GoalType, OnboardingData } from '@/types';
 import { STORAGE_KEYS, saveToStorage, loadFromStorage, clearAllStorage } from '@/lib/storage';
 import { supabase } from '@/lib/supabase';
@@ -16,6 +17,7 @@ interface AuthContextType {
   isLoading: boolean;
   signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signInWithApple: () => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   completeOnboarding: (goal: GoalType) => Promise<void>;
   updateOnboardingData: (data: Partial<OnboardingData>) => Promise<void>;
@@ -168,6 +170,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       return { error: null };
     } catch (error) {
+      return { error: error as Error };
+    }
+  };
+
+  const signInWithApple = async () => {
+    try {
+      // Check if Apple Sign-In is available
+      const isAvailable = await AppleAuthentication.isAvailableAsync();
+      
+      if (!isAvailable) {
+        return { error: new Error('Apple Sign-In is not available on this device') };
+      }
+
+      // Perform Apple Sign-In
+      const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+      });
+
+      // Exchange the Apple credential for a Supabase token
+      const { data, error } = await supabase.auth.signInWithIdToken({
+        provider: 'apple',
+        token: credential.identityToken,
+      });
+
+      if (error) {
+        return { error };
+      }
+
+      return { error: null };
+    } catch (error: any) {
+      // User cancelled or other error - Apple errors have code property
+      if (error?.code === 'ERR_CANCELED' || error?.code === '1001') {
+        return { error: new Error('Apple Sign-In was cancelled') };
+      }
       return { error: error as Error };
     }
   };
@@ -349,6 +388,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         signUp,
         signIn,
+        signInWithApple,
         signOut,
         completeOnboarding,
         updateOnboardingData,
