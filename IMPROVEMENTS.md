@@ -1,6 +1,15 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-03
+Last updated: 2026-03-04
+
+## 2026-03-04 Morning Session
+- ✅ **Apple Sign-In Support** (v1.1 - 2026-03-04)
+  - Added expo-apple-authentication dependency
+  - Added signInWithApple method to AuthContext
+  - Supports Apple ID authentication via Supabase OAuth
+  - Handles cancellation and errors gracefully
+- Build verified: iOS bundle exports successfully
+- Committed and pushed to GitHub
 
 ## 2026-03-03 Overnight Session
 - ✅ **Focus Reminder Notifications System** (v1.1 - 2026-03-03)
@@ -10,8 +19,6 @@ Last updated: 2026-03-03
   - Customizable reminder times via Settings
   - Uses expo-notifications for local notifications
   - Handles notification permissions gracefully
-- Committed and pushed to GitHub
-- Posting progress to #focusflow-app
 
 ## Current State (v1.0)
 
