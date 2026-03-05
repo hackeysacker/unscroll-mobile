@@ -81,7 +81,7 @@ const CHALLENGES: Record<ChallengeType, ChallengeConfig> = {
     tier: 1,
     requiresPermissions: ['SPEECH'],
     title: 'Before scrolling',
-    instruction: 'Say why you're opening this app.',
+    instruction: "Say why you're opening this app.",
     fallback: 'wait',
   },
   stand_up: {

@@ -140,6 +140,12 @@ export interface AppSettings {
   notificationsEnabled: boolean;
   autoProgress?: boolean;
   reducedMotion?: boolean;
+  // Detailed notification settings
+  breakReminders?: boolean;
+  breakIntervalMinutes?: number;
+  dailyCheckIn?: boolean;
+  dailyCheckInTime?: string; // "HH:MM" format
+  focusSessionReminders?: boolean;
 }
 
 export interface BaselineTestResult {

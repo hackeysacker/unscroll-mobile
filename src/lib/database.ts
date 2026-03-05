@@ -729,6 +729,12 @@ export async function updateUserSettings(userId: string, updates: {
   dark_mode?: boolean;
   notifications_enabled?: boolean;
   daily_reminder_time?: string;
+  // Detailed notification settings
+  break_reminders?: boolean;
+  break_interval_minutes?: number;
+  daily_check_in?: boolean;
+  daily_check_in_time?: string;
+  focus_session_reminders?: boolean;
 }) {
   try {
     const { data, error } = await supabase

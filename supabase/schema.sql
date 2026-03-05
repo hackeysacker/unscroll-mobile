@@ -227,6 +227,12 @@ CREATE TABLE IF NOT EXISTS user_settings (
   dark_mode BOOLEAN DEFAULT TRUE,
   notifications_enabled BOOLEAN DEFAULT TRUE,
   daily_reminder_time TIME,
+  -- Detailed notification settings (added 2026-03-05)
+  break_reminders BOOLEAN DEFAULT TRUE,
+  break_interval_minutes INTEGER DEFAULT 25,
+  daily_check_in BOOLEAN DEFAULT TRUE,
+  daily_check_in_time TIME DEFAULT '09:00',
+  focus_session_reminders BOOLEAN DEFAULT TRUE,
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 

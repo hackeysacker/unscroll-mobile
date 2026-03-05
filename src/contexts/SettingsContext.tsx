@@ -4,6 +4,11 @@ import type { AppSettings } from '@/types';
 import { STORAGE_KEYS, saveToStorage, loadFromStorage } from '@/lib/storage';
 import { useAuth } from './AuthContext';
 import * as db from '@/lib/database';
+import {
+  initializeNotifications,
+  setupNotificationsFromSettings,
+  type NotificationSettings,
+} from '@/lib/notification-manager';
 
 interface SettingsContextType {
   settings: AppSettings | null;
@@ -41,9 +46,29 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
               notificationsEnabled: supabaseSettings.notifications_enabled,
               autoProgress: true, // Default for existing users
               reducedMotion: false, // Default for existing users
+              // Load detailed notification settings
+              breakReminders: supabaseSettings.break_reminders ?? true,
+              breakIntervalMinutes: supabaseSettings.break_interval_minutes ?? 25,
+              dailyCheckIn: supabaseSettings.daily_check_in ?? true,
+              dailyCheckInTime: supabaseSettings.daily_check_in_time ?? '09:00',
+              focusSessionReminders: supabaseSettings.focus_session_reminders ?? true,
             };
             setSettings(appSettings);
             await saveToStorage(STORAGE_KEYS.SETTINGS, appSettings);
+            
+            // Initialize notifications with loaded settings
+            await initializeNotifications();
+            const notificationSettings: NotificationSettings = {
+              breakReminders: appSettings.breakReminders ?? true,
+              breakIntervalMinutes: appSettings.breakIntervalMinutes ?? 25,
+              dailyCheckIn: appSettings.dailyCheckIn ?? true,
+              dailyCheckInTime: appSettings.dailyCheckInTime ?? '09:00',
+              focusSessionReminders: appSettings.focusSessionReminders ?? true,
+            };
+            if (appSettings.notificationsEnabled) {
+              await setupNotificationsFromSettings(notificationSettings);
+            }
+            
             setIsLoading(false);
             return;
           }
@@ -63,6 +88,12 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
             notificationsEnabled: true,
             autoProgress: true,
             reducedMotion: false,
+            // Default notification settings
+            breakReminders: true,
+            breakIntervalMinutes: 25,
+            dailyCheckIn: true,
+            dailyCheckInTime: '09:00',
+            focusSessionReminders: true,
           };
           setSettings(defaultSettings);
           await saveToStorage(STORAGE_KEYS.SETTINGS, defaultSettings);
@@ -74,8 +105,24 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
               sound_enabled: defaultSettings.soundEnabled,
               dark_mode: defaultSettings.darkMode,
               notifications_enabled: defaultSettings.notificationsEnabled,
+              break_reminders: defaultSettings.breakReminders,
+              break_interval_minutes: defaultSettings.breakIntervalMinutes,
+              daily_check_in: defaultSettings.dailyCheckIn,
+              daily_check_in_time: defaultSettings.dailyCheckInTime,
+              focus_session_reminders: defaultSettings.focusSessionReminders,
             });
           }
+          
+          // Initialize and setup notifications
+          await initializeNotifications();
+          const notificationSettings: NotificationSettings = {
+            breakReminders: defaultSettings.breakReminders ?? true,
+            breakIntervalMinutes: defaultSettings.breakIntervalMinutes ?? 25,
+            dailyCheckIn: defaultSettings.dailyCheckIn ?? true,
+            dailyCheckInTime: defaultSettings.dailyCheckInTime ?? '09:00',
+            focusSessionReminders: defaultSettings.focusSessionReminders ?? true,
+          };
+          await setupNotificationsFromSettings(notificationSettings);
         }
       } catch (error) {
         console.error('Error loading settings:', error);
@@ -101,9 +148,37 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       if (updates.soundEnabled !== undefined) dbUpdates.sound_enabled = updates.soundEnabled;
       if (updates.darkMode !== undefined) dbUpdates.dark_mode = updates.darkMode;
       if (updates.notificationsEnabled !== undefined) dbUpdates.notifications_enabled = updates.notificationsEnabled;
+      // New notification settings
+      if (updates.breakReminders !== undefined) dbUpdates.break_reminders = updates.breakReminders;
+      if (updates.breakIntervalMinutes !== undefined) dbUpdates.break_interval_minutes = updates.breakIntervalMinutes;
+      if (updates.dailyCheckIn !== undefined) dbUpdates.daily_check_in = updates.dailyCheckIn;
+      if (updates.dailyCheckInTime !== undefined) dbUpdates.daily_check_in_time = updates.dailyCheckInTime;
+      if (updates.focusSessionReminders !== undefined) dbUpdates.focus_session_reminders = updates.focusSessionReminders;
 
       if (Object.keys(dbUpdates).length > 0) {
         db.updateUserSettings(user.id, dbUpdates);
+      }
+    }
+    
+    // Update notifications if notification settings changed
+    if (
+      updates.notificationsEnabled !== undefined ||
+      updates.breakReminders !== undefined ||
+      updates.breakIntervalMinutes !== undefined ||
+      updates.dailyCheckIn !== undefined ||
+      updates.dailyCheckInTime !== undefined ||
+      updates.focusSessionReminders !== undefined
+    ) {
+      const notificationSettings: NotificationSettings = {
+        breakReminders: updatedSettings.breakReminders ?? true,
+        breakIntervalMinutes: updatedSettings.breakIntervalMinutes ?? 25,
+        dailyCheckIn: updatedSettings.dailyCheckIn ?? true,
+        dailyCheckInTime: updatedSettings.dailyCheckInTime ?? '09:00',
+        focusSessionReminders: updatedSettings.focusSessionReminders ?? true,
+      };
+      // Only setup notifications if main notifications are enabled
+      if (updatedSettings.notificationsEnabled) {
+        await setupNotificationsFromSettings(notificationSettings);
       }
     }
   };

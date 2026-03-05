@@ -352,7 +352,7 @@ function getChallengeInstruction(type: ChallengeType): string {
     face_down: 'Put your phone face down. 30 seconds.',
     hold_still: 'Hold your phone still. 20 seconds.',
     wait: 'Do nothing. 15 seconds. Do not touch.',
-    say_it: 'Say why you're opening this app.',
+    say_it: "Say why you're opening this app.",
     stand_up: 'Stand up. Stay upright for 15 seconds.',
     walk: 'Walk 20 steps.',
     lights_on: 'Turn the lights on.',
