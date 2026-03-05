@@ -1,6 +1,16 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-04
+Last updated: 2026-03-05
+
+## 2026-03-05 Overnight Session
+- ✅ **Detailed Notification Settings Integration** (v1.2 - 2026-03-05)
+  - Extended AppSettings type with breakReminders, breakIntervalMinutes, dailyCheckIn, dailyCheckInTime, focusSessionReminders
+  - Updated SettingsContext to initialize and manage notification settings
+  - Integrated notification-manager with SettingsContext for automatic notification scheduling when settings change
+  - Added new columns to user_settings table in schema.sql
+  - Fixed string literal syntax errors (unescaped apostrophes) in UnlockChallengeScreen and challenge-engine
+- Build verified: iOS bundle exports successfully
+- Committed and pushed to GitHub
 
 ## 2026-03-04 Overnight Session
 - ✅ **Google Sign-In Support** (v1.1 - 2026-03-04)
