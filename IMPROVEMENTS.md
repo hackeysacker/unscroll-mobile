@@ -1,6 +1,15 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-05
+Last updated: 2026-03-06
+
+## 2026-03-06 Overnight Session
+- ✅ **Test Notification Button in Settings** (v1.2 - 2026-03-06)
+  - Added import for sendTestNotification from notification-manager
+  - Added testingNotification state and handleTestNotification handler
+  - Added "Test Notification" button in Settings after notification toggle
+  - Allows users to verify notifications are working
+  - Build verified: iOS bundle exports successfully
+- Committed and pushed to GitHub
 
 ## 2026-03-05 Early Morning Session (5:00 AM)
 - ✅ **Verified Core Features: Supabase Auth, Sync, Gems System** (v1.2 - 2026-03-05)
