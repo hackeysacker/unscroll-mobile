@@ -13,6 +13,7 @@ import { useSound } from '@/hooks/useSound';
 import { useEffect, useRef, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Camera } from 'expo-camera';
+import { sendTestNotification } from '@/lib/notification-manager';
 
 interface SettingsProps {
   onBack: () => void;
@@ -96,6 +97,23 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
 
   // Camera permission state
   const [cameraPermission, setCameraPermission] = useState<'granted' | 'denied' | 'undetermined'>('undetermined');
+  const [testingNotification, setTestingNotification] = useState(false);
+
+  // Test notification handler
+  const handleTestNotification = async () => {
+    if (testingNotification) return;
+    setTestingNotification(true);
+    try {
+      await sendTestNotification();
+      haptics.notificationSuccess();
+      Alert.alert('Test Sent', 'Check your notifications!');
+    } catch (error) {
+      haptics.notificationError();
+      Alert.alert('Error', 'Could not send test notification. Check permissions.');
+    } finally {
+      setTestingNotification(false);
+    }
+  };
 
   // Animation values
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -368,6 +386,24 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
               onToggle={(value) => handleToggle('notificationsEnabled', value)}
               colors={colors}
             />
+
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={handleTestNotification}
+              disabled={testingNotification}
+            >
+              <View style={styles.actionButtonContent}>
+                <UIIcon name="send" size={20} color={colors.primary} style={styles.settingIcon} />
+                <View style={styles.settingText}>
+                  <Text style={[styles.settingLabel, { color: colors.foreground }]}>
+                    {testingNotification ? 'Sending...' : 'Test Notification'}
+                  </Text>
+                  <Text style={[styles.settingDescription, { color: colors.mutedForeground }]}>
+                    Send a test notification to verify
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
 
             <SettingRow
               icon="flash"
@@ -858,6 +894,15 @@ const styles = StyleSheet.create({
   },
   settingRowLast: {
     borderBottomWidth: 0,
+  },
+  actionButton: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 255, 255, 0.05)',
+  },
+  actionButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   settingInfo: {
     flexDirection: 'row',
