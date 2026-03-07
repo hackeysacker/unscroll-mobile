@@ -2,6 +2,16 @@
 
 Last updated: 2026-03-06
 
+## 2026-03-06 Overnight Session (11 PM)
+- ✅ **Push Notification Token Support for APNs** (v1.2 - 2026-03-06)
+  - Added getPushToken() function to notification-manager
+  - Retrieves Expo push token for remote notifications
+  - Token stored locally for backend sync
+  - Integrated into initializeNotifications() for automatic token retrieval
+  - Enables server-side push notifications (complements local notifications)
+  - Build verified: iOS bundle exports successfully
+- Committed and pushed to GitHub
+
 ## 2026-03-06 Overnight Session
 - ✅ **Test Notification Button in Settings** (v1.2 - 2026-03-06)
   - Added import for sendTestNotification from notification-manager
