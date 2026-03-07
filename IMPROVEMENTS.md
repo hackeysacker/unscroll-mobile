@@ -2,6 +2,14 @@
 
 Last updated: 2026-03-07
 
+## 2026-03-07 Weekend Session (1:06 PM)
+- ✅ **Streak Reminder Notifications** (v1.2 - 2026-03-07)
+  - Added scheduleStreakReminder() - evening reminder (8 PM) to maintain streak
+  - Added scheduleStreakRecoveryReminder() - morning reminder (10 AM) for returning users
+  - Both integrate with existing notification system for user engagement
+  - Build verified: iOS bundle exports successfully
+- Committed and pushed to GitHub
+
 ## 2026-03-07 Weekend Session (10:34 AM)
 - ✅ **Push Token Sync to Supabase** (v1.2 - 2026-03-07)
   - Created push-token-sync.ts module for syncing Expo push tokens to backend
