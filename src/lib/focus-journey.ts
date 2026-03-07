@@ -238,7 +238,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
 
     // 1 cognitive exercise
     const cognitiveIndex = Math.floor(level / 10) % ACTIVITY_POOL.cognitive_exercises.length;
-    const cognitive = ACTIVITY_POOL.cognitive_exercises[cognitiveIndex];
+    const cognitive = ACTIVITY_POOL.cognitive_exercises[cognitiveIndex] as JourneyActivity;
     activities.push({
       ...cognitive,
       description: `Strengthen your mind with ${cognitive.name}`,
@@ -251,7 +251,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
 
     // 1 reflection exercise (every 5 levels)
     if (level % 5 === 0) {
-      const reflection = ACTIVITY_POOL.reflection_exercises[Math.floor(level / 5) % ACTIVITY_POOL.reflection_exercises.length];
+      const reflection = ACTIVITY_POOL.reflection_exercises[Math.floor(level / 5) % ACTIVITY_POOL.reflection_exercises.length] as JourneyActivity;
       activities.push({
         ...reflection,
         description: `Reflect on your progress with ${reflection.name}`,
@@ -293,7 +293,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
 
     // 1-2 advanced exercises
     const cognitiveIndex = Math.floor(level / 10) % ACTIVITY_POOL.cognitive_exercises.length;
-    const cognitive = ACTIVITY_POOL.cognitive_exercises[cognitiveIndex];
+    const cognitive = ACTIVITY_POOL.cognitive_exercises[cognitiveIndex] as JourneyActivity;
     activities.push({
       ...cognitive,
       description: `Challenge your mind with ${cognitive.name}`,
@@ -306,7 +306,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
 
     // Bonus reflection exercise (every 3 levels at high levels)
     if (level % 3 === 0) {
-      const reflection = ACTIVITY_POOL.reflection_exercises[Math.floor(level / 3) % ACTIVITY_POOL.reflection_exercises.length];
+      const reflection = ACTIVITY_POOL.reflection_exercises[Math.floor(level / 3) % ACTIVITY_POOL.reflection_exercises.length] as JourneyActivity;
       activities.push({
         ...reflection,
         description: `Deep reflection with ${reflection.name}`,

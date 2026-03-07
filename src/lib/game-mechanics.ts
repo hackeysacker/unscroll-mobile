@@ -408,6 +408,11 @@ export function getChallengeDifficulty(challengeType: ChallengeType, userLevel: 
     audio_focus: 3,
     impulse_delay: 2,
     stability_hold: 2,
+    // Puzzle Challenges
+    pattern_matching: 2,
+    logic_puzzle: 3,
+    memory_puzzle: 2,
+    spatial_puzzle: 3,
   };
 
   const base = baseDifficulty[challengeType] || 2;
@@ -447,6 +452,11 @@ export function getChallengeSkillPath(challengeType: ChallengeType): SkillPath {
     distraction_resistance: 'distractionResistance',
     audio_focus: 'distractionResistance',
     stability_hold: 'focus',
+    // Puzzle Challenges
+    pattern_matching: 'focus',
+    logic_puzzle: 'focus',
+    memory_puzzle: 'focus',
+    spatial_puzzle: 'focus',
   };
   return mapping[challengeType] || 'focus';
 }
@@ -483,6 +493,11 @@ export function getMinLevelForChallenge(challengeType: ChallengeType): number {
     distraction_resistance: 1,
     audio_focus: 1,
     stability_hold: 1,
+    // Puzzle Challenges
+    pattern_matching: 1,
+    logic_puzzle: 5,
+    memory_puzzle: 3,
+    spatial_puzzle: 7,
   };
   return minLevels[challengeType] || 1;
 }

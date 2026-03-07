@@ -192,6 +192,29 @@ export async function scheduleStreakRecoveryReminder(): Promise<string | null> {
   }
 }
 
+// Schedule focus session reminder - remind user to start a focus session
+export async function scheduleFocusSessionReminder(): Promise<string | null> {
+  try {
+    const id = await Notifications.scheduleNotificationAsync({
+      content: {
+        title: '🎯 Time to Focus!',
+        body: 'Ready to train your focus? Start a session now!',
+        data: { type: 'focus_session' },
+        sound: 'default',
+      },
+      trigger: {
+        type: Notifications.SchedulableTriggerInputTypes.DAILY,
+        hour: 14, // 2 PM
+        minute: 0,
+      },
+    });
+    return id;
+  } catch (error) {
+    console.error('Error scheduling focus session reminder:', error);
+    return null;
+  }
+}
+
 // Cancel all scheduled notifications
 export async function cancelAllNotifications(): Promise<void> {
   try {
