@@ -2,6 +2,14 @@
 
 Last updated: 2026-03-07
 
+## 2026-03-07 Weekend Session (1:30 PM)
+- ✅ **Server-Side Push Notification System** (v1.2 - 2026-03-07)
+  - Created supabase/functions/send-push.ts: Send notification to single user by userId or token
+  - Created supabase/functions/broadcast-push.ts: Send notifications to multiple users
+  - Enables server-side remote push notifications via Expo Push API
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+
 ## 2026-03-07 Weekend Session (1:06 PM)
 - ✅ **Streak Reminder Notifications** (v1.2 - 2026-03-07)
   - Added scheduleStreakReminder() - evening reminder (8 PM) to maintain streak
