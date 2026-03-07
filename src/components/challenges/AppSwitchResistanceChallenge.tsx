@@ -160,7 +160,7 @@ export function AppSwitchResistanceChallenge({
         {/* Instructions */}
         <View style={styles.instructionsBox}>
           <Text style={styles.mainInstruction}>⚠️ STAY FOCUSED ⚠️</Text>
-          <Text style={[styles.subInstruction, { color: themeStyles.textSecondary }]}>
+          <Text style={[styles.subInstruction, { color: themeStyles.colors.mutedForeground }]}>
             Ignore all prompts to switch apps or take actions
           </Text>
           <View style={styles.resistanceBar}>
@@ -174,7 +174,7 @@ export function AppSwitchResistanceChallenge({
               ]}
             />
           </View>
-          <Text style={[styles.resistanceText, { color: themeStyles.textSecondary }]}>
+          <Text style={[styles.resistanceText, { color: themeStyles.colors.mutedForeground }]}>
             Resistance: {resistancePercentage}%
           </Text>
         </View>
@@ -191,7 +191,7 @@ export function AppSwitchResistanceChallenge({
 
           {/* Center Message */}
           <View style={styles.centerMessage}>
-            <Text style={[styles.centerText, { color: themeStyles.textPrimary }]}>
+            <Text style={[styles.centerText, { color: themeStyles.colors.foreground }]}>
               {prompts.length === 0 ? (
                 resistedCount > 0 ? (
                   <>🎯 Perfect focus!</>
@@ -210,13 +210,13 @@ export function AppSwitchResistanceChallenge({
           <View style={styles.statsContainer}>
             <View style={styles.statCard}>
               <Text style={styles.statValue}>{resistedCount}</Text>
-              <Text style={[styles.statLabel, { color: themeStyles.textSecondary }]}>
+              <Text style={[styles.statLabel, { color: themeStyles.colors.mutedForeground }]}>
                 Ignored ✓
               </Text>
             </View>
             <View style={[styles.statCard, styles.statCardDanger]}>
               <Text style={[styles.statValue, { color: '#EF4444' }]}>{tappedCount}</Text>
-              <Text style={[styles.statLabel, { color: themeStyles.textSecondary }]}>
+              <Text style={[styles.statLabel, { color: themeStyles.colors.mutedForeground }]}>
                 Tapped ✗
               </Text>
             </View>

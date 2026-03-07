@@ -141,7 +141,7 @@ export function NotificationResistanceChallenge({
         {/* Instructions */}
         <View style={styles.instructionsBox}>
           <Text style={styles.mainInstruction}>⚠️ DO NOT TAP ⚠️</Text>
-          <Text style={[styles.subInstruction, { color: themeStyles.textSecondary }]}>
+          <Text style={[styles.subInstruction, { color: themeStyles.colors.mutedForeground }]}>
             Ignore all notifications that appear
           </Text>
           {tappedCount > 0 && (
@@ -164,7 +164,7 @@ export function NotificationResistanceChallenge({
 
           {notifications.length === 0 && (
             <View style={styles.emptyState}>
-              <Text style={[styles.emptyText, { color: themeStyles.textSecondary }]}>
+              <Text style={[styles.emptyText, { color: themeStyles.colors.mutedForeground }]}>
                 {resistedCount > 0
                   ? `✓ Great job! ${resistedCount} resisted`
                   : 'Waiting for notifications...'}
@@ -177,11 +177,11 @@ export function NotificationResistanceChallenge({
         <View style={styles.statsContainer}>
           <View style={styles.statCard}>
             <Text style={styles.statValue}>{resistedCount}</Text>
-            <Text style={[styles.statLabel, { color: themeStyles.textSecondary }]}>Resisted ✓</Text>
+            <Text style={[styles.statLabel, { color: themeStyles.colors.mutedForeground }]}>Resisted ✓</Text>
           </View>
           <View style={[styles.statCard, styles.statCardDanger]}>
             <Text style={[styles.statValue, { color: '#EF4444' }]}>{tappedCount}</Text>
-            <Text style={[styles.statLabel, { color: themeStyles.textSecondary }]}>Tapped ✗</Text>
+            <Text style={[styles.statLabel, { color: themeStyles.colors.mutedForeground }]}>Tapped ✗</Text>
           </View>
         </View>
       </View>

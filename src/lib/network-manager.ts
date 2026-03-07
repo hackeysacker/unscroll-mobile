@@ -216,7 +216,8 @@ export function useNetworkStatus() {
   );
 
   useEffect(() => {
-    return networkManager.addNetworkListener(setNetworkState);
+    const cleanup = networkManager.addNetworkListener(setNetworkState);
+    return () => cleanup();
   }, []);
 
   return networkState;
@@ -229,7 +230,8 @@ export function useSyncStatus() {
   const [syncState, setSyncState] = useState<SyncState>(networkManager.getSyncState());
 
   useEffect(() => {
-    return networkManager.addSyncListener(setSyncState);
+    const cleanup = networkManager.addSyncListener(setSyncState);
+    return () => cleanup();
   }, []);
 
   return syncState;
