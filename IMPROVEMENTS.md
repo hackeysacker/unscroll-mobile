@@ -2,6 +2,18 @@
 
 Last updated: 2026-03-07
 
+## 2026-03-07 Weekend Session (10:34 AM)
+- ✅ **Push Token Sync to Supabase** (v1.2 - 2026-03-07)
+  - Created push-token-sync.ts module for syncing Expo push tokens to backend
+  - Integrated sync into AuthContext (signIn, signUp, signInWithApple, signInWithGoogle)
+  - Added expo_push_token column to user_settings table in schema.sql
+  - Enables remote push notifications from server
+- ✅ **EAS Build Configuration for TestFlight** (v1.2 - 2026-03-07)
+  - Created eas.json with development, preview, and production build profiles
+  - Configured for App Store distribution (TestFlight ready)
+  - iOS build verified: BUILD SUCCEEDED
+- Committed and pushed to GitHub
+
 ## 2026-03-07 Weekend Session (10:00 AM)
 - ✅ **Build Verification** (v1.2 - 2026-03-07)
   - Verified iOS bundle exports successfully (6.26 MB)
