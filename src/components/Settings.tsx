@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert, Animated, Switch, Linking } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert, Animated, Switch, Linking, Share } from 'react-native';
 import { useAuth } from '@/contexts/AuthContext';
 import { useSettings } from '@/contexts/SettingsContext';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -313,6 +313,29 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
     } catch (error) {
       console.error('Error exporting data:', error);
       Alert.alert('Export Failed', 'Unable to export your data. Please try again.');
+    }
+  };
+
+  const handleRateApp = () => {
+    haptics?.impactLight();
+    // Open App Store review page (would need actual App Store URL when published)
+    // For now, show an alert
+    Alert.alert(
+      'Rate FocusFlow',
+      'Thank you for using FocusFlow! Rating will be available when the app is published on the App Store.',
+      [{ text: 'OK' }]
+    );
+  };
+
+  const handleShareApp = async () => {
+    try {
+      haptics?.impactLight();
+      await Share.share({
+        message: 'Check out FocusFlow - an app that helps you build focus and reduce screen time! Download at https://focusflow.app',
+        title: 'Share FocusFlow',
+      });
+    } catch (error) {
+      console.error('Error sharing app:', error);
     }
   };
 
@@ -631,6 +654,39 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
                 <UIIcon name="download" size={20} color={colors.mutedForeground} />
                 <Text style={[styles.linkLabel, { color: colors.foreground }]}>
                   Export Your Data
+                </Text>
+              </View>
+              <UIIcon name="chevron-forward" size={20} color={colors.mutedForeground} />
+            </TouchableOpacity>
+          </View>
+
+          {/* Spread the Word */}
+          <View style={[styles.section, { backgroundColor: colors.card }]}>
+            <View style={styles.sectionHeader}>
+              <UIIcon name="share-social" size={20} color={colors.primary} />
+              <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+                Spread the Word
+              </Text>
+            </View>
+
+            <TouchableOpacity style={styles.linkRow} onPress={handleShareApp}>
+              <View style={styles.linkInfo}>
+                <UIIcon name="share" size={20} color={colors.mutedForeground} />
+                <Text style={[styles.linkLabel, { color: colors.foreground }]}>
+                  Share FocusFlow
+                </Text>
+              </View>
+              <UIIcon name="chevron-forward" size={20} color={colors.mutedForeground} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.linkRow, styles.linkRowLast]}
+              onPress={handleRateApp}
+            >
+              <View style={styles.linkInfo}>
+                <UIIcon name="star" size={20} color={colors.mutedForeground} />
+                <Text style={[styles.linkLabel, { color: colors.foreground }]}>
+                  Rate FocusFlow
                 </Text>
               </View>
               <UIIcon name="chevron-forward" size={20} color={colors.mutedForeground} />
