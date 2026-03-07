@@ -59,6 +59,12 @@ export async function initializeNotifications(): Promise<boolean> {
       });
     }
 
+    // Get push token for remote notifications (APNs) - only if not already stored
+    const existingToken = await AsyncStorage.getItem('expo_push_token');
+    if (!existingToken) {
+      await getPushToken();
+    }
+
     return true;
   } catch (error) {
     console.error('Error initializing notifications:', error);
@@ -208,6 +214,37 @@ export async function sendTestNotification(): Promise<void> {
     });
   } catch (error) {
     console.error('Error sending test notification:', error);
+  }
+}
+
+// Get push token for APNs (Apple Push Notifications)
+// This is needed for sending remote notifications from a server
+export async function getPushToken(): Promise<string | null> {
+  try {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+
+    if (finalStatus !== 'granted') {
+      console.log('Push notification permissions not granted');
+      return null;
+    }
+
+    // Get the push token
+    const { data: pushToken } = await Notifications.getExpoPushTokenAsync();
+    
+    // Store token for later use (syncing with backend)
+    await AsyncStorage.setItem('expo_push_token', pushToken);
+    
+    console.log('Push token obtained:', pushToken);
+    return pushToken;
+  } catch (error) {
+    console.error('Error getting push token:', error);
+    return null;
   }
 }
 
