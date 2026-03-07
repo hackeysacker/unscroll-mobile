@@ -69,6 +69,13 @@ export const HapticPatterns = {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setTimeout(() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light), 50);
   },
+  // Additional individual haptics for direct usage
+  impactLight: () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+  impactMedium: () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium),
+  impactHeavy: () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy),
+  notificationSuccess: () => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success),
+  notificationWarning: () => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning),
+  notificationError: () => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error),
 };
 
 /**
@@ -93,6 +100,17 @@ export class HapticManager {
     }
   }
 }
+
+// Alias for lowercase export (for compatibility with existing imports)
+export const hapticPatterns = HapticPatterns;
+
+// Additional individual haptics for direct usage
+export const impactLight = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+export const impactMedium = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+export const impactHeavy = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+export const notificationSuccess = () => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+export const notificationWarning = () => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+export const notificationError = () => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
 
 
 
