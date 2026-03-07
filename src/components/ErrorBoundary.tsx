@@ -9,6 +9,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Updates from 'expo-updates';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Sentry from '@sentry/react-native';
 
 interface Props {
   children: ReactNode;
@@ -85,7 +86,14 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   logErrorToService(error: Error, errorInfo: ErrorInfo) {
-    // TODO: Integrate with error tracking service (Sentry, Bugsnag, etc.)
+    // Send to Sentry for error tracking
+    Sentry.captureException(error, {
+      extra: {
+        componentStack: errorInfo.componentStack,
+      },
+    });
+
+    // Also log locally for debugging
     const errorData = {
       message: error.message,
       stack: error.stack,
@@ -93,7 +101,7 @@ export class ErrorBoundary extends Component<Props, State> {
       timestamp: new Date().toISOString(),
     };
 
-    console.log('Error logged:', errorData);
+    console.log('Error sent to Sentry:', errorData);
   }
 
   handleReset = () => {
