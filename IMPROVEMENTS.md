@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-07
 
+## 2026-03-07 Weekend Session (8:30 AM)
+- ✅ **Sentry Error Tracking Integration** (v1.2 - 2026-03-07)
+  - Installed @sentry/react-native and sentry-expo packages
+  - Added Sentry initialization in app/_layout.tsx with ErrorBoundary wrapper
+  - Updated ErrorBoundary to capture exceptions to Sentry automatically
+  - Added Sentry DSN configuration to .env.example
+  - Added sentry-expo plugin to app.json for Expo compatibility
+  - To activate: Add your Sentry DSN to .env as EXPO_PUBLIC_SENTRY_DSN
+  - Build verified: iOS bundle exports successfully
+- Committed and pushed to GitHub
+
 ## 2026-03-07 Weekend Session (8:00 AM)
 - ✅ **Fix Missing Haptic Patterns and expo-blur** (v1.2 - 2026-03-07)
   - Added hapticPatterns alias export for compatibility with existing imports
