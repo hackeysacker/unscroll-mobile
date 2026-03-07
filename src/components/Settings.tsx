@@ -14,6 +14,8 @@ import { useEffect, useRef, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Camera } from 'expo-camera';
 import { sendTestNotification } from '@/lib/notification-manager';
+import { exportAllUserData } from '@/lib/data-export';
+import * as Clipboard from 'expo-clipboard';
 
 interface SettingsProps {
   onBack: () => void;
@@ -296,6 +298,22 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
 
   const handleTerms = () => {
     Linking.openURL('https://focusflow.app/terms');
+  };
+
+  const handleExportData = async () => {
+    try {
+      haptics?.impactLight();
+      const data = await exportAllUserData();
+      await Clipboard.setStringAsync(data);
+      Alert.alert(
+        'Data Exported',
+        'Your data has been copied to clipboard. You can paste it into a text editor to save it.',
+        [{ text: 'OK' }]
+      );
+    } catch (error) {
+      console.error('Error exporting data:', error);
+      Alert.alert('Export Failed', 'Unable to export your data. Please try again.');
+    }
   };
 
   return (
@@ -607,7 +625,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
 
             <TouchableOpacity
               style={[styles.linkRow, styles.linkRowLast]}
-              onPress={() => onNavigate?.('data-export')}
+              onPress={handleExportData}
             >
               <View style={styles.linkInfo}>
                 <UIIcon name="download" size={20} color={colors.mutedForeground} />
