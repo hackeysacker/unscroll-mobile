@@ -3,6 +3,7 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import type { User, GoalType, OnboardingData } from '@/types';
 import { STORAGE_KEYS, saveToStorage, loadFromStorage, clearAllStorage } from '@/lib/storage';
 import { supabase } from '@/lib/supabase';
+import { syncPushTokenToSupabase } from '@/lib/push-token-sync';
 import type { Session, User as SupabaseUser } from '@supabase/supabase-js';
 
 interface ProfileUpdate {
@@ -152,6 +153,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error };
       }
 
+      // Sync push token to Supabase for remote notifications
+      await syncPushTokenToSupabase();
+
       return { error: null };
     } catch (error) {
       return { error: error as Error };
@@ -168,6 +172,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (error) {
         return { error };
       }
+
+      // Sync push token to Supabase for remote notifications
+      await syncPushTokenToSupabase();
 
       return { error: null };
     } catch (error) {
@@ -202,6 +209,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error };
       }
 
+      // Sync push token to Supabase for remote notifications
+      await syncPushTokenToSupabase();
+
       return { error: null };
     } catch (error: any) {
       // User cancelled or other error - Apple errors have code property
@@ -225,6 +235,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (error) {
         return { error };
       }
+
+      // Sync push token to Supabase for remote notifications (after OAuth redirect)
+      // This will be called on the callback screen
+      syncPushTokenToSupabase();
 
       // The OAuth flow will redirect, so we just return success
       // The onAuthStateChange listener will handle the session update

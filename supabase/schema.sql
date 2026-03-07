@@ -233,6 +233,8 @@ CREATE TABLE IF NOT EXISTS user_settings (
   daily_check_in BOOLEAN DEFAULT TRUE,
   daily_check_in_time TIME DEFAULT '09:00',
   focus_session_reminders BOOLEAN DEFAULT TRUE,
+  -- Push notification token for remote notifications (added 2026-03-07)
+  expo_push_token TEXT,
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
