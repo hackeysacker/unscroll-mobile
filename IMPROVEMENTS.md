@@ -1,6 +1,19 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-06
+Last updated: 2026-03-07
+
+## 2026-03-07 Overnight Session (1 AM)
+- ✅ **Data Export Feature for Privacy** (v1.2 - 2026-03-07)
+  - Added data-export.ts module for exporting all user data as JSON
+  - Integrated expo-clipboard to copy exported data to clipboard
+  - Connected 'Export Your Data' button in Settings (was dead navigation link)
+  - Enables GDPR compliance and user data backup
+  - Exports: game progress, challenge results, sessions, skills, stats, settings, hearts, gems, badges, avatar state
+- ✅ **Version Bump to v1.2.0** (v1.2 - 2026-03-07)
+  - Updated package.json and app.json version to 1.2.0
+  - Reflects current state with push notifications, Apple/Google auth, notification settings
+- Build verified: iOS bundle exports successfully
+- Committed and pushed to GitHub
 
 ## 2026-03-06 Overnight Session (11 PM)
 - ✅ **Push Notification Token Support for APNs** (v1.2 - 2026-03-06)
