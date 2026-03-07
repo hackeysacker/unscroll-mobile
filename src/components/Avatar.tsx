@@ -256,7 +256,7 @@ export function Avatar({ size = 'medium', showGlow = true, interactive = true, s
   if (!avatar) return null;
 
   // Calculate brightness-based opacity
-  const brightnessOpacity = 0.5 + (avatar.brightness / 200);
+  const brightnessOpacity = 0.5 + ((avatar.brightness ?? 50) / 200);
 
   // Float interpolation
   const floatY = floatAnim.interpolate({

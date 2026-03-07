@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { View, Animated, StyleSheet, Easing } from 'react-native';
+import { View, Animated, StyleSheet, Easing, Text } from 'react-native';
 import { useAttentionAvatar } from '@/contexts/AttentionAvatarContext';
 import { getSkinColors } from '@/lib/avatar-evolution';
 import Svg, { Circle, Path, Defs, RadialGradient, Stop, G } from 'react-native-svg';
@@ -353,7 +353,7 @@ export function AttentionAvatar({
         {/* Crown for master stage */}
         {avatarState.customizations.hasCrown && avatarState.stage === 'master' && (
           <View style={[styles.crown, { top: -displaySize * 0.2 }]}>
-            <View style={styles.crownText}>👑</View>
+            <Text style={styles.crownText}>👑</Text>
           </View>
         )}
       </Animated.View>

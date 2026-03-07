@@ -10,15 +10,32 @@
         "simulator": true
       }
     },
+    "testflight": {
+      "distribution": "internal",
+      "ios": {
+        "enterprise": false,
+        "buildNumber": "2"
+      },
+      "channel": "testflight"
+    },
     "production": {
       "distribution": "appstore",
       "ios": {
         "enterprise": false
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {
     "production": {
+      "ios": {
+        "appleId": "",
+        "ascAppId": "",
+        "appleTeamId": "",
+        "sku": "com.focusflow.app"
+      }
+    },
+    "testflight": {
       "ios": {
         "appleId": "",
         "ascAppId": "",

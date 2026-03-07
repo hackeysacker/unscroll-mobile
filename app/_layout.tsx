@@ -8,7 +8,6 @@ import * as Sentry from '@sentry/react-native';
 // Replace with your own Sentry DSN from sentry.io
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN || '',
-  enableInExpoDevelopment: true,
   debug: __DEV__,
 });
 

@@ -202,6 +202,8 @@ export function ChallengePlayer({
 
   // Render challenge based on type
   const renderChallenge = () => {
+    if (!currentChallenge) return null;
+    
     const challengeDuration = getChallengeDuration(currentChallenge);
 
     // Common props for all challenges
@@ -277,7 +279,7 @@ export function ChallengePlayer({
   }
 
   return (
-    <View style={styles.container} accessibilityLabel={`Playing ${currentChallenge} challenge`} accessibilityRole="main">
+    <View style={styles.container} accessibilityLabel={`Playing ${currentChallenge} challenge`} accessibilityRole="none">
       {renderChallenge()}
     </View>
   );
