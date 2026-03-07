@@ -145,29 +145,49 @@ export async function scheduleDailyCheckIn(time: string = '09:00'): Promise<stri
   }
 }
 
-// Schedule focus session reminder
-export async function scheduleFocusSessionReminder(): Promise<string | null> {
+// Schedule streak reminder - reminds user to maintain their streak
+export async function scheduleStreakReminder(): Promise<string | null> {
   try {
-    // Default to 8 AM next day
-    const now = new Date();
-    const triggerDate = new Date(now);
-    triggerDate.setDate(triggerDate.getDate() + 1);
-    triggerDate.setHours(8, 0, 0, 0);
-
+    // Remind in the evening to complete daily challenge before midnight
     const id = await Notifications.scheduleNotificationAsync({
-      title: '🎯 Ready to Focus?',
-      body: 'Start a focus session and level up your attention!',
-      data: { type: 'focus_session' },
-      sound: 'default',
+      content: {
+        title: '🔥 Keep Your Streak Alive!',
+        body: "Don't break your streak! Complete today's challenge now.",
+        data: { type: 'streak_reminder' },
+        sound: 'default',
+      },
       trigger: {
         type: Notifications.SchedulableTriggerInputTypes.DAILY,
-        hour: 8,
+        hour: 20, // 8 PM
         minute: 0,
       },
     });
     return id;
   } catch (error) {
-    console.error('Error scheduling focus session reminder:', error);
+    console.error('Error scheduling streak reminder:', error);
+    return null;
+  }
+}
+
+// Schedule streak recovery - for users who missed yesterday
+export async function scheduleStreakRecoveryReminder(): Promise<string | null> {
+  try {
+    const id = await Notifications.scheduleNotificationAsync({
+      content: {
+        title: '💪 Get Back in the Game!',
+        body: 'Start fresh today! Your streak is waiting for you.',
+        data: { type: 'streak_recovery' },
+        sound: 'default',
+      },
+      trigger: {
+        type: Notifications.SchedulableTriggerInputTypes.DAILY,
+        hour: 10, // 10 AM
+        minute: 0,
+      },
+    });
+    return id;
+  } catch (error) {
+    console.error('Error scheduling streak recovery reminder:', error);
     return null;
   }
 }
