@@ -20,6 +20,12 @@ Last updated: 2026-03-07
   - Added type assertions for cognitive and reflection exercises in focus-journey.ts
   - Build verified: iOS bundle exports successfully (6.27 MB)
 - Committed and pushed to GitHub
+- ✅ **Network Manager and Challenge Theme Fixes** (v1.2 - 2026-03-07)
+  - Fixed useEffect cleanup function type in network-manager.ts
+  - Fixed themeStyles.textSecondary -> colors.mutedForeground in AppSwitchResistanceChallenge
+  - Fixed same themeStyles issue in NotificationResistanceChallenge
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
 
 ## 2026-03-07 Weekend Session (1:30 PM)
 - ✅ **Server-Side Push Notification System** (v1.2 - 2026-03-07)
