@@ -7,7 +7,7 @@
  * App Group: group.com.focusflow.app
  */
 
-import { Platform } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 
 // Widget data structure
 export interface WidgetData {
@@ -18,19 +18,36 @@ export interface WidgetData {
   lastUpdated: string;
 }
 
+// Native module for widget data bridge
+const { FocusFlowWidgetsBridge } = NativeModules;
+
 /**
  * Get the widget data from shared storage
- * For now, returns placeholder data since native module needs to be set up
- * The actual implementation requires a native iOS module using App Groups
+ * Reads from App Group container via native module
  */
 export async function getWidgetData(): Promise<WidgetData | null> {
   if (Platform.OS !== 'ios') {
     return null;
   }
   
-  // TODO: Implement native module for reading widget data
-  // For now, we'll write data that can be read when the native module is added
-  return null;
+  try {
+    if (FocusFlowWidgetsBridge) {
+      const data = await FocusFlowWidgetsBridge.readWidgetData();
+      if (data) {
+        return {
+          currentStreak: data.currentStreak || 0,
+          totalFocusMinutes: data.totalFocusMinutes || 0,
+          level: data.level || 1,
+          gems: data.gems || 0,
+          lastUpdated: data.lastUpdated || new Date().toISOString(),
+        };
+      }
+    }
+    return null;
+  } catch (error) {
+    console.error('Failed to read widget data:', error);
+    return null;
+  }
 }
 
 /**
@@ -45,12 +62,20 @@ export async function saveWidgetData(data: WidgetData): Promise<boolean> {
   }
   
   try {
-    // Store in AsyncStorage as backup - native module handles App Group
+    // Write to App Group via native module
+    if (FocusFlowWidgetsBridge) {
+      await FocusFlowWidgetsBridge.writeWidgetData({
+        currentStreak: data.currentStreak,
+        totalFocusMinutes: data.totalFocusMinutes,
+        level: data.level,
+        gems: data.gems,
+        lastUpdated: data.lastUpdated,
+      });
+    }
+    
+    // Also store in AsyncStorage as backup
     const AsyncStorage = require('@react-native-async-storage/async-storage').default;
     await AsyncStorage.setItem('widget_data', JSON.stringify(data));
-    
-    // TODO: Call native module to write to App Group container
-    // NativeMethodChannel.callMethod('writeWidgetData', data);
     
     return true;
   } catch (error) {

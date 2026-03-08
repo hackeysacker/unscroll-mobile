@@ -218,8 +218,8 @@ export function UnlockChallengeScreen({ onBack, onSettings }: UnlockChallengeScr
 
           <Text style={styles.challengeDuration}>{challengeDuration}s</Text>
 
-          {/* TODO: Render actual challenge component here */}
-          {/* For MVP, just show "Wait" challenge */}
+          {/* Challenge UI - using generic wait challenge for all types since they rely on motion/location sensors */}
+          {/* To implement different UIs: face_down needs motion sensor, walk needs pedometer, etc. */}
           <WaitChallengeSimple
             duration={challengeDuration}
             onComplete={handleChallengeComplete}
