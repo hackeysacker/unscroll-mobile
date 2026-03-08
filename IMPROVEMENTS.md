@@ -2,13 +2,14 @@
 
 Last updated: 2026-03-08
 
-## 2026-03-08 Weekend Session (9:00 AM)
-- ✅ **Build Verification and Final Review** (v1.2 - 2026-03-08)
+## 2026-03-08 Weekend Session (10:30 AM)
+- ✅ **Build Verification** (v1.2 - 2026-03-08)
   - Verified iOS bundle exports successfully (6.27 MB)
-  - Confirmed edge functions exist locally (send-push.ts, broadcast-push.ts)
-  - Edge functions require SUPABASE_ACCESS_TOKEN to deploy (user action needed)
-  - Apple credentials still needed in eas.json (user action needed)
-  - All code complete and ready for TestFlight deployment
+  - Confirmed all 3 remaining TODOs are minor (permission checks, achievement tracking placeholders)
+  - All v1.2 features complete and working
+- **Remaining for TestFlight:**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId) - User action required
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN) - User action required
 - Build verified: iOS bundle exports successfully (6.27 MB)
 
 ## 2026-03-08 Weekend Session (7:30 AM)
