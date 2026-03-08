@@ -39,20 +39,47 @@ export interface ChallengeConfig {
 }
 
 interface BaseChallengeWrapperProps {
-  config: ChallengeConfig;
+  // Config object pattern (preferred)
+  config?: ChallengeConfig;
+  // Individual props pattern (legacy support)
+  title?: string;
+  description?: string;
+  duration?: number;
+  stats?: { label: string; value: number }[];
+  onComplete?: (score?: number, timeSpent?: number) => void;
+  // Common props
   onStart: () => void;
   onBack: () => void;
   children: React.ReactNode;
   isActive: boolean;
 }
 
-export function BaseChallengeWrapper({
-  config,
-  onStart,
-  onBack,
-  children,
-  isActive,
-}: BaseChallengeWrapperProps) {
+// Helper to get config from either pattern
+function getEffectiveConfig(props: BaseChallengeWrapperProps): ChallengeConfig {
+  if (props.config) {
+    return props.config;
+  }
+  // Fallback for legacy individual props pattern
+  return {
+    name: props.title || 'Challenge',
+    icon: '🎯',
+    description: props.description || '',
+    duration: props.duration || 60,
+    xpReward: 50,
+    difficulty: 'medium',
+    instructions: ['Complete the challenge to earn XP'],
+    benefits: ['Improve your focus skills'],
+    colors: {
+      background: '#1a1a2e',
+      primary: '#6366f1',
+      secondary: '#8b5cf6',
+    },
+  };
+}
+
+export function BaseChallengeWrapper(props: BaseChallengeWrapperProps) {
+  const config = getEffectiveConfig(props);
+  const { onStart, onBack, children, isActive } = props;
   const [showIntro, setShowIntro] = useState(true); // Show nice intro screen
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.9)).current;

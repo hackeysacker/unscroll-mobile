@@ -296,7 +296,7 @@ export function NumberSequenceChallenge({
       description="Find the next number in the sequence"
       duration={duration}
       onComplete={handleComplete}
-      onBack={onBack}
+      onBack={onBack || (() => {})}
       stats={[
         { label: 'Solved', value: solvedCount },
         { label: 'Errors', value: incorrectCount },

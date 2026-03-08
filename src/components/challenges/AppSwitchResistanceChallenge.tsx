@@ -150,7 +150,7 @@ export function AppSwitchResistanceChallenge({
       description="Resist switching apps or tapping prompts"
       duration={duration}
       onComplete={handleComplete}
-      onBack={onBack}
+      onBack={onBack || (() => {})}
       stats={[
         { label: 'Resisted', value: resistedCount },
         { label: 'Tapped', value: tappedCount },
@@ -270,7 +270,7 @@ function FakePromptCard({
     ).start();
   }, []);
 
-  const getColors = () => {
+  const getColors = (): [string, string] => {
     switch (prompt.type) {
       case 'app':
         return ['#3B82F6', '#2563EB'];

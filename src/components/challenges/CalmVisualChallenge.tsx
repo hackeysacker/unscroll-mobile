@@ -243,7 +243,7 @@ export function CalmVisualChallenge({ duration, onComplete, onBack, level = 1 }:
       isActive={isActive}
     >
       <LinearGradient
-        colors={currentScene.colors}
+        colors={currentScene.colors as [string, string, string]}
         style={styles.container}
       >
         {/* Header */}

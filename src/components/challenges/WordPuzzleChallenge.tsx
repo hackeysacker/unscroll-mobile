@@ -254,7 +254,7 @@ export function WordPuzzleChallenge({
       description="Unscramble the letters to form a word"
       duration={duration}
       onComplete={handleComplete}
-      onBack={onBack}
+      onBack={onBack || (() => {})}
       stats={[
         { label: 'Solved', value: solvedCount },
         { label: 'Errors', value: incorrectCount },

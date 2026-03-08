@@ -35,10 +35,10 @@ interface FakeNotification {
   title: string;
   body: string;
   icon: string;
-  color: string[];
+  color: [string, string];
 }
 
-const NOTIFICATION_TEMPLATES = [
+const NOTIFICATION_TEMPLATES: { title: string; body: string; icon: string; color: [string, string] }[] = [
   { title: 'New Message', body: 'Sarah: Hey, check this out! 🔥', icon: '💬', color: ['#3B82F6', '#2563EB'] },
   { title: 'Breaking News', body: 'You won\'t believe what happened...', icon: '📰', color: ['#EF4444', '#DC2626'] },
   { title: 'Instagram', body: 'johndoe liked your photo', icon: '📸', color: ['#EC4899', '#DB2777'] },
@@ -131,7 +131,7 @@ export function NotificationResistanceChallenge({
       description="Resist tapping on fake notifications"
       duration={duration}
       onComplete={handleComplete}
-      onBack={onBack}
+      onBack={onBack || (() => {})}
       stats={[
         { label: 'Resisted', value: resistedCount },
         { label: 'Tapped', value: tappedCount },
