@@ -2,6 +2,18 @@
 
 Last updated: 2026-03-07
 
+## 2026-03-07 Weekend Session (5:30 PM)
+- ✅ **TypeScript Error Fixes** (v1.2 - 2026-03-07)
+  - Fixed LinearGradient colors type in AppSwitchResistanceChallenge (added tuple return type)
+  - Fixed LinearGradient colors type in NotificationResistanceChallenge (added explicit type annotation)
+  - Fixed LinearGradient colors type in CalmVisualChallenge (added type assertion)
+  - Fixed LinearGradient colors type in DailyChallengeCard (added tuple return type)
+  - Fixed onBack optional prop issue in challenge components
+  - Updated BaseChallengeWrapper to support both config and legacy props patterns
+  - Added onComplete prop support to BaseChallengeWrapper
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+
 ## 2026-03-07 Weekend Session (5:00 PM)
 - ✅ **TypeScript Fixes for Challenge Components** (v1.2 - 2026-03-07)
   - Fixed themeStyles property access in NumberSequenceChallenge and WordPuzzleChallenge
