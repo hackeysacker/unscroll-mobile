@@ -1,6 +1,16 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-07
+Last updated: 2026-03-08
+
+## 2026-03-08 Weekend Session (12:30 AM)
+- ✅ **Widget Data Sync Native Module** (v1.2 - 2026-03-08)
+  - Created FocusFlowWidgetsBridge native module (Swift + Objective-C)
+  - Writes widget data to App Group container for iOS widgets to read
+  - Updated widget-manager.ts to use native module for data sync
+  - Widget now properly syncs streak, level, gems, and focus minutes
+  - Fixed UnlockChallengeScreen TODO comment
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
 
 ## 2026-03-07 Weekend Session (10:00 PM)
 - ✅ **iOS 17+ Smart Stack Widget Support** (v1.2 - 2026-03-07)
