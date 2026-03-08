@@ -141,7 +141,7 @@ class NetworkManager {
     this.listeners.add(listener);
     // Immediately call with current state
     listener(this.networkState);
-    return () => this.listeners.delete(listener);
+    return () => { this.listeners.delete(listener); };
   }
 
   /**
@@ -151,7 +151,7 @@ class NetworkManager {
     this.syncListeners.add(listener);
     // Immediately call with current state
     listener(this.syncState);
-    return () => this.syncListeners.delete(listener);
+    return () => { this.syncListeners.delete(listener); };
   }
 
   /**

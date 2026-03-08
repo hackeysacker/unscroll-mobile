@@ -181,7 +181,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
     const challenges = ACTIVITY_POOL.beginner_challenges.slice(0, 2);
     challenges.forEach(activity => {
       activities.push({
-        ...activity,
+        ...(activity as JourneyActivity),
         description: `Master the basics with ${activity.name}`,
         scaledDuration: getScaledDuration(activity.baseDuration, level, activity.category),
         scaledXP: getScaledXP(activity.baseXP, level),
@@ -191,7 +191,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
     });
 
     // 1 breathing exercise
-    const breathing = ACTIVITY_POOL.breathing_exercises[level % 4];
+    const breathing = ACTIVITY_POOL.breathing_exercises[level % 4] as JourneyActivity;
     activities.push({
       ...breathing,
       description: `Calm your mind with ${breathing.name}`,
@@ -203,7 +203,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
     });
 
     // 1 grounding exercise
-    const grounding = ACTIVITY_POOL.grounding_exercises[level % 5];
+    const grounding = ACTIVITY_POOL.grounding_exercises[level % 5] as JourneyActivity;
     activities.push({
       ...grounding,
       description: `Ground yourself with ${grounding.name}`,
@@ -227,7 +227,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
 
     selectedChallenges.forEach(activity => {
       activities.push({
-        ...activity,
+        ...(activity as JourneyActivity),
         description: `Build your skills with ${activity.name}`,
         scaledDuration: getScaledDuration(activity.baseDuration, level, activity.category),
         scaledXP: getScaledXP(activity.baseXP, level),
@@ -282,7 +282,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
 
     selectedChallenges.forEach(activity => {
       activities.push({
-        ...activity,
+        ...(activity as JourneyActivity),
         description: `Master the art of ${activity.name}`,
         scaledDuration: getScaledDuration(activity.baseDuration, level, activity.category),
         scaledXP: getScaledXP(activity.baseXP, level),

@@ -15,12 +15,14 @@ const SOUND_PROFILES: Record<SoundName, { frequency: number; duration: number }>
   toggle: { frequency: 600, duration: 80 },
   swipe: { frequency: 400, duration: 100 },
   select: { frequency: 700, duration: 60 },
+  click: { frequency: 750, duration: 40 },
 
   // Feedback - Mid-range, distinctive
   success: { frequency: 880, duration: 200 },
   error: { frequency: 200, duration: 150 },
   warning: { frequency: 440, duration: 180 },
   complete: { frequency: 1046, duration: 250 },
+  notification: { frequency: 600, duration: 180 },
 
   // Challenge Events
   'target-appear': { frequency: 523, duration: 80 },
