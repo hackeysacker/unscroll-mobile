@@ -90,6 +90,14 @@ class SoundManager {
   unlock() {
     return this.play('unlock');
   }
+
+  click() {
+    return this.play('click');
+  }
+
+  notification() {
+    return this.play('notification');
+  }
 }
 
 // Export singleton instance

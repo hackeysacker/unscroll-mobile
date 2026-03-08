@@ -315,33 +315,33 @@ export function NumberSequenceChallenge({
             },
           ]}
         >
-          <Text style={[styles.label, { color: themeStyles.textSecondary }]}>
+          <Text style={[styles.label, { color: themeStyles.colors.mutedForeground }]}>
             Find the pattern:
           </Text>
 
           <View style={styles.sequenceRow}>
             {currentSequence.numbers.map((num, index) => (
               <React.Fragment key={index}>
-                <View style={[styles.numberBox, { backgroundColor: themeStyles.surface }]}>
-                  <Text style={[styles.number, { color: themeStyles.textPrimary }]}>
+                <View style={[styles.numberBox, { backgroundColor: themeStyles.colors.card }]}>
+                  <Text style={[styles.number, { color: themeStyles.colors.foreground }]}>
                     {num}
                   </Text>
                 </View>
                 {index < currentSequence.numbers.length - 1 && (
-                  <Text style={[styles.comma, { color: themeStyles.textSecondary }]}>,</Text>
+                  <Text style={[styles.comma, { color: themeStyles.colors.mutedForeground }]}>,</Text>
                 )}
               </React.Fragment>
             ))}
 
-            <Text style={[styles.comma, { color: themeStyles.textSecondary }]}>,</Text>
+            <Text style={[styles.comma, { color: themeStyles.colors.mutedForeground }]}>,</Text>
 
-            <View style={[styles.numberBox, styles.questionBox, { borderColor: themeStyles.accent }]}>
-              <Text style={[styles.question, { color: themeStyles.accent }]}>?</Text>
+            <View style={[styles.numberBox, styles.questionBox, { borderColor: themeStyles.colors.primary }]}>
+              <Text style={[styles.question, { color: themeStyles.colors.primary }]}>?</Text>
             </View>
           </View>
 
           {showFeedback && (
-            <Text style={[styles.patternHint, { color: themeStyles.textSecondary }]}>
+            <Text style={[styles.patternHint, { color: themeStyles.colors.mutedForeground }]}>
               {currentSequence.pattern}
             </Text>
           )}

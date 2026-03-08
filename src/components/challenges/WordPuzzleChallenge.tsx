@@ -263,11 +263,11 @@ export function WordPuzzleChallenge({
       <View style={styles.container}>
         {/* Category Hint */}
         <View style={styles.categoryContainer}>
-          <Text style={[styles.categoryLabel, { color: themeStyles.textSecondary }]}>
+          <Text style={[styles.categoryLabel, { color: themeStyles.colors.mutedForeground }]}>
             Category:
           </Text>
-          <View style={[styles.categoryBadge, { backgroundColor: themeStyles.surface }]}>
-            <Text style={[styles.categoryText, { color: themeStyles.accent }]}>
+          <View style={[styles.categoryBadge, { backgroundColor: themeStyles.colors.card }]}>
+            <Text style={[styles.categoryText, { color: themeStyles.colors.primary }]}>
               {currentPuzzle.category}
             </Text>
           </View>
@@ -301,12 +301,12 @@ export function WordPuzzleChallenge({
                         ? isCorrect
                           ? '#10B98155'
                           : '#EF444455'
-                        : themeStyles.surface,
-                      borderColor: themeStyles.border,
+                        : themeStyles.colors.card,
+                      borderColor: themeStyles.colors.border,
                     },
                   ]}
                 >
-                  <Text style={[styles.letterText, { color: themeStyles.textPrimary }]}>
+                  <Text style={[styles.letterText, { color: themeStyles.colors.foreground }]}>
                     {letter}
                   </Text>
                 </View>
@@ -325,7 +325,7 @@ export function WordPuzzleChallenge({
 
         {/* Available Letters */}
         <View style={styles.lettersContainer}>
-          <Text style={[styles.label, { color: themeStyles.textSecondary }]}>
+          <Text style={[styles.label, { color: themeStyles.colors.mutedForeground }]}>
             Tap letters to spell the word:
           </Text>
 

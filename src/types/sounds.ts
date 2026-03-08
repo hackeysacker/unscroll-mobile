@@ -10,12 +10,14 @@ export type SoundName =
   | 'toggle'
   | 'swipe'
   | 'select'
+  | 'click'
 
   // Feedback
   | 'success'
   | 'error'
   | 'warning'
   | 'complete'
+  | 'notification'
 
   // Challenge Events
   | 'target-appear'
@@ -74,6 +76,12 @@ export const SOUND_METADATA: Record<SoundName, SoundMetadata> = {
     volume: 0.35,
     description: 'Selection change',
   },
+  click: {
+    name: 'click',
+    category: 'ui',
+    volume: 0.3,
+    description: 'Button click sound',
+  },
 
   // Feedback
   success: {
@@ -99,6 +107,12 @@ export const SOUND_METADATA: Record<SoundName, SoundMetadata> = {
     category: 'feedback',
     volume: 0.6,
     description: 'Task or challenge completed',
+  },
+  notification: {
+    name: 'notification',
+    category: 'feedback',
+    volume: 0.4,
+    description: 'Notification sound',
   },
 
   // Challenge Events
