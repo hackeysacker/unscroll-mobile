@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-07
 
+## 2026-03-07 Weekend Session (7:30 PM)
+- ✅ **iOS Widget Support** (v1.2 - 2026-03-07)
+  - Created FocusFlowWidgets native extension (SwiftUI/WidgetKit)
+  - Small widget: displays streak, level, and gems
+  - Medium widget: displays streak, focus minutes, level, and gems
+  - Added widget-manager.ts for updating widget data from React Native
+  - Integrated widget updates into GameContext (auto-updates on progress changes)
+  - Uses App Groups for data sharing between app and widget
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+
 ## 2026-03-07 Weekend Session (6:00 PM)
 - ✅ **App Icon and TestFlight Readiness** (v1.2 - 2026-03-07)
   - Added icon.png and adaptive-icon.png (1024x1024) for App Store
