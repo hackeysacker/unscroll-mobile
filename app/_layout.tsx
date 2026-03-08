@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppProvider } from '@/AppProvider';
 import { ScreenFrame } from '@/components/ui/ScreenFrame';
 import * as Sentry from '@sentry/react-native';
+import * as Linking from 'expo-linking';
 
 // Initialize Sentry for error tracking
 // Replace with your own Sentry DSN from sentry.io
@@ -11,13 +12,28 @@ Sentry.init({
   debug: __DEV__,
 });
 
+const prefix = Linking.createURL('/');
+
+export const linking = {
+  prefixes: [prefix, 'focusflow://'],
+  config: {
+    screens: {
+      index: 'home',
+      'focus-session': 'focus',
+      settings: 'settings',
+      achievements: 'achievements',
+      leaderboard: 'leaderboard',
+    },
+  },
+};
+
 export default function RootLayout() {
   return (
     <Sentry.ErrorBoundary>
       <SafeAreaProvider>
         <AppProvider>
           <ScreenFrame>
-            <Stack screenOptions={{ headerShown: false }}>
+            <Stack screenOptions={{ headerShown: false }} linking={linking}>
               <Stack.Screen name="index" />
             </Stack>
           </ScreenFrame>

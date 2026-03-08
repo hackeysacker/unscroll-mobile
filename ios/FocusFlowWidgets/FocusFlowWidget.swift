@@ -3,6 +3,7 @@
 //  FocusFlowWidgets
 //
 //  Small widget showing current streak and focus stats
+//  Includes iOS 17+ App Intents for Smart Stack support
 //
 
 import WidgetKit
@@ -80,45 +81,109 @@ struct FocusFlowProvider: TimelineProvider {
     }
 }
 
+// App Intents for iOS 17+ Smart Stack interactivity
+// These enable the widget to appear in Smart Stack and provide contextual actions
+
+@available(iOS 17.0, *)
+struct OpenFocusFlowAppIntent: AppIntent {
+    static var title: LocalizedStringResource = "Open FocusFlow"
+    static var description = IntentDescription("Open the FocusFlow app")
+    
+    func perform() async throws -> some IntentResult {
+        // This will deep link to the app
+        return .result()
+    }
+}
+
+@available(iOS 17.0, *)
+struct StartFocusSessionIntent: AppIntent {
+    static var title: LocalizedStringResource = "Start Focus Session"
+    static var description = IntentDescription("Start a new focus session")
+    
+    func perform() async throws -> some IntentResult {
+        // Deep link to focus session screen
+        return .result()
+    }
+}
+
+@available(iOS 17.0, *)
+struct ViewStreakIntent: AppIntent {
+    static var title: LocalizedStringResource = "View Streak"
+    static var description = IntentDescription("View your current streak details")
+    
+    func perform() async throws -> some IntentResult {
+        return .result()
+    }
+}
+
+// App Shortcuts provider for Smart Stack suggestions
+@available(iOS 17.0, *)
+struct FocusFlowShortcuts: AppShortcutsProvider {
+    static var appShortcuts: [AppShortcut] {
+        AppShortcut(
+            intent: OpenFocusFlowAppIntent(),
+            phrases: [
+                "Open \(.applicationName)",
+                "Launch \(.applicationName)",
+                "Start \(.applicationName)"
+            ],
+            shortTitle: "Open FocusFlow",
+            systemImageName: "brain.head.profile"
+        )
+        AppShortcut(
+            intent: StartFocusSessionIntent(),
+            phrases: [
+                "Start focus session in \(.applicationName)",
+                "Begin focusing with \(.applicationName)",
+                "Focus time in \(.applicationName)"
+            ],
+            shortTitle: "Start Session",
+            systemImageName: "timer"
+        )
+    }
+}
+
 // Small widget view
 struct SmallWidgetView: View {
     let entry: FocusFlowEntry
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Image(systemName: "flame.fill")
-                    .foregroundColor(.orange)
-                Text("FocusFlow")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-            }
-            
-            Spacer()
-            
-            HStack(alignment: .bottom) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("\(entry.data.currentStreak)")
-                        .font(.title)
-                        .fontWeight(.bold)
+        Link(destination: URL(string: "focusflow://home")!) {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Image(systemName: "flame.fill")
                         .foregroundColor(.orange)
-                    Text("day streak")
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
+                    Text("FocusFlow")
+                        .font(.caption)
+                        .fontWeight(.semibold)
                 }
                 
                 Spacer()
                 
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("Lv.\(entry.data.level)")
-                        .font(.caption)
-                        .fontWeight(.medium)
-                    Text("\(entry.data.gems) 💎")
-                        .font(.caption2)
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("\(entry.data.currentStreak)")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.orange)
+                        Text("day streak")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("Lv.\(entry.data.level)")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                        Text("\(entry.data.gems) 💎")
+                            .font(.caption2)
+                    }
                 }
             }
+            .padding()
         }
-        .padding()
     }
 }
 
@@ -127,62 +192,64 @@ struct MediumWidgetView: View {
     let entry: FocusFlowEntry
     
     var body: some View {
-        HStack(spacing: 16) {
-            // Streak section
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Image(systemName: "flame.fill")
+        Link(destination: URL(string: "focusflow://home")!) {
+            HStack(spacing: 16) {
+                // Streak section
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Image(systemName: "flame.fill")
+                            .foregroundColor(.orange)
+                        Text("Streak")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Text("\(entry.data.currentStreak)")
+                        .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.orange)
-                    Text("Streak")
-                        .font(.caption)
+                    Text("days")
+                        .font(.caption2)
                         .foregroundColor(.secondary)
                 }
-                Text("\(entry.data.currentStreak)")
-                    .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(.orange)
-                Text("days")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-            }
-            
-            Divider()
-            
-            // Focus time section
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Image(systemName: "brain.head.profile")
+                
+                Divider()
+                
+                // Focus time section
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Image(systemName: "brain.head.profile")
+                            .foregroundColor(.purple)
+                        Text("Focus")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Text("\(entry.data.totalFocusMinutes)")
+                        .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.purple)
-                    Text("Focus")
-                        .font(.caption)
+                    Text("minutes")
+                        .font(.caption2)
                         .foregroundColor(.secondary)
                 }
-                Text("\(entry.data.totalFocusMinutes)")
-                    .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(.purple)
-                Text("minutes")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-            }
-            
-            Divider()
-            
-            // Level section
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Image(systemName: "star.fill")
+                
+                Divider()
+                
+                // Level section
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        Text("Level")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Text("\(entry.data.level)")
+                        .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.yellow)
-                    Text("Level")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    Text("\(entry.data.gems) 💎")
+                        .font(.caption2)
                 }
-                Text("\(entry.data.level)")
-                    .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(.yellow)
-                Text("\(entry.data.gems) 💎")
-                    .font(.caption2)
             }
+            .padding()
         }
-        .padding()
     }
 }
 
@@ -198,6 +265,7 @@ struct FocusFlowWidget: Widget {
         .configurationDisplayName("FocusFlow Stats")
         .description("Track your focus streak and progress.")
         .supportedFamilies([.systemSmall, .systemMedium])
+        .contentMarginsDisabled()
     }
 }
 
