@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-08
 
+## 2026-03-08 Weekend Session (7:30 AM)
+- ✅ **TypeScript Type Fixes** (v1.2 - 2026-03-08)
+  - Fixed unused ExerciseStats import in database.ts
+  - Fixed scaling.displayTime possibly undefined in challenge-progression.ts
+  - Fixed same issue in challenge-progression-old.ts
+  - Added nullish coalescing fallback for displayTime
+- Committed and pushed to GitHub
+- **Remaining for TestFlight:**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase
+
 ## 2026-03-08 Weekend Session (6:30 AM)
 - ✅ **Build Verification and Code Review** (v1.2 - 2026-03-08)
   - Verified iOS bundle exports successfully (6.27 MB)
