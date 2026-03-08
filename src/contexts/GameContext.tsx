@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import type {
   GameProgress,
   ChallengeResult,
@@ -46,6 +46,7 @@ import {
 } from '@/lib/badge-mechanics';
 import { generateUUID } from '@/lib/utils';
 import { useAuth } from './AuthContext';
+import { updateWidgetFromGameState } from '@/lib/widget-manager';
 
 /**
  * Comprehensive Supabase sync helper for all game metrics
@@ -463,6 +464,24 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
     loadGameData();
   }, [user]);
+
+  // Update widget when progress changes
+  useEffect(() => {
+    if (progress && !isLoading) {
+      // Get total focus minutes from stats if available
+      const totalFocusMinutes = stats?.totalAttentionTimeMinutes || 0;
+      
+      updateWidgetFromGameState({
+        streak: progress.streak,
+        totalFocusMinutes,
+        level: progress.level,
+        gems: gemsState?.balance || 0,
+      }).catch((error) => {
+        // Widget update failure is non-critical
+        console.log('Widget update skipped:', error.message);
+      });
+    }
+  }, [progress, stats, gemsState, isLoading]);
 
   const initializeProgress = async (baselineLevel: number) => {
     if (!user) return;
