@@ -2,6 +2,16 @@
 
 Last updated: 2026-03-07
 
+## 2026-03-07 Weekend Session (10:00 PM)
+- ✅ **iOS 17+ Smart Stack Widget Support** (v1.2 - 2026-03-07)
+  - Added AppIntents for interactive widgets (OpenFocusFlow, StartFocusSession, ViewStreak)
+  - Added AppShortcutsProvider for Siri suggestions ("Open FocusFlow", "Start focus session")
+  - Added deep link support to widget views (focusflow://home)
+  - Added linking configuration to Expo Router for deep linking from widgets
+  - Widget taps now open the app to home screen
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+
 ## 2026-03-07 Weekend Session (7:30 PM)
 - ✅ **iOS Widget Support** (v1.2 - 2026-03-07)
   - Created FocusFlowWidgets native extension (SwiftUI/WidgetKit)
