@@ -37,7 +37,8 @@ export type ChallengeType =
   | 'tap_pattern'
   | 'audio_focus'
   | 'impulse_delay'
-  | 'stability_hold';
+  | 'stability_hold'
+  | 'reset_challenge';   // Dev testing: reset challenge
 
 export type SkillPath = 'focus' | 'impulseControl' | 'distractionResistance';
 
@@ -215,6 +216,7 @@ export interface PersonalizedTrainingPlan {
   recommendations: TrainingPlanRecommendation[];
   focusAreas: SkillPath[]; // Areas that need improvement
   streakBonus: boolean; // Whether user has good streak consistency
+  weeklyGoal: number; // Number of challenges per week
   lastUpdated: number;
 }
 

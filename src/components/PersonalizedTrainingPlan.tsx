@@ -42,6 +42,13 @@ const challengeNames: Record<ChallengeType, string> = {
   impulse_delay: 'Impulse Delay',
   distraction_resistance: 'Distraction Resistance',
   audio_focus: 'Audio Focus',
+  // Puzzle challenges
+  pattern_matching: 'Pattern Match',
+  logic_puzzle: 'Logic Puzzle',
+  memory_puzzle: 'Memory Puzzle',
+  spatial_puzzle: 'Spatial Puzzle',
+  // Dev testing
+  reset_challenge: 'Reset Challenge',
 };
 
 function generateTrainingPlan(
@@ -57,6 +64,7 @@ function generateTrainingPlan(
   if (skillTree.distractionResistance < 50) focusAreas.push('distractionResistance');
 
   const recommendations: Array<{
+    id: string;
     challengeType: ChallengeType;
     priority: 'high' | 'medium' | 'low';
     reason: string;
@@ -64,6 +72,7 @@ function generateTrainingPlan(
 
   if (skillTree.focus < 50) {
     recommendations.push({
+      id: 'focus_hold_1',
       challengeType: 'focus_hold',
       priority: 'high',
       reason: 'Improve your focus skills',
@@ -72,6 +81,7 @@ function generateTrainingPlan(
 
   if (skillTree.impulseControl < 50) {
     recommendations.push({
+      id: 'delay_unlock_1',
       challengeType: 'delay_unlock',
       priority: 'high',
       reason: 'Build impulse control',
@@ -80,6 +90,7 @@ function generateTrainingPlan(
 
   if (skillTree.distractionResistance < 50) {
     recommendations.push({
+      id: 'fake_notifications_1',
       challengeType: 'fake_notifications',
       priority: 'high',
       reason: 'Resist distractions',

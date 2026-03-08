@@ -270,18 +270,18 @@ export function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
               <View style={styles.currentUserRank}>
                 <Text style={styles.currentUserRankText}>#{currentUserEntry.rank}</Text>
               </View>
-              {currentUserEntry.rankChange !== 0 && (
+              {(currentUserEntry.rankChange ?? 0) !== 0 && (
                 <View style={[
                   styles.rankChange,
-                  { backgroundColor: currentUserEntry.rankChange > 0 ? '#10B981' : '#EF4444' }
+                  { backgroundColor: (currentUserEntry.rankChange ?? 0) > 0 ? '#10B981' : '#EF4444' }
                 ]}>
-                  {currentUserEntry.rankChange > 0 ? (
+                  {(currentUserEntry.rankChange ?? 0) > 0 ? (
                     <ArrowUpIcon size={10} color="#FFFFFF" />
                   ) : (
                     <ArrowDownIcon size={10} color="#FFFFFF" />
                   )}
                   <Text style={styles.rankChangeText}>
-                    {Math.abs(currentUserEntry.rankChange)}
+                    {Math.abs(currentUserEntry.rankChange ?? 0)}
                   </Text>
                 </View>
               )}

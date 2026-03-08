@@ -5,6 +5,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { useGame } from '@/contexts/GameContext';
 import { Header } from '@/components/ui/Header';
 import { UIIcon } from '@/components/ui/UIIcon';
+import type { UIIconName } from '@/components/icons';
 import { getThemeColors } from '@/lib/theme-colors';
 import type { ThemeType } from '@/types';
 import { useHaptics } from '@/hooks/useHaptics';
@@ -92,7 +93,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
   const { user, logout, resetOnboarding } = useAuth();
   const { settings, updateSettings, toggleDarkMode } = useSettings();
   const { theme, setTheme, availableThemes, colors } = useTheme();
-  const { resetProgress, gameState } = useGame();
+  const { resetProgress } = useGame();
   const haptics = useHaptics();
   const animations = useAnimations();
   const sound = useSound();
@@ -434,7 +435,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
               disabled={testingNotification}
             >
               <View style={styles.actionButtonContent}>
-                <UIIcon name="send" size={20} color={colors.primary} style={styles.settingIcon} />
+                <UIIcon name="mail" size={20} color={colors.primary} style={styles.settingIcon} />
                 <View style={styles.settingText}>
                   <Text style={[styles.settingLabel, { color: colors.foreground }]}>
                     {testingNotification ? 'Sending...' : 'Test Notification'}
@@ -470,7 +471,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
                 onPress={handleCameraPermission}
               >
                 <View style={styles.settingInfo}>
-                  <UIIcon name="camera" size={20} color={colors.mutedForeground} style={styles.settingIcon} />
+                  <UIIcon name="flash" size={20} color={colors.mutedForeground} style={styles.settingIcon} />
                   <View style={styles.settingText}>
                     <Text style={[styles.settingLabel, { color: colors.foreground }]}>
                       Camera Access
@@ -663,7 +664,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
           {/* Spread the Word */}
           <View style={[styles.section, { backgroundColor: colors.card }]}>
             <View style={styles.sectionHeader}>
-              <UIIcon name="share-social" size={20} color={colors.primary} />
+              <UIIcon name="person-circle" size={20} color={colors.primary} />
               <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
                 Spread the Word
               </Text>
@@ -671,7 +672,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
 
             <TouchableOpacity style={styles.linkRow} onPress={handleShareApp}>
               <View style={styles.linkInfo}>
-                <UIIcon name="share" size={20} color={colors.mutedForeground} />
+                <UIIcon name="person-circle" size={20} color={colors.mutedForeground} />
                 <Text style={[styles.linkLabel, { color: colors.foreground }]}>
                   Share FocusFlow
                 </Text>
@@ -696,7 +697,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
           {/* Help & Support */}
           <View style={[styles.section, { backgroundColor: colors.card }]}>
             <View style={styles.sectionHeader}>
-              <UIIcon name="help-circle" size={20} color={colors.primary} />
+              <UIIcon name="bulb" size={20} color={colors.primary} />
               <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
                 Help & Support
               </Text>
@@ -840,7 +841,7 @@ function SettingRow({
   colors,
   isLast = false
 }: {
-  icon: string;
+  icon: UIIconName;
   label: string;
   description: string;
   value: boolean;

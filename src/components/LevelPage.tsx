@@ -42,6 +42,11 @@ const CHALLENGE_DESCRIPTIONS: Record<ChallengeType, { name: string; emoji: strin
   impulse_delay: { name: 'Impulse Delay', emoji: '⏱️', description: 'Wait for the perfect moment', skill: 'Impulse Control' },
   distraction_resistance: { name: 'Distraction Resist', emoji: '🛡️', description: 'Ignore the distractions', skill: 'Distraction Resistance' },
   audio_focus: { name: 'Audio Focus', emoji: '🔊', description: 'Count the target sounds', skill: 'Distraction Resistance' },
+  // Puzzle challenges
+  pattern_matching: { name: 'Pattern Match', emoji: '🔢', description: 'Find matching patterns', skill: 'Cognitive' },
+  logic_puzzle: { name: 'Logic Puzzle', emoji: '🧩', description: 'Solve logic challenges', skill: 'Cognitive' },
+  memory_puzzle: { name: 'Memory Puzzle', emoji: '🎴', description: 'Remember and match', skill: 'Cognitive' },
+  spatial_puzzle: { name: 'Spatial Puzzle', emoji: '🗺️', description: 'Solve spatial puzzles', skill: 'Cognitive' },
 };
 
 export function LevelPage({ level, onBack, onSelectChallenge }: LevelPageProps) {
@@ -138,7 +143,7 @@ export function LevelPage({ level, onBack, onSelectChallenge }: LevelPageProps) 
         style={[styles.scrollView, { backgroundColor: colors.background }]}
         contentContainerStyle={styles.contentContainer}
         accessibilityLabel={`Level ${level} page`}
-        accessibilityRole="main"
+        accessibilityRole="none"
         showsVerticalScrollIndicator={false}
       >
         <Animated.View

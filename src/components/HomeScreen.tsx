@@ -710,7 +710,11 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
   const [selectedDuration, setSelectedDuration] = useState<2 | 5 | 10>(5);
   const [showDifficultyModal, setShowDifficultyModal] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState<'easy' | 'hard' | null>(null);
-  const [currentChallenge, setCurrentChallenge] = useState(EASY_CHALLENGES[0]);
+  type Challenge = typeof EASY_CHALLENGES[number] | typeof HARD_CHALLENGES[number];
+
+// Use a type-safe initial state
+const initialChallenge: Challenge = EASY_CHALLENGES[0];
+const [currentChallenge, setCurrentChallenge] = useState<Challenge>(initialChallenge);
   const [challengeComplete, setChallengeComplete] = useState(false);
   const [challengeActive, setChallengeActive] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
