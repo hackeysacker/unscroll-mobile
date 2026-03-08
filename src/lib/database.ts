@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { ExerciseStats } from '@/types';
+
 
 // ============================================
 // GAME PROGRESS

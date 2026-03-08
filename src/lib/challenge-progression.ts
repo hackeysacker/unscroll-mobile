@@ -302,7 +302,7 @@ export function getChallengeDescription(challengeType: ChallengeType, level: num
     case 'focus_hold':
       return `Hold your focus for ${scaling.duration}s without breaking`;
     case 'memory_flash':
-      return `Remember ${scaling.itemCount} items in ${scaling.displayTime.toFixed(1)}s`;
+      return `Remember ${scaling.itemCount} items in ${(scaling.displayTime ?? 1).toFixed(1)}s`;
     case 'tap_only_correct':
       return `Tap ${scaling.targetCount} correct targets (${scaling.rulesCount} rules)`;
     case 'stillness_test':
