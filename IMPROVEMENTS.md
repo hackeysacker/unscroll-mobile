@@ -2,6 +2,19 @@
 
 Last updated: 2026-03-08
 
+## 2026-03-08 Weekend Session (8:00 PM)
+- ✅ **Recent Achievement Tracking for Avatar Effects** (v1.2 - 2026-03-08)
+  - Added LAST_ACHIEVEMENT_TIME storage key to track when achievements are earned
+  - Updated AchievementContext to save timestamp when achievements unlock
+  - Added recentAchievement state to AttentionAvatarContext with periodic checking
+  - Avatar now shows 'stars' particle effect for 1 hour after earning any achievement
+  - Resolved TODO: "Track recent achievements" comment
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-08 Weekend Session (3:30 PM)
 - ✅ **TypeScript Fixes** (v1.2 - 2026-03-08)
   - Fixed challenge difficulty type in HomeScreen and MinimalHomeScreen
