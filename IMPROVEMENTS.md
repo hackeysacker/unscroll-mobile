@@ -1,6 +1,25 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-08
+Last updated: 2026-03-09
+
+## 2026-03-09 Overnight Session (1:00 AM)
+- ✅ **TypeScript Type Fixes** (v1.2 - 2026-03-09)
+  - Added reset_challenge to game-mechanics.ts and challenge-progression.ts records
+  - Added DAILY_CHALLENGE storage key to storage.ts
+  - Fixed reset challenge difficulty from 'expert' to 'hard' in challenge-configs.ts
+  - Fixed ThemeContext Easing API usage (Animated.Easing -> Easing from react-native)
+  - Fixed GameContext null/undefined issues with currentNodeId
+  - Fixed totalAttentionTimeMinutes -> totalAttentionTime conversion (was accessing non-existent property)
+  - Added missing UserStats fields in GameContext (challengesCompleted, bestScore, etc.)
+  - Fixed HeartTransaction.change -> HeartTransaction.amount
+  - Fixed LeaderboardContext getLeaderboard boolean parameter (was passing 100 instead of boolean)
+  - Added handleChallengeComplete stub to MinimalHomeScreen
+  - Added reset_challenge to LevelPage challenge descriptions
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 ## 2026-03-08 Weekend Session (8:00 PM)
 - ✅ **Recent Achievement Tracking for Avatar Effects** (v1.2 - 2026-03-08)
