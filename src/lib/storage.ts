@@ -24,6 +24,7 @@ const STORAGE_KEYS = {
   GEM_TRANSACTIONS: 'focusflow_gem_transactions',
   BADGE_PROGRESS: 'focusflow_badge_progress',
   AVATAR_STATE: 'focusflow_avatar_state',
+  LAST_ACHIEVEMENT_TIME: 'focusflow_last_achievement_time',
 } as const;
 
 export async function saveToStorage<T>(key: string, data: T): Promise<void> {

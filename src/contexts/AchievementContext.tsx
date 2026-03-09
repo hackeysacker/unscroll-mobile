@@ -8,6 +8,7 @@ import { View, StyleSheet } from 'react-native';
 import { achievementManager, checkAchievements, type Achievement } from '@/lib/achievement-manager';
 import { AchievementNotification } from '@/components/AchievementNotification';
 import { useGame } from './GameContext';
+import { STORAGE_KEYS, saveToStorage } from '@/lib/storage';
 
 interface AchievementContextValue {
   currentAchievement: Achievement | null;
@@ -46,6 +47,8 @@ export function AchievementProvider({ children }: { children: ReactNode }) {
 
   const unlockAchievement = (achievement: Achievement, force = false) => {
     achievementManager.unlock(achievement, force);
+    // Track achievement time for avatar effects
+    saveToStorage(STORAGE_KEYS.LAST_ACHIEVEMENT_TIME, Date.now());
   };
 
   const checkProgress = () => {

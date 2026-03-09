@@ -2,13 +2,13 @@ import { createContext, useContext, useState, useEffect, useRef, type ReactNode 
 import { useAuth } from './AuthContext';
 import { useGame } from './GameContext';
 import { STORAGE_KEYS, loadFromStorage, saveToStorage } from '@/lib/storage';
-import { 
-  getAvatarStage, 
-  getEvolutionProgress, 
+import {
+  getAvatarStage,
+  getEvolutionProgress,
   determineAvatarMood,
   shouldShowEffect,
-  type AvatarState, 
-  type AvatarStage, 
+  type AvatarState,
+  type AvatarStage,
   type AvatarMood,
   type AvatarSkin,
   AVATAR_EVOLUTIONS,
@@ -38,7 +38,7 @@ export function useAttentionAvatar() {
 export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const { progress, heartState, stats } = useGame();
-  
+
   const [avatarState, setAvatarState] = useState<AvatarState>({
     stage: 'spark',
     mood: 'idle',
@@ -54,7 +54,22 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
     },
   });
 
+  const [recentAchievement, setRecentAchievement] = useState(false);
   const previousStageRef = useRef<AvatarStage>('spark');
+
+  // Check for recent achievements on mount and periodically
+  useEffect(() => {
+    const checkRecentAchievement = async () => {
+      const lastAchievementTime = await loadFromStorage<number>(STORAGE_KEYS.LAST_ACHIEVEMENT_TIME);
+      const oneHourAgo = Date.now() - 60 * 60 * 1000;
+      setRecentAchievement(lastAchievementTime ? lastAchievementTime > oneHourAgo : false);
+    };
+
+    checkRecentAchievement();
+    // Check every 30 seconds
+    const interval = setInterval(checkRecentAchievement, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Load avatar state from storage
   useEffect(() => {
@@ -77,7 +92,7 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
 
     const newStage = getAvatarStage(progress.level);
     const evolutionProgress = getEvolutionProgress(progress.level);
-    
+
     const mood = determineAvatarMood({
       hearts: heartState.currentHearts,
       maxHearts: heartState.maxHearts,
@@ -88,7 +103,7 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
 
     const effect = shouldShowEffect({
       streak: progress.streak,
-      recentAchievement: false, // TODO: Track recent achievements
+      recentAchievement,
       isPremium: user?.isPremium,
     });
 
@@ -118,7 +133,7 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
 
       return updated;
     });
-  }, [progress, heartState, stats, user]);
+  }, [progress, heartState, stats, user, recentAchievement]);
 
   const updateMood = (mood: AvatarMood) => {
     setAvatarState(prev => ({ ...prev, mood }));
