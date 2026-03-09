@@ -852,6 +852,13 @@ const [currentChallenge, setCurrentChallenge] = useState<Challenge>(initialChall
     setTimeRemaining(currentChallenge.duration * 60); // Convert minutes to seconds
   };
 
+  // Handle challenge completion (stub for minimal mode)
+  const handleChallengeComplete = () => {
+    console.log('Challenge completed in minimal mode');
+    // In minimal mode, we just reset the challenge state
+    setChallengeActive(false);
+  };
+
   // Timer effect - counts down when challenge is active
   useEffect(() => {
     if (challengeActive && timeRemaining > 0) {

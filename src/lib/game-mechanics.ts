@@ -413,6 +413,8 @@ export function getChallengeDifficulty(challengeType: ChallengeType, userLevel: 
     logic_puzzle: 3,
     memory_puzzle: 2,
     spatial_puzzle: 3,
+    // Dev testing
+    reset_challenge: 1,
   };
 
   const base = baseDifficulty[challengeType] || 2;
@@ -457,6 +459,8 @@ export function getChallengeSkillPath(challengeType: ChallengeType): SkillPath {
     logic_puzzle: 'focus',
     memory_puzzle: 'focus',
     spatial_puzzle: 'focus',
+    // Dev testing
+    reset_challenge: 'focus',
   };
   return mapping[challengeType] || 'focus';
 }
@@ -498,6 +502,8 @@ export function getMinLevelForChallenge(challengeType: ChallengeType): number {
     logic_puzzle: 5,
     memory_puzzle: 3,
     spatial_puzzle: 7,
+    // Dev testing
+    reset_challenge: 1,
   };
   return minLevels[challengeType] || 1;
 }

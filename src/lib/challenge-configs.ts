@@ -585,7 +585,7 @@ export const CHALLENGE_CONFIGS: Record<ChallengeType, ChallengeConfig> = {
     description: 'The ultimate mastery test combining all attention skills. Complete multiple rapid challenges to prove your focus mastery.',
     duration: 120,
     xpReward: 100,
-    difficulty: 'expert',
+    difficulty: 'hard',
     instructions: [
       'Complete a series of mini-challenges',
       'Each tests a different attention skill',

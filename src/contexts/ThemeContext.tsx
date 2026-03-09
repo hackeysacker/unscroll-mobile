@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import type { ThemeType, UserTheme } from '@/types';
 import { STORAGE_KEYS, saveToStorage, loadFromStorage } from '@/lib/storage';
 import { useAuth } from './AuthContext';
@@ -171,7 +171,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     Animated.timing(fadeAnim, {
       toValue: 0.2,
       duration: 300,
-      easing: Animated.Easing.out(Animated.Easing.ease),
+      easing: Easing.out(Easing.ease),
       useNativeDriver: true,
     }).start(() => {
       // Change theme
@@ -181,7 +181,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       Animated.timing(fadeAnim, {
         toValue: 1,
         duration: 400,
-        easing: Animated.Easing.inOut(Animated.Easing.ease),
+        easing: Easing.inOut(Easing.ease),
         useNativeDriver: true,
       }).start(() => {
         setIsTransitioning(false);

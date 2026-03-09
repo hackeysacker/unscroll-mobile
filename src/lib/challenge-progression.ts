@@ -290,6 +290,8 @@ export function getChallengeName(challengeType: ChallengeType): string {
     audio_focus: 'Audio Focus',
     impulse_delay: 'Impulse Delay',
     stability_hold: 'Stability Hold',
+    // Dev testing
+    reset_challenge: 'Reset Challenge',
   };
 
   return names[challengeType] || challengeType;

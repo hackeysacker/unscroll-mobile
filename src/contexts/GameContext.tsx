@@ -202,7 +202,7 @@ async function syncToSupabase(
       
       promises.push(db.updateProgressTreeState(userId, {
         unlocked_nodes: unlockedNodeIds,
-        current_path: data.progressTree.currentNodeId || null,
+        current_path: data.progressTree.currentNodeId || undefined,
       }));
 
       // Sync individual node states (only sync nodes that are unlocked or completed to reduce DB writes)
@@ -469,7 +469,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (progress && !isLoading) {
       // Get total focus minutes from stats if available
-      const totalFocusMinutes = stats?.totalAttentionTimeMinutes || 0;
+      const totalFocusMinutes = stats ? Math.floor((stats.totalAttentionTime || 0) / 60000) : 0;
       
       updateWidgetFromGameState({
         streak: progress.streak,
@@ -512,6 +512,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
       focusAccuracy: 0,
       impulseControlScore: 0,
       stabilityRating: 0,
+      challengesCompleted: 0,
+      bestScore: 0,
+      totalTrainingTime: 0,
+      currentStreak: 0,
+      averageSessionDuration: 0,
+      lastSessionTimestamp: null,
+      averageAccuracy: 0,
     };
 
     const newProgressTree = generateProgressTree(user.id, baselineLevel);
@@ -973,7 +980,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       console.error('Failed to sync heart loss to Supabase:', error);
     });
     if (session && transaction) {
-      db.logHeartTransaction(user.id, transaction.change, transaction.reason).catch((error) => {
+      db.logHeartTransaction(user.id, transaction.amount, transaction.reason).catch((error) => {
         console.error('Failed to log heart transaction:', error);
       });
     }
@@ -1000,7 +1007,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
       console.error('Failed to sync heart gain to Supabase:', error);
     });
     if (session && transaction) {
-      db.logHeartTransaction(user.id, transaction.change, transaction.reason).catch((error) => {
+      db.logHeartTransaction(user.id, transaction.amount, transaction.reason).catch((error) => {
         console.error('Failed to log heart transaction:', error);
       });
     }
