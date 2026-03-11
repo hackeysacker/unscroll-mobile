@@ -1,0 +1,29 @@
+SPLASH SCREEN IMAGE PLACEHOLDER
+================================
+
+To complete the splash screen setup, you need to add a splash.png image to this assets folder.
+
+Recommended specs:
+- File name: splash.png
+- Size: 1284 x 2778 pixels (iPhone 14 Pro Max size)
+- Background: Dark gradient (#030712 to #1e293b)
+- Logo: Your phone with X mark logo centered
+- Format: PNG with transparency
+
+The AnimatedSplashScreen component will show your logo with a beautiful animation:
+1. Outer circle fades in and scales up
+2. Phone outline appears with spring animation
+3. Inner circle appears inside the phone screen
+4. X mark appears with rotation
+5. Everything fades out and transitions to the app
+
+The animation lasts about 2.6 seconds total.
+
+You can create the splash.png by:
+1. Taking a screenshot of the AnimatedSplashScreen at its peak (around 1.5s)
+2. Using design software like Figma or Photoshop
+3. Exporting the logo you showed me as a high-resolution PNG
+
+Once you have splash.png in this folder, the expo splash config will use it
+for the native splash screen, and then the AnimatedSplashScreen will take over
+for the animated version.
