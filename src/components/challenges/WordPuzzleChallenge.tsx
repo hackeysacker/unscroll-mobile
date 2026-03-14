@@ -19,7 +19,7 @@ import * as Haptics from 'expo-haptics';
 import { BaseChallengeWrapper } from './BaseChallengeWrapper';
 import { useThemeStyles } from '@/hooks/useThemeStyles';
 import { soundManager as sound } from '@/lib/sound-manager';
-import { hapticPatterns as haptics } from '@/lib/haptic-patterns';
+import { HapticPatterns as haptics } from '@/lib/haptic-patterns';
 
 const { width } = Dimensions.get('window');
 

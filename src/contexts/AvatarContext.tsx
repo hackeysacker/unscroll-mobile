@@ -16,12 +16,14 @@ interface Avatar {
   evolutionStage: AvatarEvolutionStage;
   mood: AvatarMood;
   name?: string;
+  brightness?: number;
+  accessory?: 'crown' | 'halo' | 'none';
 }
 
 interface AvatarContextType {
   avatar: Avatar;
   currentReaction: AvatarReaction | null;
-  getSkinColors: () => { primary: string; secondary: string; accent: string };
+  getSkinColors: () => { primary: string; secondary: string; accent: string; glow: string };
   triggerReaction: (reaction: AvatarReaction) => void;
 }
 
@@ -40,6 +42,7 @@ export function AvatarProvider({ children }: { children: ReactNode }) {
       primary: '#8b5cf6',
       secondary: '#a78bfa',
       accent: '#c4b5fd',
+      glow: '#a78bfa',
     }),
     triggerReaction: () => {},
   };

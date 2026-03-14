@@ -69,6 +69,32 @@ export const HapticPatterns = {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setTimeout(() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light), 50);
   },
+
+  // Individual impact styles
+  impactLight: () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  },
+
+  impactMedium: () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  },
+
+  impactHeavy: () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+  },
+
+  // Notification types
+  notificationSuccess: () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  },
+
+  notificationWarning: () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+  },
+
+  notificationError: () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+  },
 };
 
 /**

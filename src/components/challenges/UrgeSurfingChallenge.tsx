@@ -12,7 +12,7 @@ import * as Haptics from 'expo-haptics';
 import { BaseChallengeWrapper, ChallengeConfig } from './BaseChallengeWrapper';
 import { useThemeStyles } from '@/hooks/useThemeStyles';
 import { soundManager as sound } from '@/lib/sound-manager';
-import { hapticPatterns as haptics } from '@/lib/haptic-patterns';
+import { HapticPatterns as haptics } from '@/lib/haptic-patterns';
 
 interface UrgeSurfingChallengeProps {
   duration: number;
