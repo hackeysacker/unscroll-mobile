@@ -2,6 +2,18 @@
 
 Last updated: 2026-03-14
 
+## 2026-03-14 Weekend Session (2:00 PM)
+- ✅ **Build Verification** (v1.2 - 2026-03-14)
+  - Verified iOS bundle exports successfully (6.27 MB)
+  - Working tree clean, all previous changes committed
+  - Only 2 minor TODOs remaining:
+    - iOS Screen Time API integration (ScrollTimeContext) - requires native module
+    - Actual permissions check (UnlockChallengeScreen) - minor placeholder
+  - v1.2 features complete and ready for TestFlight
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-14 Overnight Session (6:10 AM)
 - ✅ **Build Verification** (v1.2 - 2026-03-14)
   - Verified iOS bundle exports successfully (6.27 MB)
