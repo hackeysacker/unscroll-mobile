@@ -1,6 +1,33 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-14
+Last updated: 2026-03-15
+
+## 2026-03-15 Weekend Session (12:00 PM)
+- ✅ **Build Verification** (v1.2 - 2026-03-15)
+  - Verified iOS bundle exports successfully (6.27 MB)
+  - No remaining TODOs in codebase
+  - All v1.2 features complete and working
+- No code changes needed - previous session already completed permission check fix
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
+## 2026-03-15 Weekend Session (10:00 AM)
+- ✅ **Permission Check Fix** (v1.2 - 2026-03-15)
+  - Added getAvailablePermissions() to check device capabilities dynamically
+  - Now uses expo-sensors DeviceMotion.isAvailableAsync() to check for MOTION permission
+  - Removed TODO placeholder that was hardcoding ['MOTION']
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- ✅ **Build Verification** (v1.2 - 2026-03-15)
+  - Verified iOS bundle exports successfully (6.27 MB)
+  - Working tree clean
+- Committed and pushed to GitHub
+- Posted progress update to #focusflow-app
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
+## 2026-03-14 Weekend Session (7:30 PM)
 
 ## 2026-03-14 Weekend Session (7:30 PM)
 - ✅ **Build Verification** (v1.2 - 2026-03-14)
