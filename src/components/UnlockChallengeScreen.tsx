@@ -23,8 +23,26 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
+import { DeviceMotion } from 'expo-sensors';
 
 import FocusShield from '../modules/FocusShield';
+
+// Check what permissions are available on the device
+async function getAvailablePermissions(): Promise<string[]> {
+  const permissions: string[] = [];
+  
+  // Check motion permission
+  try {
+    const { available } = await DeviceMotion.isAvailableAsync();
+    if (available) {
+      permissions.push('MOTION');
+    }
+  } catch {
+    // Device doesn't support motion
+  }
+  
+  return permissions;
+}
 import { selectChallenge, getTimeSegment, type ChallengeType } from '../lib/challenge-engine';
 import {
   loadUnlockSession,
@@ -137,13 +155,14 @@ export function UnlockChallengeScreen({ onBack, onSettings }: UnlockChallengeScr
     const lastChallenges = getLastChallengeTypes(history, 3);
     const timeSegment = getTimeSegment();
 
-    // Select challenge
+    // Get available permissions and select challenge
+    const availablePermissions = await getAvailablePermissions();
     const challengeConfig = selectChallenge({
       attemptCount,
       lastChallenges,
       intensity: config.intensity,
       timeSegment,
-      availablePermissions: ['MOTION'], // TODO: Check actual permissions
+      availablePermissions,
       extremeModeEnabled: config.extremeModeEnabled,
     });
 
