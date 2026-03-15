@@ -93,7 +93,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
   const { user, logout, resetOnboarding } = useAuth();
   const { settings, updateSettings, toggleDarkMode } = useSettings();
   const { theme, setTheme, availableThemes, colors } = useTheme();
-  const { resetProgress } = useGame();
+  const { resetProgress, gameState } = useGame();
   const haptics = useHaptics();
   const animations = useAnimations();
   const sound = useSound();

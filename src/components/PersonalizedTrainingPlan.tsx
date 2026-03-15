@@ -99,6 +99,7 @@ function generateTrainingPlan(
 
   return {
     userId,
+    generatedAt: Date.now(),
     lastUpdated: Date.now(),
     focusAreas,
     recommendations,

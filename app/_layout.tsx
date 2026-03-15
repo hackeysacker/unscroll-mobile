@@ -33,7 +33,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <AppProvider>
           <ScreenFrame>
-            <Stack screenOptions={{ headerShown: false }} linking={linking}>
+            <Stack screenOptions={{ headerShown: false }}>
               <Stack.Screen name="index" />
             </Stack>
           </ScreenFrame>
