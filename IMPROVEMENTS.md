@@ -2,6 +2,16 @@
 
 Last updated: 2026-03-15
 
+## 2026-03-16 Overnight Session (1:42 PM)
+- ✅ **Build Verification** (v1.2 - 2026-03-16)
+  - Verified iOS bundle exports successfully (6.27 MB)
+  - Working tree clean
+  - Only 1 remaining TODO: iOS Screen Time API integration (native module required)
+  - All v1.2 features complete and ready for TestFlight
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-15 Weekend Session (11:00 PM)
 - ✅ **Build Verification** (v1.2 - 2026-03-15)
   - Verified iOS bundle exports successfully (6.27 MB)
