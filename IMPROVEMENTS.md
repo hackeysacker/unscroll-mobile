@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-15
 
+## 2026-03-15 Weekend Session (5:00 PM)
+- ✅ **TypeScript Fixes** (v1.2 - 2026-03-15)
+  - Added missing `gameState` to useGame destructuring in Settings.tsx (profile stats display)
+  - Added `generatedAt` field to PersonalizedTrainingPlan return object
+  - Removed invalid `linking` prop from Stack navigator (TypeScript compatibility)
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-15 Weekend Session (4:00 PM)
 - ✅ **Build Verification** (v1.2 - 2026-03-15)
   - Verified iOS bundle exports successfully (6.27 MB)
