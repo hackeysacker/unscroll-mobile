@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-15
 
+## 2026-03-15 Weekend Session (10:00 PM)
+- ✅ **Build Verification** (v1.2 - 2026-03-15)
+  - Verified iOS bundle exports successfully (6.27 MB)
+  - Working tree clean, all changes committed and pushed
+  - Only 1 remaining TODO: iOS Screen Time API integration (native module required)
+  - All v1.2 features complete and ready for TestFlight
+- Posted progress update to #unscroll-app
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-15 Weekend Session (5:00 PM)
 - ✅ **TypeScript Fixes** (v1.2 - 2026-03-15)
   - Added missing `gameState` to useGame destructuring in Settings.tsx (profile stats display)
