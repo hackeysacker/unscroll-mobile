@@ -112,7 +112,19 @@ Last updated: 2026-03-15
   - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
   - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
-## 2026-03-14 Weekend Session (7:30 PM)
+## 2026-03-21 Weekend Session (11:00 AM)
+- ✅ **TypeScript Fixes** (v1.2 - 2026-03-21)
+  - Fixed style array casting in ExerciseOverview and FirstUpsell (as any)
+  - Fixed animation _value access in LookAwayWarning, OfflineIndicator, UrgeSurfingExercise
+  - Added missing onStart and isActive props to BaseChallengeWrapper in challenge components
+  - Added useRef import to FocusSprintExercise
+  - Added null checks in PersonalizedTrainingPlan loadPlan function
+  - Fixed gameState -> progress in Settings stats display
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 ## 2026-03-14 Weekend Session (7:30 PM)
 - ✅ **Build Verification** (v1.2 - 2026-03-14)
