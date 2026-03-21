@@ -606,7 +606,7 @@ const PlanetNode = memo(({
             <Text style={{ fontSize: 16 }}>⭐</Text>
           </View>
         )}
-        {node.status === 'completed' && node.status !== 'perfect' && (
+        {node.status === 'completed' && (
           <View style={styles.completedCheck}>
             <Text style={{ fontSize: 10, color: '#fff' }}>✓</Text>
           </View>
@@ -677,6 +677,9 @@ export function ImmersiveProgressPath({ onBack, onSelectLevel, onStartChallenge 
         status: level < progress.level ? 'completed' :
                 level === progress.level ? 'available' : 'available',
         testSequence: existingNode?.testSequence,
+        position: existingNode?.position ?? { x: 0, y: 0 },
+        xpReward: existingNode?.xpReward ?? 100,
+        starsEarned: existingNode?.starsEarned ?? 0,
       });
     }
     return nodes;

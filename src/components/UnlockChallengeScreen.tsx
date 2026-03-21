@@ -33,8 +33,8 @@ async function getAvailablePermissions(): Promise<string[]> {
   
   // Check motion permission
   try {
-    const { available } = await DeviceMotion.isAvailableAsync();
-    if (available) {
+    const motionAvailable = await DeviceMotion.isAvailableAsync();
+    if (motionAvailable) {
       permissions.push('MOTION');
     }
   } catch {

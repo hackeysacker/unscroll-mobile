@@ -219,7 +219,7 @@ export function AchievementAnimation({
         
         {/* Main card */}
         <LinearGradient
-          colors={[...content.colors, content.colors[0]] as [string, string, ...string[]]}
+          colors={([...content.colors, content.colors[0]] as unknown) as [string, string, ...string[]]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.card}

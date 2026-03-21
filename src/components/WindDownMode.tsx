@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Easing } from 'react-native';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { generateUUID } from '@/lib/utils';
 import { STORAGE_KEYS, saveToStorage, loadFromStorage } from '@/lib/storage';
+import { supabase } from '@/lib/supabase';
+import { saveWindDownSession, updateWindDownSettings } from '@/lib/database';
 import type { WindDownSession, WindDownSettings } from '@/types';
 
 interface WindDownModeProps {
@@ -38,19 +40,22 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
   useEffect(() => {
     if (!user) return;
 
-    const savedSettings = loadFromStorage<WindDownSettings>(STORAGE_KEYS.WIND_DOWN_SETTINGS);
-    if (savedSettings && savedSettings.userId === user.id) {
-      setSettings(savedSettings);
-    } else {
-      const defaultSettings: WindDownSettings = {
-        userId: user.id,
-        enabled: true,
-        duration: 10,
-        breathingPattern: 'relaxing',
-      };
-      setSettings(defaultSettings);
-      saveToStorage(STORAGE_KEYS.WIND_DOWN_SETTINGS, defaultSettings);
-    }
+    const loadSettings = async () => {
+      const savedSettings = await loadFromStorage<WindDownSettings>(STORAGE_KEYS.WIND_DOWN_SETTINGS);
+      if (savedSettings && savedSettings.userId === user.id) {
+        setSettings(savedSettings);
+      } else {
+        const defaultSettings: WindDownSettings = {
+          userId: user.id,
+          enabled: true,
+          duration: 10,
+          breathingPattern: 'relaxing',
+        };
+        setSettings(defaultSettings);
+        saveToStorage(STORAGE_KEYS.WIND_DOWN_SETTINGS, defaultSettings);
+      }
+    };
+    loadSettings();
   }, [user]);
 
   useEffect(() => {
@@ -152,14 +157,14 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
       completed: true,
     };
 
-    const allSessions = loadFromStorage<WindDownSession[]>(STORAGE_KEYS.WIND_DOWN_SESSIONS) || [];
+    const allSessions = await loadFromStorage<WindDownSession[]>(STORAGE_KEYS.WIND_DOWN_SESSIONS) || [];
     allSessions.push(completedSession);
     await saveToStorage(STORAGE_KEYS.WIND_DOWN_SESSIONS, allSessions);
 
     // Sync to Supabase
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
-      db.saveWindDownSession(user.id, {
+      saveWindDownSession(user.id, {
         duration: sessionTime,
         exercises_completed: breathCount > 0 ? ['breathing'] : [],
       }).catch((error) => {
@@ -183,7 +188,7 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
     // Sync to Supabase
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
-      db.updateWindDownSettings(user.id, {
+      updateWindDownSettings(user.id, {
         preferred_exercises: [pattern],
       }).catch((error) => {
         console.error('Failed to sync wind down settings to Supabase:', error);
@@ -238,7 +243,7 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
       Animated.timing(colorAnim, {
         toValue: 1,
         duration: 800,
-        easing: Animated.Easing.inOut(Animated.Easing.ease),
+        easing: Easing.inOut(Easing.ease),
         useNativeDriver: false, // backgroundColor doesn't support native driver
       }).start();
       prevPhaseRef.current = currentPhase;

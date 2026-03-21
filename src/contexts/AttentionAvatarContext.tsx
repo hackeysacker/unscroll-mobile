@@ -11,13 +11,14 @@ import {
   type AvatarStage,
   type AvatarMood,
   type AvatarSkin,
+  type AvatarEvolution,
   AVATAR_EVOLUTIONS,
 } from '@/lib/avatar-evolution';
 import * as Haptics from 'expo-haptics';
 
 interface AttentionAvatarContextValue {
   avatarState: AvatarState;
-  currentEvolution: ReturnType<typeof AVATAR_EVOLUTIONS[AvatarStage]>;
+  currentEvolution: AvatarEvolution;
   updateMood: (mood: AvatarMood) => void;
   updateName: (name: string) => Promise<void>;
   triggerReaction: (reaction: 'success' | 'failure' | 'milestone' | 'evolution') => void;
@@ -97,8 +98,8 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
       hearts: heartState.currentHearts,
       maxHearts: heartState.maxHearts,
       streak: progress.streak,
-      lastSessionTime: stats?.lastSessionTimestamp,
-      recentPerformance: stats?.averageAccuracy,
+      lastSessionTime: stats?.lastSessionTimestamp ?? undefined,
+      recentPerformance: stats?.averageAccuracy ?? undefined,
     });
 
     const effect = shouldShowEffect({
@@ -122,7 +123,7 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
         lastInteraction: Date.now(),
         customizations: {
           ...prev.customizations,
-          particleEffect: effect.show ? effect.effect : 'none',
+          particleEffect: (effect.show ? effect.effect : 'none') as 'none' | 'sparkles' | 'flames' | 'stars',
         },
       };
 

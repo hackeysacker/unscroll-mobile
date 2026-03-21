@@ -2100,8 +2100,8 @@ export function VerticalProgressPath({ onBack, onLevelSelect, onNavigate }: Vert
         {/* Continuous gradient that stretches across entire progress path */}
         <View style={[styles.gradientContainer, { height: totalContentHeight }]} pointerEvents="none">
           <LinearGradient
-            colors={continuousGradient.colors}
-            locations={continuousGradient.locations}
+            colors={continuousGradient.colors as [string, string, ...string[]]}
+            locations={continuousGradient.locations as [number, number, ...number[]]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
             style={StyleSheet.absoluteFill}

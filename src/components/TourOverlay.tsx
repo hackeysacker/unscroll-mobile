@@ -53,7 +53,7 @@ export function TourOverlay({ onComplete }: TourOverlayProps) {
           }),
         ]).start();
 
-        hapticPatterns.light();
+        hapticPatterns.lightTouch();
       } else {
         // Animate out
         Animated.parallel([
@@ -73,11 +73,11 @@ export function TourOverlay({ onComplete }: TourOverlayProps) {
       }
     });
 
-    return unsubscribe;
+    return () => { unsubscribe(); };
   }, []);
 
   const handleNext = () => {
-    hapticPatterns.light();
+    hapticPatterns.lightTouch();
     const hasNext = tourManager.nextStep();
     if (!hasNext) {
       // Tour completed
@@ -86,12 +86,12 @@ export function TourOverlay({ onComplete }: TourOverlayProps) {
   };
 
   const handleBack = () => {
-    hapticPatterns.light();
+    hapticPatterns.lightTouch();
     tourManager.previousStep();
   };
 
   const handleSkip = () => {
-    hapticPatterns.medium();
+    hapticPatterns.impactMedium();
     tourManager.skipTour();
   };
 

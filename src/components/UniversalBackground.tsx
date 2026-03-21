@@ -128,7 +128,7 @@ export function UniversalBackground({
         }),
       }]}>
         <LinearGradient
-          colors={gradientColors}
+          colors={gradientColors as [string, string, ...string[]]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradient}
@@ -138,7 +138,7 @@ export function UniversalBackground({
       {/* Ambient glow overlay */}
       <View style={styles.glowOverlay} pointerEvents="none">
         <LinearGradient
-          colors={['rgba(99, 102, 241, 0.1)', 'transparent', 'rgba(139, 92, 246, 0.1)']}
+          colors={['rgba(99, 102, 241, 0.1)', 'transparent', 'rgba(139, 92, 246, 0.1)'] as [string, string, ...string[]]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradient}

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Animated, View, StyleSheet } from 'react-native';
+import { Animated, View, StyleSheet, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface AnimatedGradientProps {
@@ -33,7 +33,7 @@ export function AnimatedGradient({
       Animated.timing(opacityAnim, {
         toValue: 1,
         duration: transitionDuration,
-        easing: Animated.Easing.inOut(Animated.Easing.ease),
+        easing: Easing.inOut(Easing.ease),
         useNativeDriver: true,
       }).start();
       prevColorsRef.current = colors;
@@ -44,7 +44,7 @@ export function AnimatedGradient({
     <View style={[{ position: 'relative', width: '100%', height: '100%' }, style]}>
       {/* Previous gradient (fading out) */}
       <LinearGradient
-        colors={prevColorsRef.current}
+        colors={prevColorsRef.current as [string, string, ...string[]]}
         start={start}
         end={end}
         style={[
@@ -67,7 +67,7 @@ export function AnimatedGradient({
         ]}
       >
         <LinearGradient
-          colors={colors}
+          colors={colors as [string, string, ...string[]]}
           start={start}
           end={end}
           style={StyleSheet.absoluteFill}

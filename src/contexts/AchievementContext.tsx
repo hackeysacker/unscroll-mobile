@@ -5,7 +5,8 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { achievementManager, checkAchievements, type Achievement } from '@/lib/achievement-manager';
+import { achievementManager, checkAchievements } from '@/lib/achievement-manager';
+import { type Achievement } from '@/components/AchievementNotification';
 import { AchievementNotification } from '@/components/AchievementNotification';
 import { useGame } from './GameContext';
 import { STORAGE_KEYS, saveToStorage } from '@/lib/storage';
@@ -24,11 +25,11 @@ export function AchievementProvider({ children }: { children: ReactNode }) {
 
   // Register achievement listener
   useEffect(() => {
-    const unsubscribe = achievementManager.addListener((achievement) => {
+    const unsubscribe = achievementManager.addListener((achievement: Achievement) => {
       setCurrentAchievement(achievement);
     });
 
-    return unsubscribe;
+    return () => { unsubscribe(); };
   }, []);
 
   // Check achievements when progress changes

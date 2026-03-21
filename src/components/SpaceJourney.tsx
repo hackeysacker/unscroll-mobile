@@ -71,7 +71,7 @@ export function SpaceJourney({ onBack, onStartChallenge }: SpaceJourneyProps) {
       .map((node: ProgressTreeNode) => ({
         ...node,
         challengeType: getChallengeForLevel(node.level),
-        status: 'available' as const,
+        status: node.status || 'available',
         position: getPosition(node.level),
       }))
       .sort((a, b) => a.level - b.level);
@@ -200,7 +200,7 @@ export function SpaceJourney({ onBack, onStartChallenge }: SpaceJourneyProps) {
               )}
 
               {/* Node */}
-              <TouchableOpacity onPress={() => handleNodePress(node)} activeOpacity={0.8}>
+              <TouchableOpacity onPress={() => handleNodePress(node as ProgressTreeNode & { position: { x: number; y: number } })} activeOpacity={0.8}>
                 <LinearGradient
                   colors={
                     isCurrent
