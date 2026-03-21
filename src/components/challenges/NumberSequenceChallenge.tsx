@@ -297,6 +297,8 @@ export function NumberSequenceChallenge({
       duration={duration}
       onComplete={handleComplete}
       onBack={onBack || (() => {})}
+      onStart={() => {}}
+      isActive={true}
       stats={[
         { label: 'Solved', value: solvedCount },
         { label: 'Errors', value: incorrectCount },

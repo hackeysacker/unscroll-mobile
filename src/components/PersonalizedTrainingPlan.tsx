@@ -118,6 +118,8 @@ export function PersonalizedTrainingPlanComponent({ onBack, onStartChallenge }: 
     if (!user || !progress || !skillTree || !stats) return;
 
     async function loadPlan() {
+      if (!user) return;
+      
       const savedPlan = await loadFromStorage<PersonalizedTrainingPlan>(STORAGE_KEYS.TRAINING_PLAN);
 
       const needsRegeneration = !savedPlan ||
@@ -125,7 +127,7 @@ export function PersonalizedTrainingPlanComponent({ onBack, onStartChallenge }: 
         Date.now() - savedPlan.lastUpdated > 24 * 60 * 60 * 1000;
 
       if (needsRegeneration) {
-        const newPlan = generateTrainingPlan(user.id, progress, skillTree, stats);
+        const newPlan = generateTrainingPlan(user.id, progress!, skillTree!, stats!);
         setPlan(newPlan);
         await saveToStorage(STORAGE_KEYS.TRAINING_PLAN, newPlan);
 

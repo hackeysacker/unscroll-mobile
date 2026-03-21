@@ -4,8 +4,8 @@
  * 3-minute deep focus session with distraction counter
  */
 
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Animated, useRef } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Animated } from 'react-native';
 import { BaseExercise, ExerciseHelpers } from './BaseExercise';
 import { getExerciseConfig } from '@/lib/exercise-types';
 import { ExerciseState } from '@/lib/exercise-types';

@@ -59,7 +59,7 @@ export function OfflineIndicator() {
     }
   }, [shouldShow]);
 
-  if (!shouldShow && slideAnim.__getValue() === -100) {
+  if (!shouldShow && (slideAnim as any).__getValue() === -100) {
     return null;
   }
 

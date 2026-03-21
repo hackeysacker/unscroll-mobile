@@ -86,7 +86,7 @@ function UrgeSurfingContent({ state, helpers }: { state: ExerciseState; helpers:
   });
 
   const getPhaseText = () => {
-    const progress = waveAnim._value;
+    const progress = (waveAnim as any)._value;
     if (progress < 0.3) return 'Urge is rising...';
     if (progress < 0.6) return 'Approaching the peak...';
     if (progress < 0.7) return 'At the peak - just observe';

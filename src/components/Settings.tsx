@@ -93,7 +93,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
   const { user, logout, resetOnboarding } = useAuth();
   const { settings, updateSettings, toggleDarkMode } = useSettings();
   const { theme, setTheme, availableThemes, colors } = useTheme();
-  const { resetProgress, gameState } = useGame();
+  const { resetProgress, progress } = useGame();
   const haptics = useHaptics();
   const animations = useAnimations();
   const sound = useSound();
@@ -372,13 +372,13 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
                 <View style={styles.statBadge}>
                   <UIIcon name="trophy" size={12} color="#F59E0B" />
                   <Text style={styles.statText}>
-                    Level {gameState?.level || 1}
+                    Level {progress?.level || 1}
                   </Text>
                 </View>
                 <View style={styles.statBadge}>
                   <UIIcon name="flame" size={12} color="#EF4444" />
                   <Text style={styles.statText}>
-                    {gameState?.streak || 0} day streak
+                    {progress?.streak || 0} day streak
                   </Text>
                 </View>
               </View>

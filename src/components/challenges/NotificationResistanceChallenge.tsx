@@ -132,6 +132,8 @@ export function NotificationResistanceChallenge({
       duration={duration}
       onComplete={handleComplete}
       onBack={onBack || (() => {})}
+      onStart={() => {}}
+      isActive={true}
       stats={[
         { label: 'Resisted', value: resistedCount },
         { label: 'Tapped', value: tappedCount },

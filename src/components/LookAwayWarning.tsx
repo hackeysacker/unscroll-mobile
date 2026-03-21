@@ -61,7 +61,7 @@ export function LookAwayWarning({ isLookingAway, attentionScore, lookAwayCount }
     }
   }, [isLookingAway]);
 
-  if (!isLookingAway && fadeAnim._value === 0) {
+  if (!isLookingAway && (fadeAnim as any)._value === 0) {
     return null;
   }
 

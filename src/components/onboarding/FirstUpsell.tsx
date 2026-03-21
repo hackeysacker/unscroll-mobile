@@ -49,7 +49,7 @@ export function FirstUpsell({ onUpgrade, onContinueFree }: FirstUpsellProps) {
         <Button
           onPress={onUpgrade}
           size="lg"
-          style={[styles.button, styles.upgradeButton]}
+          style={{ ...styles.button, ...styles.upgradeButton } as any}
         >
           Try Free For 7 Days
         </Button>

@@ -132,7 +132,7 @@ export function ExerciseOverview({
             <Button
               onPress={onNextLesson}
               size="lg"
-              style={[styles.button, styles.nextButton]}
+              style={{ ...styles.button, ...styles.nextButton } as any}
             >
               Next Lesson
             </Button>
