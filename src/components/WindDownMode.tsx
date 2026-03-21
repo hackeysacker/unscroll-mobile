@@ -341,7 +341,7 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
             <Button onPress={pauseSession} size="lg" style={styles.button}>
               Pause
             </Button>
-            <Button onPress={completeSession} size="lg" style={[styles.button, styles.completeButton]}>
+            <Button onPress={completeSession} size="lg" style={[styles.button, styles.completeButton] as any}>
               Complete
             </Button>
           </>

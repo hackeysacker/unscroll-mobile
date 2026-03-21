@@ -1,6 +1,23 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-15
+Last updated: 2026-03-21
+
+## 2026-03-21 Weekend Session (11:30 AM)
+- ✅ **TypeScript Fixes** (v1.2 - 2026-03-21)
+  - TourOverlay: Fix haptic pattern calls (lightTouch, impactMedium)
+  - AnimatedGradient, UniversalBackground, VerticalProgressPath: Fix LinearGradient colors type assertions
+  - UnlockChallengeScreen: Fix DeviceMotion.isAvailableAsync usage
+  - WindDownMode: Fix async storage calls, add supabase/database imports, fix Easing
+  - AchievementContext: Fix Achievement type import, useEffect cleanup
+  - AttentionAvatarContext: Fix AvatarEvolution type, determineAvatarMood params, particleEffect cast
+  - SpaceJourney: Fix node status from progressTree
+  - ImmersiveProgressPath: Add missing node properties (position, xpReward, starsEarned)
+  - AchievementAnimation: Fix colors type assertion
+  - Build verified: iOS bundle exports successfully (6.27 MB)
+- Committed and pushed to GitHub
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 ## 2026-03-17 Overnight Session (6:02 AM)
 - ✅ **Build Verification** (v1.2 - 2026-03-17)

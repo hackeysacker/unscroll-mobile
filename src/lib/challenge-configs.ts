@@ -604,6 +604,116 @@ export const CHALLENGE_CONFIGS: Record<ChallengeType, ChallengeConfig> = {
       secondary: '#FFA500',
     },
   },
+
+  // Additional legacy types needed for type compatibility
+  distraction_resistance: {
+    name: 'Distraction Resistance',
+    icon: '🛡️',
+    description: 'Stay focused despite distractions.',
+    duration: 45,
+    xpReward: 12,
+    difficulty: 'medium',
+    instructions: ['Ignore distractions', 'Maintain focus'],
+    benefits: ['Builds resistance to distractions'],
+    colors: { background: '#1a1a2e', primary: '#10B981', secondary: '#059669' },
+  },
+
+  audio_focus: {
+    name: 'Audio Focus',
+    icon: '🎧',
+    description: 'Focus on audio cues while ignoring background.',
+    duration: 40,
+    xpReward: 12,
+    difficulty: 'medium',
+    instructions: ['Listen for audio cues', 'Focus on target sound'],
+    benefits: ['Improves auditory attention'],
+    colors: { background: '#1a1a2e', primary: '#8B5CF6', secondary: '#7C3AED' },
+  },
+
+  impulse_delay: {
+    name: 'Impulse Delay',
+    icon: '⏳',
+    description: 'Train yourself to delay immediate reactions.',
+    duration: 50,
+    xpReward: 15,
+    difficulty: 'hard',
+    instructions: ['Wait before acting', 'Count to three', 'Then respond'],
+    benefits: ['Improves impulse control'],
+    colors: { background: '#1a1a2e', primary: '#6366F1', secondary: '#4F46E5' },
+  },
+
+  stability_hold: {
+    name: 'Stability Hold',
+    icon: '🪨',
+    description: 'Maintain steady position under pressure.',
+    duration: 60,
+    xpReward: 15,
+    difficulty: 'hard',
+    instructions: ['Hold steady', 'Resist movement'],
+    benefits: ['Builds physical discipline'],
+    colors: { background: '#1a1a2e', primary: '#14B8A6', secondary: '#0D9488' },
+  },
+
+  reset_challenge: {
+    name: 'Reset Challenge',
+    icon: '🔄',
+    description: 'Developer testing challenge for resetting progress.',
+    duration: 30,
+    xpReward: 5,
+    difficulty: 'easy',
+    instructions: ['Test challenge', 'For development'],
+    benefits: ['Developer testing'],
+    colors: { background: '#1a1a2e', primary: '#6B7280', secondary: '#4B5563' },
+  },
+
+  // Puzzle challenges
+  pattern_matching: {
+    name: 'Pattern Matching',
+    icon: '🔢',
+    description: 'Identify and match repeating patterns.',
+    duration: 45,
+    xpReward: 15,
+    difficulty: 'medium',
+    instructions: ['Observe the pattern', 'Match the sequence'],
+    benefits: ['Improves working memory', 'Pattern recognition'],
+    colors: { background: '#1a1a2e', primary: '#8B5CF6', secondary: '#7C3AED' },
+  },
+
+  logic_puzzle: {
+    name: 'Logic Puzzles',
+    icon: '🧩',
+    description: 'Solve logic problems to strengthen reasoning.',
+    duration: 60,
+    xpReward: 20,
+    difficulty: 'medium',
+    instructions: ['Read the problem', 'Apply logic', 'Select answer'],
+    benefits: ['Analytical thinking', 'Problem-solving'],
+    colors: { background: '#1a1a2e', primary: '#EC4899', secondary: '#DB2777' },
+  },
+
+  memory_puzzle: {
+    name: 'Memory Puzzles',
+    icon: '🧠',
+    description: 'Remember and recreate sequences.',
+    duration: 45,
+    xpReward: 15,
+    difficulty: 'easy',
+    instructions: ['Observe sequence', 'Remember order', 'Recreate'],
+    benefits: ['Working memory', 'Recall ability'],
+    colors: { background: '#1a1a2e', primary: '#14B8A6', secondary: '#0D9488' },
+  },
+
+  spatial_puzzle: {
+    name: 'Spatial Puzzles',
+    icon: '📐',
+    description: 'Manipulate spatial relationships.',
+    duration: 50,
+    xpReward: 15,
+    difficulty: 'medium',
+    instructions: ['Analyze arrangement', 'Identify transformations'],
+    benefits: ['Spatial reasoning', 'Visual processing'],
+    colors: { background: '#1a1a2e', primary: '#F59E0B', secondary: '#D97706' },
+  },
 };
 
 export function getChallengeConfig(challengeType: ChallengeType): ChallengeConfig {

@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useTheme } from '@/contexts/ThemeContext';
 import type { ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import type { ThemeColors } from '@/lib/theme-colors';
 
 /**
  * Hook that provides theme-aware styles
@@ -12,7 +13,7 @@ export function useThemeStyles() {
 
   const createStyles = useMemo(() => {
     return <T extends Record<string, ViewStyle | TextStyle | ImageStyle>>(
-      stylesFn: (colors: typeof colors) => T
+      stylesFn: (colors: ThemeColors) => T
     ): T => {
       return StyleSheet.create(stylesFn(colors));
     };

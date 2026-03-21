@@ -664,7 +664,7 @@ export function ImmersiveProgressPath({ onBack, onSelectLevel, onStartChallenge 
   // Get all nodes with proper challenge mapping - ALL AVAILABLE for testing
   // Generate 200 levels even if progressTree has fewer
   const allNodes = useMemo(() => {
-    const nodes = [];
+    const nodes: any[] = [];
     for (let level = 1; level <= TOTAL_LEVELS; level++) {
       const challengeType = getChallengeForLevel(level <= 100 ? level : ((level - 1) % 100) + 1);
       const existingNode = progressTree?.nodes?.find((n: ProgressTreeNode) => n.level === level);
@@ -677,7 +677,7 @@ export function ImmersiveProgressPath({ onBack, onSelectLevel, onStartChallenge 
         status: level < progress.level ? 'completed' :
                 level === progress.level ? 'available' : 'available',
         testSequence: existingNode?.testSequence,
-        position: existingNode?.position ?? { x: 0, y: 0 },
+        position: (existingNode?.position ?? { x: 0, y: 0 }),
         xpReward: existingNode?.xpReward ?? 100,
         starsEarned: existingNode?.starsEarned ?? 0,
       });

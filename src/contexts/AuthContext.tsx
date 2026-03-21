@@ -200,6 +200,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       // Exchange the Apple credential for a Supabase token
+      if (!credential.identityToken) {
+        return { error: new Error('Apple identity token is missing') };
+      }
       const { data, error } = await supabase.auth.signInWithIdToken({
         provider: 'apple',
         token: credential.identityToken,
@@ -228,7 +231,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         provider: 'google',
         options: {
           redirectTo: 'focusflow://auth/callback',
-          scopes: ['email', 'profile'],
         },
       });
 
@@ -332,13 +334,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (data.worstScrollTime !== undefined) onboardingUpdate.worst_scroll_time = data.worstScrollTime;
       if (data.improvementReason !== undefined) onboardingUpdate.improvement_reason = data.improvementReason;
       if (data.wantsAutoTracking !== undefined) onboardingUpdate.wants_auto_tracking = data.wantsAutoTracking;
-      if (data.baselineScore !== undefined) onboardingUpdate.baseline_score = data.baselineScore;
+      if (data.attentionBaselineScore !== undefined) onboardingUpdate.baseline_score = data.attentionBaselineScore;
       if (data.goalResult !== undefined) onboardingUpdate.goal_result = data.goalResult;
       if (data.dailyTrainingMinutes !== undefined) onboardingUpdate.daily_training_minutes = data.dailyTrainingMinutes;
-      if (data.personalityType !== undefined) onboardingUpdate.personality_type = data.personalityType;
-      if (data.notificationsAccepted !== undefined) onboardingUpdate.notifications_accepted = data.notificationsAccepted;
-      if (data.screentimeAccepted !== undefined) onboardingUpdate.screentime_accepted = data.screentimeAccepted;
-      if (data.dailyCheckinAccepted !== undefined) onboardingUpdate.daily_checkin_accepted = data.dailyCheckinAccepted;
+      if (data.userPersonalityType !== undefined) onboardingUpdate.personality_type = data.userPersonalityType;
+      if (data.hasAcceptedNotifications !== undefined) onboardingUpdate.notifications_accepted = data.hasAcceptedNotifications;
+      if (data.hasAcceptedScreenTime !== undefined) onboardingUpdate.screentime_accepted = data.hasAcceptedScreenTime;
+      if (data.hasAcceptedDailyCheckIn !== undefined) onboardingUpdate.daily_checkin_accepted = data.hasAcceptedDailyCheckIn;
 
       await supabase
         .from('user_onboarding')
