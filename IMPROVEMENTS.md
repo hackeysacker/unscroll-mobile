@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-22
 
+## 2026-03-22 Weekend Session (3:30 PM)
+- ✅ **Build Verification** (v1.2 - 2026-03-22)
+  - Verified TypeScript compiles with 0 errors
+  - Working tree clean (already committed from earlier sessions)
+  - Only 1 remaining TODO: iOS Screen Time API integration (native module required)
+  - All v1.2 features complete and ready for TestFlight
+- Could not post to #focusflow-app - channel not found in Discord config
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-22 Weekend Session (3:00 PM)
 - ✅ **Build Verification** (v1.2 - 2026-03-22)
   - Verified TypeScript compiles with 0 errors
