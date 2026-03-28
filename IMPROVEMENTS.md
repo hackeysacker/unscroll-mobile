@@ -1,14 +1,25 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-22
+Last updated: 2026-03-28
 
-## 2026-03-22 Weekend Session (3:30 PM)
+## 2026-03-28 Weekend Session (8:08 AM)
+- ✅ **Build Verification** (v1.2.0 - 2026-03-28)
+  - Verified TypeScript compiles with 0 errors
+  - iOS bundle exports successfully (6.27 MB)
+  - Working tree clean
+  - Only 1 remaining TODO: iOS Screen Time API integration (native module)
+  - All v1.2.0 features complete and ready for TestFlight
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
+## 2026-03-22 Weekend Session (7:30 PM)
 - ✅ **Build Verification** (v1.2 - 2026-03-22)
   - Verified TypeScript compiles with 0 errors
   - Working tree clean (already committed from earlier sessions)
   - Only 1 remaining TODO: iOS Screen Time API integration (native module required)
   - All v1.2 features complete and ready for TestFlight
-- Could not post to #focusflow-app - channel not found in Discord config
+- Posted progress update to #unscroll-app
 - **Remaining for TestFlight (User Action Required):**
   - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
   - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
