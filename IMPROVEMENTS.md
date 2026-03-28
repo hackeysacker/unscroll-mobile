@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-28
 
+## 2026-03-28 Weekend Session (3:30 PM)
+- ✅ **Build Verification** (v1.2.0 - 2026-03-28)
+  - Verified TypeScript compiles with 0 errors
+  - Working tree clean (1 commit ahead of origin, no changes to commit)
+  - Only 1 remaining TODO: iOS Screen Time API integration (native module)
+  - All v1.2.0 features complete and ready for TestFlight
+- Posted progress update to #focusflow-app
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-28 Weekend Session (1:30 PM)
 - ✅ **Build Verification** (v1.2.0 - 2026-03-28)
   - Verified TypeScript compiles with 0 errors
