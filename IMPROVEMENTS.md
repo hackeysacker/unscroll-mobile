@@ -2,6 +2,22 @@
 
 Last updated: 2026-03-29
 
+## 2026-03-29 Weekend Session (1:30 PM)
+
+- ✅ **New useAchievement Hook** (v1.2.0 - 2026-03-29)
+  - Created `src/hooks/useAchievement.ts` - singular alias for `useAchievements`
+  - Provides `isUnlocked(id)` for per-achievement ID checks
+  - Provides `getUnlocked()` returning array of all unlocked achievement IDs
+  - Wraps `achievementManager` for direct access
+  - TypeScript: 0 errors
+- ✅ **Analytics Version Bump** (v1.2.0 - 2026-03-29)
+  - Updated `analytics.ts` version from '1.0.0' to '1.2.0' to match app version
+- ✅ **DevTestingMode Duration** (v1.2.0 - 2026-03-29)
+  - Default challenge duration in DevTestingMode: 10s → 15s (better testing UX)
+- ✅ **iOS Bundle Export Verified** (v1.2.0 - 2026-03-29)
+  - `npx expo export --platform ios` exports successfully
+- Committed and pushed to GitHub (commit: 43922d7)
+
 ## 2026-03-29 Weekend Session (9:42 AM)
 - ✅ **Documentation Additions** (v1.2.0 - 2026-03-29)
   - Complete rewrite of README.md with comprehensive project overview, tech stack, build status, project structure
