@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-29
 
+- ✅ **ScrollTimeContext Daily Reset Bug Fix** (v1.2.0 - 2026-03-29)
+  - Fixed stale closure bug in `checkDailyReset()` being called before `loadState()` completed
+  - `checkDailyReset` was running against default empty state instead of loaded state
+  - Extracted `checkDailyResetInternal(lastUpdated)` that uses passed timestamp
+  - Added useEffect on `scrollTime.lastUpdated` to trigger after state loads
+  - Added backward-compatible `checkDailyReset` alias for any external callers
+  - TypeScript: 0 errors
+  - iOS bundle: exports cleanly
+  - Committed and pushed to GitHub (commit: ed6bf2e)
+  - Could not post to #focusflow-app: Discord channel ID not in OpenClaw config
+
 ## 2026-03-29 Weekend Session (1:30 PM)
 
 - ✅ **New useAchievement Hook** (v1.2.0 - 2026-03-29)
