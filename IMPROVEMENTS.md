@@ -2,6 +2,17 @@
 
 Last updated: 2026-03-29
 
+## 2026-03-29 Weekend Session (9:42 AM)
+- ✅ **Documentation Additions** (v1.2.0 - 2026-03-29)
+  - Complete rewrite of README.md with comprehensive project overview, tech stack, build status, project structure
+  - Created CHANGELOG.md documenting all features from v1.0.0 through v1.2.0
+  - TypeScript: 0 errors
+  - iOS bundle: 6.27 MB
+  - Working tree clean, committed and pushed to origin/master
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-29 Weekend Session (3:02 AM)
 - ✅ **Build Verification** (v1.2.0 - 2026-03-29)
   - Verified TypeScript compiles with 0 errors
