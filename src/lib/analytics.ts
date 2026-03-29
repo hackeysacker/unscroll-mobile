@@ -164,7 +164,7 @@ class AnalyticsManager {
       properties: {
         ...properties,
         platform: 'mobile',
-        version: '1.0.0', // App version
+        version: '1.2.0', // App version
       },
       timestamp: Date.now(),
       sessionId: this.currentSession.sessionId,

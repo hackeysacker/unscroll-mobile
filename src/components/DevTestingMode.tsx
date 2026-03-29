@@ -260,7 +260,7 @@ const ALL_ACTIVITIES = [...CHALLENGES, ...EXERCISES];
 
 export function DevTestingMode({ onBack }: DevTestingModeProps) {
   const [selectedChallenge, setSelectedChallenge] = useState<ChallengeConfig | null>(null);
-  const [customDuration, setCustomDuration] = useState(10);
+  const [customDuration, setCustomDuration] = useState(15);
   const [testResults, setTestResults] = useState<Array<{
     type: string;
     score: number;
