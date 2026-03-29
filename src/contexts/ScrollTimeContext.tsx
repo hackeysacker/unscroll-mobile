@@ -46,8 +46,13 @@ export function ScrollTimeProvider({ children }: { children: React.ReactNode }) 
   // Load saved state on mount
   useEffect(() => {
     loadState();
-    checkDailyReset();
   }, []);
+
+  // Check daily reset whenever scrollTime changes (after load completes)
+  useEffect(() => {
+    if (scrollTime.lastUpdated === defaultState.lastUpdated) return; // still at default, not loaded
+    checkDailyResetInternal(scrollTime.lastUpdated);
+  }, [scrollTime.lastUpdated]);
 
   // Load from AsyncStorage
   const loadState = async () => {
@@ -72,18 +77,18 @@ export function ScrollTimeProvider({ children }: { children: React.ReactNode }) 
     }
   };
 
-  // Check if we need to reset for new day
-  const checkDailyReset = async () => {
-    const lastUpdate = new Date(scrollTime.lastUpdated);
+  // Check if we need to reset for new day (uses passed timestamp to avoid stale closure)
+  const checkDailyResetInternal = (lastUpdated: string) => {
+    const lastDate = new Date(lastUpdated);
     const now = new Date();
 
     // If it's a new day, reset used minutes
     if (
-      lastUpdate.getDate() !== now.getDate() ||
-      lastUpdate.getMonth() !== now.getMonth() ||
-      lastUpdate.getFullYear() !== now.getFullYear()
+      lastDate.getDate() !== now.getDate() ||
+      lastDate.getMonth() !== now.getMonth() ||
+      lastDate.getFullYear() !== now.getFullYear()
     ) {
-      await resetDaily();
+      resetDaily();
     }
   };
 
@@ -123,6 +128,11 @@ export function ScrollTimeProvider({ children }: { children: React.ReactNode }) 
     };
 
     await saveState(newState);
+  };
+
+  // Backward-compatible alias (calls internal version without await)
+  const checkDailyReset = async () => {
+    checkDailyResetInternal(scrollTime.lastUpdated);
   };
 
   // Set daily limit (for future Screen Time API integration)
