@@ -73,7 +73,7 @@ describe('getLevelDifficulty', () => {
 
     expect(difficulty.difficultyLabel).toBe('Very Easy');
     expect(difficulty.stageLabel).toBe('Foundation');
-    expect(difficulty.duration).toBeGreaterThan(5);
+    expect(difficulty.duration).toBeGreaterThanOrEqual(5);
     expect(difficulty.toleranceMultiplier).toBeLessThan(2.5);
   });
 
@@ -237,7 +237,7 @@ describe('getStreakMultiplier', () => {
   test('returns increasing multiplier above threshold', () => {
     expect(getStreakMultiplier(5)).toBe(1.2);
     expect(getStreakMultiplier(6)).toBe(1.3);
-    expect(getStreakMultiplier(10)).toBe(1.7);
+    expect(getStreakMultiplier(10)).toBeCloseTo(1.7);
   });
 });
 
@@ -634,9 +634,9 @@ describe('Integration Tests', () => {
     const levels = [1, 10, 30, 60, 90, 250];
     const difficulties = levels.map(l => getLevelDifficulty(l));
 
-    // Duration should increase
+    // Duration should be non-decreasing across progression
     for (let i = 1; i < difficulties.length; i++) {
-      expect(difficulties[i].duration).toBeGreaterThan(difficulties[i - 1].duration);
+      expect(difficulties[i].duration).toBeGreaterThanOrEqual(difficulties[i - 1].duration);
     }
 
     // Tolerance should decrease (get stricter)

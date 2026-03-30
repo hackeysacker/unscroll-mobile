@@ -300,31 +300,31 @@ export function getChallengeDescription(challengeType: ChallengeType, level: num
 
   switch (challengeType) {
     case 'focus_hold':
-      return `Hold your focus for ${scaling.duration}s without breaking`;
+      return `Focus Hold: hold your focus for ${scaling.duration}s without breaking`;
     case 'memory_flash':
-      return `Remember ${scaling.itemCount} items in ${scaling.displayTime.toFixed(1)}s`;
+      return `Memory Flash: remember ${scaling.itemCount} items in ${scaling.displayTime.toFixed(1)}s`;
     case 'tap_only_correct':
-      return `Tap ${scaling.targetCount} correct targets (${scaling.rulesCount} rules)`;
+      return `Tap Only Correct: tap ${scaling.targetCount} correct targets (${scaling.rulesCount} rules)`;
     case 'stillness_test':
-      return `Stay perfectly still for ${scaling.duration}s`;
+      return `Stillness Test: stay perfectly still for ${scaling.duration}s`;
     case 'breath_pacing':
-      return `Follow the breathing pattern for ${scaling.cycles} cycles`;
+      return `Breath Pacing: follow the breathing pattern for ${scaling.cycles} cycles`;
     case 'look_away':
-      return `Look away from the screen for ${scaling.duration}s`;
+      return `Look Away: look away from the screen for ${scaling.duration}s`;
     case 'anti_scroll_swipe':
-      return `Resist scrolling through ${scaling.blockCount} blocks`;
+      return `Anti-Scroll Swipe: resist scrolling through ${scaling.blockCount} blocks`;
     case 'reset':
-      return `Complete ${scaling.challengeCount} mini-challenges in ${scaling.timeLimit}s`;
+      return `Reset Challenge: complete ${scaling.challengeCount} mini-challenges in ${scaling.timeLimit}s`;
     case 'pattern_matching':
-      return `Match ${scaling.gridSize}x${scaling.gridSize} pattern in ${scaling.timeLimit}s`;
+      return `Pattern Matching: match ${scaling.gridSize}x${scaling.gridSize} pattern in ${scaling.timeLimit}s`;
     case 'logic_puzzle':
-      return `Solve ${scaling.gridSize}x${scaling.gridSize} logic puzzle`;
+      return `Logic Puzzle: solve ${scaling.gridSize}x${scaling.gridSize} grid`;
     case 'memory_puzzle':
-      return `Match ${scaling.pairsCount} pairs in ${scaling.gridSize}x${scaling.gridSize} grid`;
+      return `Memory Puzzle: match ${scaling.pairsCount} pairs in ${scaling.gridSize}x${scaling.gridSize} grid`;
     case 'spatial_puzzle':
-      return `Arrange ${scaling.pieces} pieces${scaling.timedMode ? ` in ${scaling.timeLimit}s` : ''}`;
+      return `Spatial Puzzle: arrange ${scaling.pieces} pieces${scaling.timedMode ? ` in ${scaling.timeLimit}s` : ''}`;
     default:
-      return `Complete the ${getChallengeName(challengeType)} challenge`;
+      return `${getChallengeName(challengeType)}: complete the challenge`;
   }
 }
 
