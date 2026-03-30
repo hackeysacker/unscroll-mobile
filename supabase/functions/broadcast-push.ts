@@ -31,12 +31,7 @@ serve(async (req) => {
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-    const supabase = createClient(supabaseUrl, supabaseUrl, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false
-      }
-    })
+    const supabase = createClient(supabaseUrl, supabaseKey)
 
     const { userIds, filter, payload }: BroadcastRequest = await req.json()
 
