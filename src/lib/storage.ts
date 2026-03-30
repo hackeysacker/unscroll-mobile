@@ -26,6 +26,9 @@ const STORAGE_KEYS = {
   AVATAR_STATE: 'focusflow_avatar_state',
   LAST_ACHIEVEMENT_TIME: 'focusflow_last_achievement_time',
   DAILY_CHALLENGE: 'focusflow_daily_challenge',
+  LAST_LOGIN_DATE: 'focusflow_last_login_date',
+  DAILY_LOGIN_CLAIMED: 'focusflow_daily_login_claimed',
+  DAILY_LOGIN_STREAK: 'focusflow_daily_login_streak',
 } as const;
 
 export async function saveToStorage<T>(key: string, data: T): Promise<void> {

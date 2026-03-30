@@ -16,6 +16,7 @@ import { UniversalHeader } from './ui/UniversalHeader';
 import { UniversalFooter, type TabType } from './ui/UniversalFooter';
 import { useGame } from '@/contexts/GameContext';
 import { useScrollTime } from '@/contexts/ScrollTimeContext';
+import { checkAndClaimIfNeeded, getDailyLoginState, getNextReward, type DailyLoginReward } from '@/lib/daily-login-rewards';
 import { verifyChallengeCompletion, getVerificationPrompt } from '@/lib/ai-verification';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -733,6 +734,25 @@ const [currentChallenge, setCurrentChallenge] = useState<Challenge>(initialChall
   const modalFadeAnim = useRef(new Animated.Value(0)).current;
   const confettiAnim = useRef(new Animated.Value(0)).current;
 
+  // Daily Login Reward State
+  const [dailyReward, setDailyReward] = useState<DailyLoginReward | null>(null);
+  const [showRewardModal, setShowRewardModal] = useState(false);
+  const [nextReward, setNextReward] = useState<{ day: number; gems: number; xp: number; description: string } | null>(null);
+
+  // Check and claim daily login reward on mount
+  useEffect(() => {
+    async function checkDailyReward() {
+      const reward = await checkAndClaimIfNeeded();
+      if (reward) {
+        setDailyReward(reward);
+        setShowRewardModal(true);
+      }
+      const next = await getNextReward();
+      setNextReward(next);
+    }
+    checkDailyReward();
+  }, []);
+
   // Quote rotation - changes every 10 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -1396,6 +1416,67 @@ const [currentChallenge, setCurrentChallenge] = useState<Challenge>(initialChall
         </View>
       )}
 
+      {/* Daily Login Reward Modal */}
+      {showRewardModal && dailyReward && (
+        <View style={styles.rewardModalOverlay}>
+          <Animated.View
+            style={[
+              styles.rewardModalContainer,
+              {
+                opacity: modalFadeAnim,
+                transform: [{ scale: modalFadeAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0.8, 1],
+                })}],
+              },
+            ]}
+          >
+            <LinearGradient
+              colors={dailyReward.isBonus ? ['#FFD700', '#FFA500'] : ['#10B981', '#059669']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.rewardModalHeader}
+            >
+              <Text style={styles.rewardModalTitle}>Daily Reward!</Text>
+              <Text style={styles.rewardModalSubtitle}>{dailyReward.description}</Text>
+            </LinearGradient>
+            <View style={styles.rewardModalBody}>
+              <Text style={styles.rewardDayLabel}>Day {dailyReward.day} Streak</Text>
+              <View style={styles.rewardValuesContainer}>
+                <View style={styles.rewardValueItem}>
+                  <Text style={styles.rewardValueEmoji}>💎</Text>
+                  <Text style={styles.rewardValueNumber}>+{dailyReward.gems}</Text>
+                  <Text style={styles.rewardValueLabel}>Gems</Text>
+                </View>
+                <View style={styles.rewardValueDivider} />
+                <View style={styles.rewardValueItem}>
+                  <Text style={styles.rewardValueEmoji}>⭐</Text>
+                  <Text style={styles.rewardValueNumber}>+{dailyReward.xp}</Text>
+                  <Text style={styles.rewardValueLabel}>XP</Text>
+                </View>
+              </View>
+              {nextReward && (
+                <View style={styles.nextRewardContainer}>
+                  <Text style={styles.nextRewardLabel}>Next: Day {nextReward.day}</Text>
+                  <Text style={styles.nextRewardValue}>
+                    💎 {nextReward.gems} + ⭐ {nextReward.xp}
+                  </Text>
+                </View>
+              )}
+              <TouchableOpacity
+                style={styles.rewardClaimButton}
+                onPress={() => {
+                  Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+                  setShowRewardModal(false);
+                }}
+              >
+                <Text style={styles.rewardClaimButtonText}>Claim!</Text>
+              </TouchableOpacity>
+            </View>
+          </Animated.View>
+        </View>
+      )}
+
       {/* Universal Footer */}
       <UniversalFooter
         activeTab={activeTab}
@@ -1929,5 +2010,115 @@ const styles = StyleSheet.create({
     color: '#9CA3AF',
     marginTop: 8,
     textAlign: 'center',
+  },
+  // Daily Login Reward Modal
+  rewardModalOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(10, 15, 28, 0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2500,
+  },
+  rewardModalContainer: {
+    width: SCREEN_WIDTH - 48,
+    borderRadius: 20,
+    overflow: 'hidden',
+    backgroundColor: '#1E293B',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.4,
+    shadowRadius: 16,
+    elevation: 12,
+  },
+  rewardModalHeader: {
+    paddingVertical: 28,
+    paddingHorizontal: 24,
+    alignItems: 'center',
+  },
+  rewardModalTitle: {
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#FFFFFF',
+    marginBottom: 4,
+  },
+  rewardModalSubtitle: {
+    fontSize: 16,
+    color: 'rgba(255, 255, 255, 0.9)',
+    fontWeight: '500',
+  },
+  rewardModalBody: {
+    padding: 24,
+    alignItems: 'center',
+    backgroundColor: '#1E293B',
+  },
+  rewardDayLabel: {
+    fontSize: 14,
+    color: '#9CA3AF',
+    fontWeight: '600',
+    marginBottom: 16,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  rewardValuesContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  rewardValueItem: {
+    alignItems: 'center',
+    paddingHorizontal: 24,
+  },
+  rewardValueEmoji: {
+    fontSize: 32,
+    marginBottom: 4,
+  },
+  rewardValueNumber: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#F9FAFB',
+  },
+  rewardValueLabel: {
+    fontSize: 12,
+    color: '#9CA3AF',
+    marginTop: 2,
+  },
+  rewardValueDivider: {
+    width: 1,
+    height: 48,
+    backgroundColor: '#334155',
+  },
+  nextRewardContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    backgroundColor: 'rgba(99, 102, 241, 0.15)',
+    borderRadius: 12,
+  },
+  nextRewardLabel: {
+    fontSize: 12,
+    color: '#9CA3AF',
+    marginBottom: 4,
+  },
+  nextRewardValue: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#818CF8',
+  },
+  rewardClaimButton: {
+    backgroundColor: '#10B981',
+    paddingVertical: 14,
+    paddingHorizontal: 48,
+    borderRadius: 12,
+    marginTop: 4,
+  },
+  rewardClaimButtonText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
 });
