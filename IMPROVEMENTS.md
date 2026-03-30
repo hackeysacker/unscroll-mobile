@@ -811,3 +811,17 @@ Last updated: 2026-03-29
 7. Apple Watch companion app
 8. Siri Shortcuts integration
 9. Focus Filter integration
+
+## 2026-03-29 Weekend Session (8:03 PM)
+- ✅ **broadcast-push.ts Bug Fix** (v1.2.0 - 2026-03-29)
+  - Fixed Supabase client initialization: was passing `supabaseUrl` as auth key instead of `SUPABASE_SERVICE_ROLE_KEY`
+  - This caused server-side push notifications to fail silently
+  - Committed and pushed to GitHub (commit: e14068b)
+- ✅ **Build Verified** (v1.2.0 - 2026-03-29)
+  - TypeScript: 0 errors
+  - iOS bundle: 6.27 MB exports cleanly
+  - Working tree: clean, all changes pushed
+- ✅ **Progress Update** posted to #focusflow-app (unscroll-app channel)
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
