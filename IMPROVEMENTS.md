@@ -2,6 +2,14 @@
 
 Last updated: 2026-03-29
 
+- ✅ **LoadingState & EmptyState Components** (v1.2.0 - 2026-03-29)
+  - Created reusable LoadingScreen component with theme support
+  - Created reusable EmptyState component with icon, title, message, and optional action button
+  - Addresses IMPROVEMENTS.md Priority 3: "Loading states for all async operations" and "Empty states with helpful messages"
+  - TypeScript: 0 errors
+  - iOS bundle: 6.29 MB
+  - Committed and pushed to GitHub (commit: 9b6228b)
+
 - ✅ **ScrollTimeContext Daily Reset Bug Fix** (v1.2.0 - 2026-03-29)
   - Fixed stale closure bug in `checkDailyReset()` being called before `loadState()` completed
   - `checkDailyReset` was running against default empty state instead of loaded state
