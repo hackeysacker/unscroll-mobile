@@ -10,6 +10,8 @@ export type SoundName =
   | 'toggle'
   | 'swipe'
   | 'select'
+  | 'click'
+  | 'notification'
 
   // Feedback
   | 'success'
@@ -191,5 +193,17 @@ export const SOUND_METADATA: Record<SoundName, SoundMetadata> = {
     category: 'special',
     volume: 0.55,
     description: 'Feature unlocked',
+  },
+  click: {
+    name: 'click',
+    category: 'ui',
+    volume: 0.25,
+    description: 'UI click feedback',
+  },
+  notification: {
+    name: 'notification',
+    category: 'feedback',
+    volume: 0.5,
+    description: 'Notification sound',
   },
 };
