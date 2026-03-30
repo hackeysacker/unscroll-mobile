@@ -812,6 +812,27 @@ Last updated: 2026-03-29
 8. Siri Shortcuts integration
 9. Focus Filter integration
 
+## 2026-03-29 Weekend Session (10:00 PM)
+- ✅ **Daily Login Rewards System** (v1.2.0 - 2026-03-29)
+  - Created `src/lib/daily-login-rewards.ts` with full reward system:
+    - 7-day reward cycle (5-50 gems, 50-300 XP per day)
+    - Streak milestone bonuses at 14, 21, 30, 60, 100 days
+    - `claimDailyReward()` with automatic streak tracking
+    - `checkAndClaimIfNeeded()` for auto-claim on first app open
+    - `getNextReward()` and `getStreakInfo()` helpers
+  - Added 3 storage keys to storage.ts (LAST_LOGIN_DATE, DAILY_LOGIN_CLAIMED, DAILY_LOGIN_STREAK)
+  - Integrated reward modal into HomeScreen.tsx:
+    - Auto-checks on mount via `checkAndClaimIfNeeded()`
+    - Beautiful gradient modal showing gems, XP, and next reward preview
+    - Only shows on first login of each day
+  - TypeScript: 0 errors
+  - iOS bundle: 6.29 MB
+  - Committed and pushed to GitHub (commit: a02326f)
+  - Could not post to #focusflow-app: Discord channel ID not available in config
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-03-29 Weekend Session (8:03 PM)
 - ✅ **broadcast-push.ts Bug Fix** (v1.2.0 - 2026-03-29)
   - Fixed Supabase client initialization: was passing `supabaseUrl` as auth key instead of `SUPABASE_SERVICE_ROLE_KEY`
