@@ -1,6 +1,18 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-03-29
+Last updated: 2026-03-30
+
+## 2026-03-30 Evening Session (11:00 PM)
+- ✅ **Build Verification** (v1.2.0 - 2026-03-30)
+  - Verified TypeScript compiles with 0 errors
+  - iOS bundle exports successfully (6.29 MB)
+  - Working tree clean
+  - Only 1 remaining TODO: iOS Screen Time API integration (native module)
+  - All v1.2.0 features complete and ready for TestFlight
+- Posted progress update to #unscroll-app
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 - ✅ **LoadingState & EmptyState Components** (v1.2.0 - 2026-03-29)
   - Created reusable LoadingScreen component with theme support
