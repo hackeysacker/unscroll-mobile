@@ -2,6 +2,22 @@
 
 Last updated: 2026-04-05
 
+## 2026-04-05 Weekend Session (11:30 AM)
+
+- ✅ **Build Verification** (v1.2.0 - 2026-04-05)
+  - TypeScript compiles with 0 errors (npx tsc --noEmit passes)
+  - iOS bundle exports successfully (6.29 MB)
+  - Working tree clean, up to date with origin/master
+  - All v1.2.0 features complete and ready for TestFlight
+- **Discord Channel Search:**
+  - No #focusflow-app channel exists in Discord
+  - Found #unscroll-app (1476084278507868275) with topic "FocusFlow iOS app development" - this appears to be the intended channel
+  - Recommend either creating #focusflow-app channel or updating IMPROVEMENTS.md to use #unscroll-app
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+  - Clarify Discord channel name for future posts
+
 ## 2026-04-05 Weekend Session (9:30 AM)
 
 - ✅ **Build Verification** (v1.2.0 - 2026-04-05)
