@@ -1,6 +1,17 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-04-06
+Last updated: 2026-04-07
+
+## 2026-04-07 Overnight Session (3:30 AM)
+- ✅ **Build Verification** (v1.2.0 - 2026-04-07)
+  - TypeScript: 0 errors
+  - iOS bundle: exports cleanly
+  - Working tree: clean, up to date with origin/master
+  - All v1.2.0 features complete and ready for TestFlight
+- Posted update to #unscroll-app (channel ID 1476084278507868275)
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 ## 2026-04-06 Overnight Session (1:03 AM)
 - ✅ **Build Verification** (v1.2.0 - 2026-04-06)
