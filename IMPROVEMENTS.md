@@ -2,6 +2,17 @@
 
 Last updated: 2026-04-11
 
+## 2026-04-11 Weekend Session (12:00 PM)
+- ✅ **Build Verification** (v1.2.0 - 2026-04-11)
+  - TypeScript: 0 errors
+  - Working tree: clean, pushed to origin/master
+  - 1 remaining TODO: iOS Screen Time API integration (native module)
+- ✅ **Git Push**: Branch synced with origin
+- Posted update to #unscroll-app (channel ID 1476084278507868275)
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-04-11 Overnight Session (1:03 AM)
 - ✅ **Build Verification** (v1.2.0 - 2026-04-11)
   - TypeScript: 0 errors
