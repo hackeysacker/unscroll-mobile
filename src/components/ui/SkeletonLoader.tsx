@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import { ShimmerEffect } from './ShimmerEffect';
+import { ShimmerEffect } from '../ShimmerEffect';
 
 interface SkeletonLoaderProps {
   /**
