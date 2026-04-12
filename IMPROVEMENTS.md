@@ -2,6 +2,16 @@
 
 Last updated: 2026-04-11
 
+## 2026-04-11 Weekend Session (7:06 PM)
+- ✅ **Build Verification** (v1.2.0 - 2026-04-11)
+  - TypeScript: 0 errors
+  - Working tree: clean, up to date with origin/master
+  - 1 remaining TODO: iOS Screen Time API integration (native module)
+- App is feature-complete for v1.2.0 release
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-04-11 Weekend Session (12:00 PM)
 - ✅ **Build Verification** (v1.2.0 - 2026-04-11)
   - TypeScript: 0 errors
