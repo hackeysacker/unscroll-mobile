@@ -1,6 +1,16 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-04-11
+Last updated: 2026-04-12
+
+## 2026-04-12 Weekend Session (1:30 PM)
+- ✅ **TypeScript Fix** (v1.2.0 - 2026-04-12)
+  - Fixed import path in SkeletonLoader.tsx (../ShimmerEffect vs ./ShimmerEffect)
+  - TypeScript: 0 errors
+  - Committed and pushed to GitHub (commit: f902793)
+- Posted progress to #unscroll-app
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 ## 2026-04-12 Weekend Session (11:30 AM)
 - ✅ **Screen Time Native Module Created**
