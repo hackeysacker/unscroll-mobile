@@ -2,6 +2,17 @@
 
 Last updated: 2026-04-12
 
+## 2026-04-12 Weekend Session (4:05 PM)
+- ✅ **Build Verification** (v1.2.0 - 2026-04-12)
+  - TypeScript: 0 errors (npx tsc --noEmit passes)
+  - Working tree: clean, up to date with origin/master
+  - 1 remaining TODO: iOS Screen Time API integration (native module created, awaiting Apple entitlement)
+- App is feature-complete for v1.2.0 release
+- Note: Could not auto-post to Discord (browser login required). Update written to IMPROVEMENTS.md.
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-04-12 Weekend Session (1:30 PM)
 - ✅ **TypeScript Fix** (v1.2.0 - 2026-04-12)
   - Fixed import path in SkeletonLoader.tsx (../ShimmerEffect vs ./ShimmerEffect)
