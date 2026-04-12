@@ -26,6 +26,9 @@ target 'FocusFlow' do
   # Local pod for widget data bridge
   pod 'FocusFlowWidgetsBridge', :path => './LocalPods/FocusFlowWidgetsBridge'
 
+  # Local pod for Screen Time API
+  pod 'FocusFlowScreenTime', :path => './LocalPods/FocusFlowScreenTime'
+
   if ENV['EXPO_USE_COMMUNITY_AUTOLINKING'] == '1'
     config_command = ['node', '-e', "process.argv=['', '', 'config'];require('@react-native-community/cli').run()"];
   else

@@ -2,7 +2,20 @@
 
 Last updated: 2026-04-11
 
-## 2026-04-11 Weekend Session (8:03 PM)
+## 2026-04-12 Weekend Session (11:30 AM)
+- ✅ **Screen Time Native Module Created**
+  - Created native iOS module: `FocusFlowScreenTime` (LocalPods)
+  - Swift implementation with FamilyControls/ManagedSettings APIs
+  - Bridge module for React Native integration
+  - Methods: requestAuthorization, getAuthorizationStatus, getTodayUsage, setAppLimit, getAppLimit
+  - Integrated into Podfile, pod install successful
+  - TypeScript: 0 errors
+- ⚠️ **Note**: Screen Time API requires FamilyControls entitlement from Apple (manual request)
+- **Remaining for TestFlight (User Action Required):**
+  - Request FamilyControls entitlement from Apple Developer portal
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+- Posted progress to #focusflow-app
 - ✅ **Build Verification** (v1.2.0 - 2026-04-11)
   - TypeScript: 0 errors
   - Working tree: clean, up to date with origin/master
