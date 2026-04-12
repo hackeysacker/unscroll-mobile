@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import React
 
 @objc(FocusFlowWidgetsBridge)
 class FocusFlowWidgetsBridge: NSObject {
@@ -43,15 +44,15 @@ class FocusFlowWidgetsBridge: NSObject {
   @objc
   func readWidgetData(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
     guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
-      reject("APP_GROUP_ERROR", "Could not access App Group container", nil    }
-
-    let)
+      reject("APP_GROUP_ERROR", "Could not access App Group container", nil)
       return
- fileURL = containerURL.appendingPathComponent("widget_data.json")
+    }
+
+    let fileURL = containerURL.appendingPathComponent("widget_data.json")
 
     do {
       let data = try Data(contentsOf: fileURL)
-      if let json = try JSONSerialization.jsonObject(with: data, options: []) {
+      if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
         resolve(json)
       } else {
         resolve(nil)
