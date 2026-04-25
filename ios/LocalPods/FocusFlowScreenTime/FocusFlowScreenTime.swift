@@ -3,6 +3,10 @@ import FamilyControls
 import ManagedSettings
 import DeviceActivity
 
+// Type aliases for React Native promise callbacks
+public typealias RCTPromiseResolveBlock = (Any?) -> Void
+public typealias RCTPromiseRejectBlock = (String?, String?, Error?) -> Void
+
 @objc(FocusFlowScreenTime)
 class FocusFlowScreenTime: NSObject {
   
@@ -13,35 +17,43 @@ class FocusFlowScreenTime: NSObject {
   
   @objc
   func requestAuthorization(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-    let center = AuthorizationCenter.shared
-    
-    Task {
-      do {
-        try await center.requestAuthorization(for: .individual)
-        resolve(["status": "authorized"])
-      } catch {
-        reject("AUTH_ERROR", "Failed to authorize Screen Time: \(error.localizedDescription)", error)
+    if #available(iOS 16.0, *) {
+      let center = AuthorizationCenter.shared
+      
+      Task {
+        do {
+          try await center.requestAuthorization(for: .individual)
+          resolve(["status": "authorized"])
+        } catch {
+          reject("AUTH_ERROR", "Failed to authorize Screen Time: \(error.localizedDescription)", error)
+        }
       }
+    } else {
+      reject("iOS_VERSION_ERROR", "Screen Time API requires iOS 16.0 or newer", nil)
     }
   }
   
   @objc
   func getAuthorizationStatus(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-    let status = AuthorizationCenter.shared.authorizationStatus
-    var statusString: String
-    
-    switch status {
-    case .notDetermined:
-      statusString = "notDetermined"
-    case .approved:
-      statusString = "approved"
-    case .denied:
-      statusString = "denied"
-    @unknown default:
-      statusString = "unknown"
+    if #available(iOS 16.0, *) {
+      let status = AuthorizationCenter.shared.authorizationStatus
+      var statusString: String
+      
+      switch status {
+      case .notDetermined:
+        statusString = "notDetermined"
+      case .approved:
+        statusString = "approved"
+      case .denied:
+        statusString = "denied"
+      @unknown default:
+        statusString = "unknown"
+      }
+      
+      resolve(["status": statusString])
+    } else {
+      resolve(["status": "notDetermined"])
     }
-    
-    resolve(["status": statusString])
   }
   
   @objc
@@ -61,6 +73,6 @@ class FocusFlowScreenTime: NSObject {
   @objc
   func getAppLimit(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     // Placeholder - returns current limit or nil
-    resolve(["limit": nil])
+    resolve(["limit": NSNull()])
   }
 }
