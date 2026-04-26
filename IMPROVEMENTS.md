@@ -2,6 +2,18 @@
 
 Last updated: 2026-04-25 (4:02 PM)
 
+## 2026-04-26 Weekend Session (5:30 AM)
+- ✅ **Build Verification** (v1.2.0 - 2026-04-26)
+  - TypeScript: 0 errors (npx tsc --noEmit passes)
+  - Working tree: clean, up to date with origin/master
+  - Screen Time native module ready (awaiting Apple FamilyControls entitlement)
+- App is feature-complete for v1.2.0 release
+- Could not post to Discord: browser requires login (user needs to log in manually)
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Request FamilyControls entitlement from Apple Developer portal
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-04-25 Weekend Session (4:02 PM)
 - ✅ **Build Verification** (v1.2.0 - 2026-04-25)
   - TypeScript: 0 errors (npx tsc --noEmit passes)
