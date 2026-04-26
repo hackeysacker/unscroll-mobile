@@ -20,6 +20,10 @@ export interface ThemeColors {
   warning: string;
   error: string;
   info: string;
+  // Color aliases for challenge components
+  textPrimary: string;
+  textSecondary: string;
+  surface: string;
   // Animated theme-specific colors
   gradientStart?: string;
   gradientEnd?: string;
@@ -31,7 +35,7 @@ export interface ThemeColors {
  * Each creates an immersive, memorable experience
  */
 export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
-  
+
   // ===== DARK THEMES =====
 
   // 🎬 Noir Cinema - Dramatic film noir with warm amber highlights
@@ -58,6 +62,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#0C0A09',
     gradientEnd: '#292524',
     shadowColor: 'rgba(245, 158, 11, 0.25)',
+    textPrimary: '#FAFAF9',
+    textSecondary: '#A8A29E',
+    surface: '#1C1917',
   },
 
   // 🌸 Tokyo Neon - Cyberpunk electric pink & cyan
@@ -84,6 +91,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#030712',
     gradientEnd: '#4A044E',
     shadowColor: 'rgba(236, 72, 153, 0.35)',
+    textPrimary: '#F9FAFB',
+    textSecondary: '#9CA3AF',
+    surface: '#111827',
   },
 
   // 🌌 Arctic Aurora - Deep arctic blues with aurora greens
@@ -110,6 +120,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#0F172A',
     gradientEnd: '#083344',
     shadowColor: 'rgba(45, 212, 191, 0.30)',
+    textPrimary: '#F0FDFA',
+    textSecondary: '#94A3B8',
+    surface: '#1E293B',
   },
 
   // 💎 Rose Quartz - Luxurious dark with rose gold shimmer
@@ -136,6 +149,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#18181B',
     gradientEnd: '#4C0519',
     shadowColor: 'rgba(251, 113, 133, 0.30)',
+    textPrimary: '#FFF1F2',
+    textSecondary: '#A1A1AA',
+    surface: '#27272A',
   },
 
   // 🍵 Matcha Zen - Japanese-inspired deep matcha & cream
@@ -162,6 +178,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#1C1917',
     gradientEnd: '#14532D',
     shadowColor: 'rgba(132, 204, 22, 0.25)',
+    textPrimary: '#F5F5F4',
+    textSecondary: '#A8A29E',
+    surface: '#292524',
   },
 
   // 🌌 Cosmic Void - Ultra-deep space with nebula purples
@@ -188,6 +207,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#030303',
     gradientEnd: '#2E1065',
     shadowColor: 'rgba(168, 85, 247, 0.35)',
+    textPrimary: '#FAF5FF',
+    textSecondary: '#A1A1AA',
+    surface: '#18181B',
   },
 
   // ===== LIGHT THEMES =====
@@ -216,6 +238,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#F5F3FF',
     gradientEnd: '#DDD6FE',
     shadowColor: 'rgba(139, 92, 246, 0.20)',
+    textPrimary: '#1E1B4B',
+    textSecondary: '#6D28D9',
+    surface: '#EDE9FE',
   },
 
   // 📜 Paper Craft - Artisanal warm off-white & terracotta
@@ -242,6 +267,9 @@ export const THEME_COLORS: Record<ThemeType, ThemeColors> = {
     gradientStart: '#FFFBEB',
     gradientEnd: '#FEF3C7',
     shadowColor: 'rgba(234, 88, 12, 0.15)',
+    textPrimary: '#451A03',
+    textSecondary: '#9A3412',
+    surface: '#FEF3C7',
   },
 };
 

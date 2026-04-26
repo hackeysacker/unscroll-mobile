@@ -21,6 +21,12 @@ export function useThemeStyles() {
   return {
     colors,
     createStyles,
+    // Direct color aliases for convenience
+    textPrimary: colors.textPrimary,
+    textSecondary: colors.textSecondary,
+    surface: colors.surface,
+    accent: colors.accent,
+    border: colors.border,
     // Common theme-aware style helpers
     common: {
       container: {

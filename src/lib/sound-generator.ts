@@ -5,44 +5,45 @@
  * Generates haptic feedback for UI interactions
  */
 
-import * as Haptics from 'expo-haptics';
+import { impactAsync, notificationAsync, ImpactFeedbackStyle, NotificationFeedbackType } from 'expo-haptics';
 import type { SoundName } from '@/types/sounds';
 
 // Sound profiles mapping to haptic feedback types
-const SOUND_PROFILES: Record<SoundName, Haptics.HapticsImpactStyle | Haptics.HapticsNotificationFeedbackType> = {
+type HapticFeedbackType = ImpactFeedbackStyle | NotificationFeedbackType;
+const SOUND_PROFILES: Record<SoundName, HapticFeedbackType> = {
   // UI Interactions - Light impact
-  tap: Haptics.ImpactFeedbackStyle.Light,
-  toggle: Haptics.ImpactFeedbackStyle.Light,
-  swipe: Haptics.ImpactFeedbackStyle.Medium,
-  select: Haptics.ImpactFeedbackStyle.Medium,
+  tap: ImpactFeedbackStyle.Light,
+  toggle: ImpactFeedbackStyle.Light,
+  swipe: ImpactFeedbackStyle.Medium,
+  select: ImpactFeedbackStyle.Medium,
 
   // Feedback - Notification types
-  success: Haptics.NotificationFeedbackType.Success,
-  error: Haptics.NotificationFeedbackType.Error,
-  warning: Haptics.NotificationFeedbackType.Warning,
-  complete: Haptics.NotificationFeedbackType.Success,
+  success: NotificationFeedbackType.Success,
+  error: NotificationFeedbackType.Error,
+  warning: NotificationFeedbackType.Warning,
+  complete: NotificationFeedbackType.Success,
 
   // Challenge Events - Medium to Heavy
-  'target-appear': Haptics.ImpactFeedbackStyle.Light,
-  'target-hit': Haptics.ImpactFeedbackStyle.Heavy,
-  'target-miss': Haptics.ImpactFeedbackStyle.Medium,
-  streak: Haptics.ImpactFeedbackStyle.Medium,
-  combo: Haptics.ImpactFeedbackStyle.Heavy,
+  'target-appear': ImpactFeedbackStyle.Light,
+  'target-hit': ImpactFeedbackStyle.Heavy,
+  'target-miss': ImpactFeedbackStyle.Medium,
+  streak: ImpactFeedbackStyle.Medium,
+  combo: ImpactFeedbackStyle.Heavy,
 
   // Achievements - Heavy + Success
-  'level-up': Haptics.ImpactFeedbackStyle.Heavy,
-  achievement: Haptics.NotificationFeedbackType.Success,
-  reward: Haptics.NotificationFeedbackType.Success,
+  'level-up': ImpactFeedbackStyle.Heavy,
+  achievement: NotificationFeedbackType.Success,
+  reward: NotificationFeedbackType.Success,
 
   // Navigation - Light
-  transition: Haptics.ImpactFeedbackStyle.Light,
-  back: Haptics.ImpactFeedbackStyle.Light,
-  forward: Haptics.ImpactFeedbackStyle.Light,
+  transition: ImpactFeedbackStyle.Light,
+  back: ImpactFeedbackStyle.Light,
+  forward: ImpactFeedbackStyle.Light,
 
   // Special
-  countdown: Haptics.ImpactFeedbackStyle.Medium,
-  'timer-end': Haptics.ImpactFeedbackStyle.Heavy,
-  unlock: Haptics.NotificationFeedbackType.Success,
+  countdown: ImpactFeedbackStyle.Medium,
+  'timer-end': ImpactFeedbackStyle.Heavy,
+  unlock: NotificationFeedbackType.Success,
 };
 
 /**
@@ -53,14 +54,13 @@ class SoundGenerator {
   private isInitialized = true;
 
   async initialize() {
-    // No initialization needed for haptics
     this.isInitialized = true;
   }
 
   /**
    * Play haptic feedback
    */
-  async play(soundName: SoundName, volume: number = 0.5) {
+  async play(soundName: SoundName, _volume: number = 0.5) {
     if (!this.isInitialized) {
       await this.initialize();
     }
@@ -74,15 +74,12 @@ class SoundGenerator {
       }
 
       // Determine if it's impact or notification feedback
-      if (typeof hapticType === 'string' && hapticType.includes('Success') || 
-          hapticType === Haptics.NotificationFeedbackType.Success ||
-          hapticType === Haptics.NotificationFeedbackType.Error ||
-          hapticType === Haptics.NotificationFeedbackType.Warning) {
-        // Notification feedback
-        await Haptics.notificationAsync(hapticType as Haptics.HapticsNotificationFeedbackType);
+      if (hapticType === NotificationFeedbackType.Success ||
+          hapticType === NotificationFeedbackType.Error ||
+          hapticType === NotificationFeedbackType.Warning) {
+        await notificationAsync(hapticType);
       } else {
-        // Impact feedback
-        await Haptics.impactAsync(hapticType as Haptics.HapticsImpactStyle);
+        await impactAsync(hapticType as ImpactFeedbackStyle);
       }
 
     } catch (error) {
