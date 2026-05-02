@@ -2,6 +2,17 @@
 
 Last updated: 2026-05-02 (3:34 AM)
 
+## 2026-05-02 Weekend FocusFlow (10:04 AM)
+- ✅ **Build Verification** (v1.2.0 - 2026-05-02)
+  - TypeScript: 0 errors (npx tsc --noEmit passes)
+  - Working tree: clean
+- App is feature-complete for v1.2.0 release
+- **Remaining for TestFlight (User Action Required):**
+  - Add Apple credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Request FamilyControls entitlement from Apple Developer portal
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+- Could not post to Discord - channel ID unknown (need user to provide #focusflow-app channel ID)
+
 ## 2026-05-02 Overnight Session (3:34 AM)
 - ✅ **Build Verification** (v1.2.0 - 2026-05-02)
   - TypeScript: 0 errors (npx tsc --noEmit passes)
