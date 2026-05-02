@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
+import type { LinearGradientProps } from 'expo-linear-gradient';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { RealmTheme } from '@/lib/realm-themes';
 import { HapticPatterns } from '@/lib/haptic-patterns';
@@ -219,7 +220,7 @@ export function AchievementAnimation({
         
         {/* Main card */}
         <LinearGradient
-          colors={[...content.colors, content.colors[0]]}
+          colors={[...content.colors, content.colors[0]] as unknown as LinearGradientProps['colors']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.card}

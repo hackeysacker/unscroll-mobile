@@ -731,7 +731,7 @@ export function MinimalHomeScreen({ onNavigate }: MinimalHomeScreenProps) {
   const [showCamera, setShowCamera] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [verificationResult, setVerificationResult] = useState<any>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const cameraRef = useRef<any>(null);
   const [permission, requestPermission] = useCameraPermissions();
 

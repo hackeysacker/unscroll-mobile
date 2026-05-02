@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Easing } from 'react-native';
+import { supabase } from '@/lib/supabase';
+import * as db from '@/lib/database';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button } from '@/components/ui/Button';
@@ -238,7 +240,7 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
       Animated.timing(colorAnim, {
         toValue: 1,
         duration: 800,
-        easing: Animated.Easing.inOut(Animated.Easing.ease),
+        easing: Easing.inOut(Easing.ease),
         useNativeDriver: false, // backgroundColor doesn't support native driver
       }).start();
       prevPhaseRef.current = currentPhase;

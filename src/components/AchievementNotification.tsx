@@ -5,6 +5,7 @@
 
 import { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
+import type { LinearGradientProps } from 'expo-linear-gradient';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { HapticPatterns } from '@/lib/haptic-patterns';
@@ -158,7 +159,7 @@ export function AchievementNotification({
       />
 
       <BlurView intensity={80} tint="dark" style={styles.blur}>
-        <LinearGradient colors={colors.gradient} style={styles.gradient}>
+        <LinearGradient colors={colors.gradient as unknown as LinearGradientProps['colors']} style={styles.gradient}>
           <View style={styles.content}>
             {/* Icon */}
             <View style={styles.iconContainer}>

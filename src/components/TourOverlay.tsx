@@ -8,7 +8,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from '
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { tourManager, type Tour, type TourStep } from '@/lib/app-tour-manager';
-import { hapticPatterns } from '@/lib/haptic-patterns';
+import { HapticPatterns as hapticPatterns } from '@/lib/haptic-patterns';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -73,7 +73,7 @@ export function TourOverlay({ onComplete }: TourOverlayProps) {
       }
     });
 
-    return unsubscribe;
+    return () => { unsubscribe(); };
   }, []);
 
   const handleNext = () => {

@@ -1,4 +1,4 @@
-import { View, Animated } from 'react-native';
+import { View, Animated, Easing } from 'react-native';
 import { useEffect, useRef } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import type { ViewStyle } from 'react-native';
@@ -32,7 +32,7 @@ export function ThemeBackground({ children, style }: ThemeBackgroundProps) {
       Animated.timing(backgroundColorAnim, {
         toValue: 1,
         duration: 600,
-        easing: Animated.Easing.inOut(Animated.Easing.ease),
+        easing: Easing.inOut(Easing.ease),
         useNativeDriver: false, // backgroundColor doesn't support native driver
       }).start(() => {
         prevColorRef.current = colors.background;
