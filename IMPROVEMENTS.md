@@ -2,6 +2,19 @@
 
 Last updated: 2026-05-03 (5:30 PM)
 
+## 2026-05-03 Weekend Session (10:30 PM)
+- ✅ **Build Verification** (v1.2.0 - 2026-05-03)
+  - TypeScript: 0 errors
+  - Working tree: clean, synced with origin/master
+  - Widget support implemented (May 2)
+- App is feature-complete for v1.2.0 release
+- Posted progress to #focusflow-app (channel 1476084278507868275)
+- **Remaining for TestFlight (User Action Required):**
+  - Apple Developer account ($99/yr)
+  - Add credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Request FamilyControls entitlement from Apple Developer portal
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## 2026-05-03 Weekend Session (5:30 PM)
 - ✅ **Build Verification** (v1.2.0 - 2026-05-03)
   - TypeScript: 0 errors
