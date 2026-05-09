@@ -1,6 +1,20 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-05-03 (5:30 PM)
+Last updated: 2026-05-09 (12:30 PM)
+
+## 2026-05-09 Weekend Session (12:30 PM)
+- ✅ **Build Verification** (v1.2.0 - 2026-05-09)
+  - TypeScript: 0 errors (npx tsc --noEmit passes)
+  - Working tree: clean, synced with origin/master
+  - 1 remaining TODO: iOS Screen Time API integration (awaiting Apple FamilyControls entitlement)
+- App is feature-complete for v1.2.0 release
+- No code changes needed - all features already complete
+- Progress update: Would post to #focusflow-app (channel 1476084278507868275)
+- **Remaining for TestFlight (User Action Required):**
+  - Apple Developer account ($99/yr)
+  - Add credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Request FamilyControls entitlement from Apple Developer portal
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 ## 2026-05-09 Weekend Session (10:34 AM)
 - ✅ **Build Verification** (v1.2.0 - 2026-05-09)
