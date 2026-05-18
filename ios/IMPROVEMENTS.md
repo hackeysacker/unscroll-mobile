@@ -1,6 +1,13 @@
 # FocusFlow iOS App Improvements
 
-Last updated: 2026-04-25 (3:34 PM)
+Last updated: 2026-05-17 (9:03 AM)
+
+## 2026-05-17 Weekend Session (9:03 AM)
+- ✅ **Build Verification** (v1.2.0 - 2026-05-17)
+  - iPhone 17 Pro Simulator: BUILD SUCCEEDED
+  - Working tree: clean, synced with origin/master
+- App is launch-ready for TestFlight
+- **Discord:** ⚠️ Skipped (channel not accessible from cron session)
 
 ## 2026-04-25 Weekend Session (3:34 PM)
 - ✅ **Build Verification** (v1.2.0 - 2026-04-25)
