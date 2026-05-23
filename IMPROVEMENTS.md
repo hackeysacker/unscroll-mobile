@@ -51,7 +51,17 @@
   - Request FamilyControls entitlement from Apple Developer portal
   - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
-Last updated: 2026-05-16 (7:03 PM)
+## 2026-05-23 Weekend Session (7:30 AM)
+- ✅ **Build Verification** (v1.2.0 - 2026-05-23)
+  - TypeScript: 0 errors (npx tsc --noEmit passes)
+  - Working tree: clean, synced with origin/master
+  - Installed missing dependencies: sentry, expo-clipping, apple-auth
+- iOS bundle: 6.49 MB
+- **Remaining for TestFlight (User Action Required):**
+  - Apple Developer account ($99/yr)
+  - Add credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Request FamilyControls entitlement from Apple Developer portal
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
 
 ## 2026-05-10 Overnight Session (1:03 AM)
 - ✅ **Build Verification** (v1.2.0 - 2026-05-10)
