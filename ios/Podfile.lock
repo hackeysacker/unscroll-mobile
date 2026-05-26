@@ -48,7 +48,7 @@ PODS:
     - ExpoModulesCore
     - ZXingObjC/OneD
     - ZXingObjC/PDF417
-  - ExpoClipboard (55.0.13):
+  - ExpoClipboard (55.0.8):
     - ExpoModulesCore
   - ExpoCrypto (15.0.8):
     - ExpoModulesCore
@@ -2064,7 +2064,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNSentry (8.12.0):
+  - RNSentry (8.3.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2086,7 +2086,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - Sentry (= 9.13.0)
+    - Sentry (= 9.6.0)
     - Yoga
   - RNSVG (15.12.1):
     - hermes-engine
@@ -2226,9 +2226,9 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - Sentry (9.13.0):
-    - Sentry/Core (= 9.13.0)
-  - Sentry/Core (9.13.0)
+  - Sentry (9.6.0):
+    - Sentry/Core (= 9.6.0)
+  - Sentry/Core (9.6.0)
   - Yoga (0.0.0)
   - ZXingObjC/Core (3.6.9)
   - ZXingObjC/OneD (3.6.9):
@@ -2582,7 +2582,7 @@ SPEC CHECKSUMS:
   ExpoAsset: f867e55ceb428aab99e1e8c082b5aee7c159ea18
   ExpoBlur: aaa1443160dec73e53850f1f7010463d645c97d9
   ExpoCamera: 6a326deb45ba840749652e4c15198317aa78497e
-  ExpoClipboard: 5d1b0cd2686406f21e616f2d9b3431259dee2e6a
+  ExpoClipboard: 6bb321d2991652e6736d400f1d7c073aa02c41a0
   ExpoCrypto: b6105ebaa15d6b38a811e71e43b52cd934945322
   ExpoDevice: 6327c3c200816795708885adf540d26ecab83d1a
   ExpoFileSystem: 858a44267a3e6e9057e0888ad7c7cfbf55d52063
@@ -2673,11 +2673,11 @@ SPEC CHECKSUMS:
   RNGestureHandler: 2914750df066d89bf9d8f48a10ad5f0051108ac3
   RNReanimated: 1442a577e066e662f0ce1cd1864a65c8e547aee0
   RNScreens: d8d6f1792f6e7ac12b0190d33d8d390efc0c1845
-  RNSentry: 3bb8d74ebcaae78361b30983706d89724924b5ed
+  RNSentry: d673147bdfeb7cefbd0bd3e626f7df676f72b1ff
   RNSVG: 31d6639663c249b7d5abc9728dde2041eb2a3c34
   RNVectorIcons: 4351544f100d4f12cac156a7c13399e60bab3e26
   RNWorklets: 76fce72926e28e304afb44f0da23b2d24f2c1fa0
-  Sentry: 5c3f67235d4c16fcfab43158a8c1502a18fece9a
+  Sentry: 9e8d102abb153ebd2b6f3ecb4057c57c57b1d6a7
   Yoga: 5934998fbeaef7845dbf698f698518695ab4cd1a
   ZXingObjC: 8898711ab495761b2dbbdec76d90164a6d7e14c5
 
