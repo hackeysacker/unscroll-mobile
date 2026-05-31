@@ -109,3 +109,13 @@ Last updated: 2026-05-23 (3:32 AM)
 - Code: 217 TypeScript files, ~17,700 lines Swift
 - Remaining: Apple Developer account, screenshots, Terms of Service
 
+- Terms of Service
+
+## 2026-05-31 Weekend Session (5:30 AM)
+- ✅ Build verification: SUCCESS (iPhone 17 Pro, iOS Simulator)
+- ✅ Git status: clean, synced with origin/master
+- ✅ Status: Feature-complete, TestFlight ready
+- Code: ~17,700 lines Swift
+- Remaining: Apple Developer account, App Store screenshots, Terms of Service
+- Note: Discord post skipped (guildId not available in cron)
+
