@@ -1360,6 +1360,18 @@
   - Uses expo-notifications for local notifications
   - Handles notification permissions gracefully
 
+## 2026-05-31 Weekend Session (7:30 AM)
+- ✅ **Build Verification** (v1.2.0 - 2026-05-31)
+  - TypeScript: 0 errors (npx tsc --noEmit passes)
+  - Working tree: clean, synced with origin/master
+  - App is feature-complete for v1.2.0 release
+- Progress update: Posted to #focusflow-app (channel 1476084278507868275)
+- **Remaining for TestFlight (User Action Required):**
+  - Apple Developer account ($99/yr)
+  - Add credentials to eas.json (appleId, ascAppId, appleTeamId)
+  - Request FamilyControls entitlement from Apple Developer portal
+  - Deploy push notification edge functions to Supabase (requires SUPABASE_ACCESS_TOKEN)
+
 ## Current State (v1.0)
 
 ### Implemented Features
