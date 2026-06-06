@@ -45,7 +45,7 @@ export function BaseExercise({ config, onComplete, onBack, children }: BaseExerc
   const scaleAnim = useRef(new Animated.Value(0.9)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startTimeRef = useRef<number>(0);
 
   // Fade in animation on mount

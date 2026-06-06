@@ -76,7 +76,7 @@ export function UnlockChallengeScreen({ onBack, onSettings }: UnlockChallengeScr
   const [challengeDuration, setChallengeDuration] = useState(15);
 
   // Timer for unlock window countdown
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Load initial state
   useEffect(() => {

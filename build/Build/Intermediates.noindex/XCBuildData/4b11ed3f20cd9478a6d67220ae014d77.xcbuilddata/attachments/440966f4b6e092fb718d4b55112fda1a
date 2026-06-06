@@ -1,0 +1,39 @@
+{
+  "" : {
+    "diagnostics" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/FocusFlow-primary.dia",
+    "emit-module-dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/FocusFlow-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/FocusFlow-primary-emit-module.dia",
+    "pch" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/FocusFlow-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/FocusFlow-primary.swiftdeps"
+  },
+  "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/ios/FocusFlow/AppDelegate.swift" : {
+    "const-values" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate.dia",
+    "index-unit-output-path" : "/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate.o",
+    "llvm-bc" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate.swiftdeps",
+    "swiftmodule" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/AppDelegate~partial.swiftmodule"
+  },
+  "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/ios/Pods/Target Support Files/Pods-FocusFlow/ExpoModulesProvider.swift" : {
+    "const-values" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider.swiftconstvalues",
+    "dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider.d",
+    "diagnostics" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider.dia",
+    "index-unit-output-path" : "/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider.o",
+    "llvm-bc" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider.bc",
+    "object" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider.o",
+    "swift-dependencies" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider.swiftdeps",
+    "swiftmodule" : "/Users/issacwaldman/.openclaw/workspace/unscroll-mobile/build/Build/Intermediates.noindex/FocusFlow.build/Debug-iphonesimulator/FocusFlow.build/Objects-normal/arm64/ExpoModulesProvider~partial.swiftmodule"
+  }
+}
