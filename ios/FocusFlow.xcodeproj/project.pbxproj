@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		3773369A5B5134A25D15806B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17168C2E76FD3A3F881DACFC /* ExpoModulesProvider.swift */; };
-		3D9FA703B3DEFF87CF487FE7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CC7C80EF958DC9FE0F296784 /* PrivacyInfo.xcprivacy */; };
+		215A452B399F2DAD45DEDC6F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE77DFD7952EE321C9BE4D8 /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		81D9FC2C9B4EC3AA78A5A11B /* libPods-FocusFlow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF9521467D04065D5F4B248 /* libPods-FocusFlow.a */; };
+		442AE2B2CDDF1BC4528EAA18 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3172CD8B0874B7A03E318418 /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		CCE08B3E4C596EAA663406DF /* libPods-FocusFlow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF85D419EFBB49B2644E66D /* libPods-FocusFlow.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -20,16 +20,16 @@
 		13B07F961A680F5B00A75B9A /* FocusFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FocusFlow/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FocusFlow/Info.plist; sourceTree = "<group>"; };
-		17168C2E76FD3A3F881DACFC /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-FocusFlow/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		4D36B42B259D1AC8B4C4F541 /* Pods-FocusFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.release.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.release.xcconfig"; sourceTree = "<group>"; };
-		9AF9521467D04065D5F4B248 /* libPods-FocusFlow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocusFlow.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3172CD8B0874B7A03E318418 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = FocusFlow/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		48F24B6C4137AB12A7F41C4F /* Pods-FocusFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.debug.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.debug.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = FocusFlow/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		CC7C80EF958DC9FE0F296784 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = FocusFlow/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		D355659DC8C6BF50A21FC240 /* Pods-FocusFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.debug.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.debug.xcconfig"; sourceTree = "<group>"; };
+		DD72C1391BC7878534C8A643 /* Pods-FocusFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.release.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.release.xcconfig"; sourceTree = "<group>"; };
+		ECF85D419EFBB49B2644E66D /* libPods-FocusFlow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocusFlow.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = FocusFlow/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* FocusFlow-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FocusFlow-Bridging-Header.h"; path = "FocusFlow/FocusFlow-Bridging-Header.h"; sourceTree = "<group>"; };
+		FEE77DFD7952EE321C9BE4D8 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-FocusFlow/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81D9FC2C9B4EC3AA78A5A11B /* libPods-FocusFlow.a in Frameworks */,
+				CCE08B3E4C596EAA663406DF /* libPods-FocusFlow.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +53,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				CC7C80EF958DC9FE0F296784 /* PrivacyInfo.xcprivacy */,
+				3172CD8B0874B7A03E318418 /* PrivacyInfo.xcprivacy */,
 			);
 			name = FocusFlow;
 			sourceTree = "<group>";
@@ -62,16 +62,32 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				9AF9521467D04065D5F4B248 /* libPods-FocusFlow.a */,
+				ECF85D419EFBB49B2644E66D /* libPods-FocusFlow.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3079B7BE78EBE4ED7AC0784D /* Pods */ = {
+		6130B751C1D59ECA87944E94 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				D355659DC8C6BF50A21FC240 /* Pods-FocusFlow.debug.xcconfig */,
-				4D36B42B259D1AC8B4C4F541 /* Pods-FocusFlow.release.xcconfig */,
+				715862BBC7BFA86A9F261E5A /* FocusFlow */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		715862BBC7BFA86A9F261E5A /* FocusFlow */ = {
+			isa = PBXGroup;
+			children = (
+				FEE77DFD7952EE321C9BE4D8 /* ExpoModulesProvider.swift */,
+			);
+			name = FocusFlow;
+			sourceTree = "<group>";
+		};
+		796A9A14E64B4685FE2B81BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				48F24B6C4137AB12A7F41C4F /* Pods-FocusFlow.debug.xcconfig */,
+				DD72C1391BC7878534C8A643 /* Pods-FocusFlow.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -91,8 +107,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				3079B7BE78EBE4ED7AC0784D /* Pods */,
-				BCFCD8F574948DA9831991F3 /* ExpoModulesProviders */,
+				796A9A14E64B4685FE2B81BE /* Pods */,
+				6130B751C1D59ECA87944E94 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -116,22 +132,6 @@
 			path = FocusFlow/Supporting;
 			sourceTree = "<group>";
 		};
-		BCFCD8F574948DA9831991F3 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				FD0792F9AD797A0F43774D6D /* FocusFlow */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		FD0792F9AD797A0F43774D6D /* FocusFlow */ = {
-			isa = PBXGroup;
-			children = (
-				17168C2E76FD3A3F881DACFC /* ExpoModulesProvider.swift */,
-			);
-			name = FocusFlow;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FocusFlow" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				DC0214ACC6E2659C4E0B6502 /* [Expo] Configure project */,
+				78E10DDE79E9779DFFDDC8BC /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				3C5FFAC2189A44F493F9729A /* [CP] Embed Pods Frameworks */,
+				2D862589ABFFEA033E3D32B0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,7 +198,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				3D9FA703B3DEFF87CF487FE7 /* PrivacyInfo.xcprivacy in Resources */,
+				442AE2B2CDDF1BC4528EAA18 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +244,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3C5FFAC2189A44F493F9729A /* [CP] Embed Pods Frameworks */ = {
+		2D862589ABFFEA033E3D32B0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -265,6 +265,30 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FocusFlow/Pods-FocusFlow-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		78E10DDE79E9779DFFDDC8BC /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env",
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/FocusFlow/FocusFlow.entitlements",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-FocusFlow/expo-configure-project.sh",
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Pods/Target Support Files/Pods-FocusFlow/ExpoModulesProvider.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-FocusFlow/expo-configure-project.sh\"\n";
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -346,30 +370,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FocusFlow/Pods-FocusFlow-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC0214ACC6E2659C4E0B6502 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/.xcode.env",
-				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/FocusFlow/FocusFlow.entitlements",
-				"$(SRCROOT)/Pods/Target Support Files/Pods-FocusFlow/expo-configure-project.sh",
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/Pods/Target Support Files/Pods-FocusFlow/ExpoModulesProvider.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-FocusFlow/expo-configure-project.sh\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -378,7 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				3773369A5B5134A25D15806B /* ExpoModulesProvider.swift in Sources */,
+				215A452B399F2DAD45DEDC6F /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +387,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D355659DC8C6BF50A21FC240 /* Pods-FocusFlow.debug.xcconfig */;
+			baseConfigurationReference = 48F24B6C4137AB12A7F41C4F /* Pods-FocusFlow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -426,7 +426,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D36B42B259D1AC8B4C4F541 /* Pods-FocusFlow.release.xcconfig */;
+			baseConfigurationReference = DD72C1391BC7878534C8A643 /* Pods-FocusFlow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
