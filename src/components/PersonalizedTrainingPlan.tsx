@@ -24,6 +24,7 @@ const challengeNames: Record<ChallengeType, string> = {
   look_away: 'Look Away',
   delay_unlock: 'Delay Unlock',
   anti_scroll_swipe: 'Anti-Scroll Swipe',
+  app_switch_resistance: 'App Switch Resistance',
   memory_flash: 'Memory Flash',
   reaction_inhibition: 'Reaction Inhibition',
   multi_object_tracking: 'Multi-Object Tracking',

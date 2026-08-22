@@ -22,7 +22,8 @@ export type ChallengeType =
   | 'controlled_breathing'    // Exercise 17: Controlled Breathing
   | 'look_away'               // Exercise 18: Look Away
   | 'anti_scroll_swipe'       // Exercise 19: Anti-Scroll Swipe
-  | 'reset'                   // Exercise 20: Reset (Final Challenge)
+  | 'app_switch_resistance'   // Exercise 21: App Switch Resistance
+  | 'reset'                   // Exercise 22: Reset (Final Challenge)
 
   // Puzzle Challenges (NEW - 250 Level System)
   | 'pattern_matching'        // Puzzle 1: Pattern Matching

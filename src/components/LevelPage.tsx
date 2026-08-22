@@ -24,6 +24,7 @@ const CHALLENGE_DESCRIPTIONS: Record<ChallengeType, { name: string; emoji: strin
   look_away: { name: 'Look Away', emoji: '🙈', description: 'Do not touch, just breathe', skill: 'Impulse Control' },
   delay_unlock: { name: 'Delay Unlock', emoji: '🔓', description: 'Hold the unlock button', skill: 'Impulse Control' },
   anti_scroll_swipe: { name: 'Anti-Scroll', emoji: '📱', description: 'Swipe up to break the scroll loop', skill: 'Impulse Control' },
+  app_switch_resistance: { name: 'App Switch', emoji: '🚫', description: 'Resist fake app switch prompts', skill: 'Distraction Resistance' },
   memory_flash: { name: 'Memory Flash', emoji: '💡', description: 'Remember the sequence shown', skill: 'Focus' },
   reaction_inhibition: { name: 'Reaction Inhibition', emoji: '🚫', description: 'Tap only the specific target', skill: 'Impulse Control' },
   multi_object_tracking: { name: 'Multi-Object Track', emoji: '👀', description: 'Track multiple moving targets', skill: 'Focus' },

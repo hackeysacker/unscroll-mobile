@@ -579,6 +579,84 @@ export const CHALLENGE_CONFIGS: Record<ChallengeType, ChallengeConfig> = {
     },
   },
 
+  app_switch_resistance: {
+    name: 'App Switch Resistance',
+    icon: '🚫',
+    description: 'Resist the urge to tap fake app switch prompts and notifications. Build immunity to multitasking temptations.',
+    duration: 60,
+    xpReward: 20,
+    difficulty: 'hard',
+    instructions: [
+      'Fake prompts will appear on screen',
+      'DO NOT tap any of them',
+      'Let prompts expire without interaction',
+      'Complete the duration without tapping',
+    ],
+    benefits: [
+      'Builds app-switch resistance',
+      'Improves impulse control',
+      'Reduces multitasking urge',
+      'Strengthens focus discipline',
+    ],
+    colors: {
+      background: '#1a1a2e',
+      primary: '#F43F5E',
+      secondary: '#E11D48',
+    },
+  },
+
+  pattern_matching: {
+    name: 'Pattern Matching',
+    icon: '🧩',
+    description: 'Find and select matching patterns to improve visual processing and cognitive matching skills.',
+    duration: 90,
+    xpReward: 25,
+    difficulty: 'medium',
+    instructions: [
+      'Study the target pattern shown',
+      'Find all matching patterns in the grid',
+      'Select them before time runs out',
+      'Complete as many as possible',
+    ],
+    benefits: [
+      'Enhances visual recognition',
+      'Improves pattern recognition',
+      'Boosts cognitive processing',
+      'Trains working memory',
+    ],
+    colors: {
+      background: '#1a1a2e',
+      primary: '#14B8A6',
+      secondary: '#0D9488',
+    },
+  },
+
+  spatial_puzzle: {
+    name: 'Spatial Puzzles',
+    icon: '🧠',
+    description: 'Solve spatial reasoning puzzles to enhance mental rotation and spatial awareness abilities.',
+    duration: 90,
+    xpReward: 25,
+    difficulty: 'medium',
+    instructions: [
+      'Analyze the spatial arrangement',
+      'Determine the correct orientation',
+      'Select the matching spatial pattern',
+      'Solve as many as you can',
+    ],
+    benefits: [
+      'Enhances spatial reasoning',
+      'Improves mental rotation',
+      'Boosts visualization skills',
+      'Develops spatial awareness',
+    ],
+    colors: {
+      background: '#1a1a2e',
+      primary: '#8B5CF6',
+      secondary: '#7C3AED',
+    },
+  },
+
   reset: {
     name: 'Reset - Final Challenge',
     icon: '🏆',
