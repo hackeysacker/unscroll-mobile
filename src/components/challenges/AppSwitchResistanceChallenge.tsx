@@ -17,6 +17,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { BaseChallengeWrapper } from './BaseChallengeWrapper';
+import { getChallengeConfig } from '@/lib/challenge-configs';
 import { useThemeStyles } from '@/hooks/useThemeStyles';
 import { soundManager as sound } from '@/lib/sound-manager';
 import { HapticPatterns as haptics } from '@/lib/haptic-patterns';
@@ -144,17 +145,14 @@ export function AppSwitchResistanceChallenge({
     ? Math.round((resistedCount / (tappedCount + resistedCount)) * 100)
     : 100;
 
+  const config = getChallengeConfig('app_switch_resistance');
+
   return (
     <BaseChallengeWrapper
-      title="App Switch Resistance"
-      description="Resist switching apps or tapping prompts"
-      duration={duration}
-      onComplete={handleComplete}
-      onBack={onBack}
-      stats={[
-        { label: 'Resisted', value: resistedCount },
-        { label: 'Tapped', value: tappedCount },
-      ]}
+      config={config}
+      onStart={() => {}}
+      onBack={onBack || (() => {})}
+      isActive={true}
     >
       <View style={styles.container}>
         {/* Instructions */}
@@ -296,7 +294,7 @@ function FakePromptCard({
     >
       <TouchableOpacity onPress={onTap} activeOpacity={0.9}>
         <LinearGradient
-          colors={getColors()}
+          colors={getColors() as [string, string]}
           style={styles.prompt}
         >
           <Text style={styles.promptIcon}>{prompt.icon}</Text>

@@ -42,6 +42,11 @@ const challengeNames: Record<ChallengeType, string> = {
   impulse_delay: 'Impulse Delay',
   distraction_resistance: 'Distraction Resistance',
   audio_focus: 'Audio Focus',
+  // Puzzle challenges
+  pattern_matching: 'Pattern Matching',
+  logic_puzzle: 'Logic Puzzle',
+  memory_puzzle: 'Memory Puzzle',
+  spatial_puzzle: 'Spatial Puzzle',
 };
 
 function generateTrainingPlan(
