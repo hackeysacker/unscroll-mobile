@@ -44,6 +44,10 @@ const SOUND_PROFILES: Record<SoundName, HapticFeedbackType> = {
   countdown: ImpactFeedbackStyle.Medium,
   'timer-end': ImpactFeedbackStyle.Heavy,
   unlock: NotificationFeedbackType.Success,
+
+  // Missing from SoundName type
+  click: ImpactFeedbackStyle.Light,
+  notification: NotificationFeedbackType.Success,
 };
 
 /**
