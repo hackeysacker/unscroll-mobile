@@ -39,12 +39,37 @@ export interface ChallengeConfig {
 }
 
 interface BaseChallengeWrapperProps {
-  config: ChallengeConfig;
-  onStart: () => void;
-  onBack: () => void;
-  children: React.ReactNode;
-  isActive: boolean;
+  // New API
+  config?: ChallengeConfig;
+  onStart?: () => void;
+  onBack?: () => void;
+  children?: React.ReactNode;
+  isActive?: boolean;
+  
+  // Legacy API (for backward compatibility)
+  title?: string;
+  description?: string;
+  duration?: number;
+  onComplete?: (timeSpent: number) => void;
+  stats?: { label: string; value: number }[];
 }
+
+// Default config for legacy API
+const DEFAULT_CONFIG: ChallengeConfig = {
+  name: 'Challenge',
+  icon: '🎯',
+  description: 'Complete the challenge',
+  duration: 30,
+  xpReward: 50,
+  difficulty: 'medium',
+  instructions: ['Complete the challenge'],
+  benefits: ['Improves focus'],
+  colors: {
+    background: '#1a1a2e',
+    primary: '#6366f1',
+    secondary: '#8b5cf6',
+  },
+};
 
 export function BaseChallengeWrapper({
   config,
@@ -52,10 +77,28 @@ export function BaseChallengeWrapper({
   onBack,
   children,
   isActive,
+  // Legacy props
+  title,
+  description,
+  duration: propDuration,
+  onComplete,
+  stats,
 }: BaseChallengeWrapperProps) {
-  const [showIntro, setShowIntro] = useState(true); // Show nice intro screen
+  // Support both APIs: use config if provided, otherwise build from legacy props
+  const activeConfig = config || {
+    ...DEFAULT_CONFIG,
+    name: title || DEFAULT_CONFIG.name,
+    description: description || DEFAULT_CONFIG.description,
+    duration: propDuration || DEFAULT_CONFIG.duration,
+  };
+  
+  const [showIntro, setShowIntro] = useState(!config); // Show intro if using legacy API (no config)
+  const [localIsActive, setLocalIsActive] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.9)).current;
+
+  // Use provided isActive or local state
+  const active = isActive ?? localIsActive;
 
   // Fade in animation on mount
   useEffect(() => {
@@ -77,8 +120,12 @@ export function BaseChallengeWrapper({
   const handleStart = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setShowIntro(false);
-    onStart();
+    setLocalIsActive(true);
+    onStart?.();
   };
+
+  // For legacy API: if we have stats, skip intro and go straight to children
+  const shouldSkipIntro = !config && stats != null;
 
   const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
@@ -87,12 +134,12 @@ export function BaseChallengeWrapper({
   };
 
   // Show intro screen
-  if (showIntro && !isActive) {
+  if (showIntro && !active) {
     return (
       <View style={styles.container}>
         {/* Background gradient */}
         <LinearGradient
-          colors={[config.colors.background, '#000000']}
+          colors={[activeConfig.colors.background, '#000000']}
           style={StyleSheet.absoluteFill}
         />
 
@@ -113,7 +160,7 @@ export function BaseChallengeWrapper({
                 style={styles.backButton}
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  onBack();
+                  onBack?.();
                 }}
               >
                 <Text style={styles.backButtonText}>←</Text>
@@ -126,24 +173,24 @@ export function BaseChallengeWrapper({
               contentContainerStyle={styles.introContainer}
               showsVerticalScrollIndicator={false}
             >
-              <Text style={styles.exerciseIcon}>{config.icon}</Text>
-              <Text style={styles.exerciseName}>{config.name}</Text>
-              <Text style={styles.exerciseDescription}>{config.description}</Text>
+              <Text style={styles.exerciseIcon}>{activeConfig.icon}</Text>
+              <Text style={styles.exerciseName}>{activeConfig.name}</Text>
+              <Text style={styles.exerciseDescription}>{activeConfig.description}</Text>
 
               <View style={styles.infoSection}>
                 <View style={styles.infoRow}>
                   <View style={styles.infoBadge}>
-                    <Text style={styles.infoBadgeText}>⏱️ {Math.ceil(config.duration / 60)} min</Text>
+                    <Text style={styles.infoBadgeText}>⏱️ {Math.ceil(activeConfig.duration / 60)} min</Text>
                   </View>
                   <View style={styles.infoBadge}>
-                    <Text style={styles.infoBadgeText}>✨ +{config.xpReward} XP</Text>
+                    <Text style={styles.infoBadgeText}>✨ +{activeConfig.xpReward} XP</Text>
                   </View>
                   <View style={styles.infoBadge}>
                     <Text style={styles.infoBadgeText}>
-                      {config.difficulty === 'easy' && '🟢'}
-                      {config.difficulty === 'medium' && '🟡'}
-                      {config.difficulty === 'hard' && '🔴'}
-                      {' '}{config.difficulty}
+                      {activeConfig.difficulty === 'easy' && '🟢'}
+                      {activeConfig.difficulty === 'medium' && '🟡'}
+                      {activeConfig.difficulty === 'hard' && '🔴'}
+                      {' '}{activeConfig.difficulty}
                     </Text>
                   </View>
                 </View>
@@ -151,7 +198,7 @@ export function BaseChallengeWrapper({
 
               <View style={styles.instructionsContainer}>
                 <Text style={styles.instructionsTitle}>How it works:</Text>
-                {config.instructions.map((instruction, index) => (
+                {activeConfig.instructions.map((instruction, index) => (
                   <View key={index} style={styles.instructionRow}>
                     <Text style={styles.instructionNumber}>{index + 1}</Text>
                     <Text style={styles.instructionText}>{instruction}</Text>
@@ -162,7 +209,7 @@ export function BaseChallengeWrapper({
               <View style={styles.benefitsContainer}>
                 <Text style={styles.benefitsTitle}>Benefits:</Text>
                 <View style={styles.benefitsList}>
-                  {config.benefits.map((benefit, index) => (
+                  {activeConfig.benefits.map((benefit, index) => (
                     <View key={index} style={styles.benefitRow}>
                       <Text style={styles.benefitDot}>•</Text>
                       <Text style={styles.benefitText}>{benefit}</Text>
@@ -173,7 +220,7 @@ export function BaseChallengeWrapper({
 
               <TouchableOpacity style={styles.startButton} onPress={handleStart}>
                 <LinearGradient
-                  colors={[config.colors.primary, config.colors.secondary]}
+                  colors={[activeConfig.colors.primary, activeConfig.colors.secondary]}
                   style={styles.startButtonGradient}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
@@ -186,6 +233,11 @@ export function BaseChallengeWrapper({
         </Animated.View>
       </View>
     );
+  }
+
+  // For legacy API: skip intro if we have stats, go straight to children
+  if (shouldSkipIntro) {
+    return <>{children}</>;
   }
 
   // Show challenge content

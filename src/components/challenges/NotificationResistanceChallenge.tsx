@@ -17,6 +17,8 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { BaseChallengeWrapper } from './BaseChallengeWrapper';
+import { getChallengeConfig } from '@/lib/challenge-configs';
+import { getChallengeScaling } from '@/lib/challenge-progression';
 import { useThemeStyles } from '@/hooks/useThemeStyles';
 import { soundManager as sound } from '@/lib/sound-manager';
 import { HapticPatterns as haptics } from '@/lib/haptic-patterns';
@@ -58,6 +60,8 @@ export function NotificationResistanceChallenge({
   level = 1,
 }: NotificationResistanceChallengeProps) {
   const themeStyles = useThemeStyles();
+  const config = getChallengeConfig('fake_notifications');
+  const scaling = getChallengeScaling('fake_notifications', level);
   const [notifications, setNotifications] = useState<FakeNotification[]>([]);
   const [tappedCount, setTappedCount] = useState(0);
   const [resistedCount, setResistedCount] = useState(0);
@@ -131,7 +135,7 @@ export function NotificationResistanceChallenge({
       description="Resist tapping on fake notifications"
       duration={duration}
       onComplete={handleComplete}
-      onBack={onBack}
+      onBack={onBack || (() => {})}
       stats={[
         { label: 'Resisted', value: resistedCount },
         { label: 'Tapped', value: tappedCount },
@@ -243,7 +247,7 @@ function NotificationCard({
     >
       <TouchableOpacity onPress={onTap} activeOpacity={0.9}>
         <LinearGradient
-          colors={notification.color}
+          colors={notification.color as unknown as readonly [string, string, ...string[]]}
           style={styles.notification}
         >
           <View style={styles.notificationIcon}>

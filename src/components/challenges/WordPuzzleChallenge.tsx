@@ -17,6 +17,8 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { BaseChallengeWrapper } from './BaseChallengeWrapper';
+import { getChallengeConfig } from '@/lib/challenge-configs';
+import { getChallengeScaling } from '@/lib/challenge-progression';
 import { useThemeStyles } from '@/hooks/useThemeStyles';
 import { soundManager as sound } from '@/lib/sound-manager';
 import { HapticPatterns as haptics } from '@/lib/haptic-patterns';
@@ -83,6 +85,8 @@ export function WordPuzzleChallenge({
   level = 1,
 }: WordPuzzleChallengeProps) {
   const themeStyles = useThemeStyles();
+  const config = getChallengeConfig('logic_puzzle');
+  const scaling = getChallengeScaling('logic_puzzle', level);
   const [solvedCount, setSolvedCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0);
   const [currentPuzzle, setCurrentPuzzle] = useState<WordPuzzle | null>(null);
@@ -254,7 +258,7 @@ export function WordPuzzleChallenge({
       description="Unscramble the letters to form a word"
       duration={duration}
       onComplete={handleComplete}
-      onBack={onBack}
+      onBack={onBack || (() => {})}
       stats={[
         { label: 'Solved', value: solvedCount },
         { label: 'Errors', value: incorrectCount },

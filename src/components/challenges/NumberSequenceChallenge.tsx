@@ -17,6 +17,8 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { BaseChallengeWrapper } from './BaseChallengeWrapper';
+import { getChallengeConfig } from '@/lib/challenge-configs';
+import { getChallengeScaling } from '@/lib/challenge-progression';
 import { useThemeStyles } from '@/hooks/useThemeStyles';
 import { soundManager as sound } from '@/lib/sound-manager';
 import { HapticPatterns as haptics } from '@/lib/haptic-patterns';
@@ -45,6 +47,8 @@ export function NumberSequenceChallenge({
   level = 1,
 }: NumberSequenceChallengeProps) {
   const themeStyles = useThemeStyles();
+  const config = getChallengeConfig('pattern_matching');
+  const scaling = getChallengeScaling('pattern_matching', level);
   const [solvedCount, setSolvedCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0);
   const [currentSequence, setCurrentSequence] = useState<Sequence | null>(null);
@@ -296,7 +300,7 @@ export function NumberSequenceChallenge({
       description="Find the next number in the sequence"
       duration={duration}
       onComplete={handleComplete}
-      onBack={onBack}
+      onBack={onBack || (() => {})}
       stats={[
         { label: 'Solved', value: solvedCount },
         { label: 'Errors', value: incorrectCount },

@@ -48,6 +48,7 @@ const challengeNames: Record<ChallengeType, string> = {
   logic_puzzle: 'Logic Puzzle',
   memory_puzzle: 'Memory Puzzle',
   spatial_puzzle: 'Spatial Puzzle',
+  reset_challenge: 'Reset Challenge',
 };
 
 function generateTrainingPlan(

@@ -24,6 +24,7 @@ export type ChallengeType =
   | 'anti_scroll_swipe'       // Exercise 19: Anti-Scroll Swipe
   | 'app_switch_resistance'   // Exercise 21: App Switch Resistance
   | 'reset'                   // Exercise 22: Reset (Final Challenge)
+  | 'reset_challenge'        // Dev Testing: Reset Challenge
 
   // Puzzle Challenges (NEW - 250 Level System)
   | 'pattern_matching'        // Puzzle 1: Pattern Matching

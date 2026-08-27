@@ -48,6 +48,7 @@ const CHALLENGE_DESCRIPTIONS: Record<ChallengeType, { name: string; emoji: strin
   logic_puzzle: { name: 'Logic Puzzle', emoji: '🧩', description: 'Solve logic problems', skill: 'Focus' },
   memory_puzzle: { name: 'Memory Puzzle', emoji: '🎴', description: 'Remember and match', skill: 'Focus' },
   spatial_puzzle: { name: 'Spatial Puzzle', emoji: '🗺️', description: 'Solve spatial challenges', skill: 'Focus' },
+  reset_challenge: { name: 'Reset Challenge', emoji: '🔄', description: 'Resist resetting progress', skill: 'Impulse Control' },
 };
 
 export function LevelPage({ level, onBack, onSelectChallenge }: LevelPageProps) {

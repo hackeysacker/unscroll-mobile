@@ -57,7 +57,7 @@ export function DailyChallengeCard({
     return () => clearInterval(interval);
   }, []);
 
-  const getDifficultyColor = () => {
+  const getDifficultyColor = (): [string, string] => {
     switch (challenge.difficulty) {
       case 'easy':
         return ['#10B981', '#059669'];
