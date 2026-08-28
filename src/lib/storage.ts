@@ -22,6 +22,7 @@ const STORAGE_KEYS = {
   HEART_TRANSACTIONS: 'focusflow_heart_transactions',
   BADGE_PROGRESS: 'focusflow_badge_progress',
   AVATAR_STATE: 'focusflow_avatar_state',
+  DAILY_CHALLENGE: 'focusflow_daily_challenge',
 } as const;
 
 export async function saveToStorage<T>(key: string, data: T): Promise<void> {

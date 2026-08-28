@@ -40,19 +40,23 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
   useEffect(() => {
     if (!user) return;
 
-    const savedSettings = loadFromStorage<WindDownSettings>(STORAGE_KEYS.WIND_DOWN_SETTINGS);
-    if (savedSettings && savedSettings.userId === user.id) {
-      setSettings(savedSettings);
-    } else {
-      const defaultSettings: WindDownSettings = {
-        userId: user.id,
-        enabled: true,
-        duration: 10,
-        breathingPattern: 'relaxing',
-      };
-      setSettings(defaultSettings);
-      saveToStorage(STORAGE_KEYS.WIND_DOWN_SETTINGS, defaultSettings);
-    }
+    const initSettings = async () => {
+      const savedSettings = await loadFromStorage<WindDownSettings>(STORAGE_KEYS.WIND_DOWN_SETTINGS);
+      if (savedSettings && savedSettings.userId === user.id) {
+        setSettings(savedSettings);
+      } else {
+        const defaultSettings: WindDownSettings = {
+          userId: user.id,
+          enabled: true,
+          duration: 10,
+          breathingPattern: 'relaxing',
+        };
+        setSettings(defaultSettings);
+        await saveToStorage(STORAGE_KEYS.WIND_DOWN_SETTINGS, defaultSettings);
+      }
+    };
+
+    initSettings();
   }, [user]);
 
   useEffect(() => {
@@ -154,7 +158,7 @@ export function WindDownMode({ onBack }: WindDownModeProps) {
       completed: true,
     };
 
-    const allSessions = loadFromStorage<WindDownSession[]>(STORAGE_KEYS.WIND_DOWN_SESSIONS) || [];
+    const allSessions = await loadFromStorage<WindDownSession[]>(STORAGE_KEYS.WIND_DOWN_SESSIONS) || [];
     allSessions.push(completedSession);
     await saveToStorage(STORAGE_KEYS.WIND_DOWN_SESSIONS, allSessions);
 

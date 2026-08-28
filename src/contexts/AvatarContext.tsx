@@ -32,7 +32,7 @@ const AvatarContext = createContext<AvatarContextType | undefined>(undefined);
 export function AvatarProvider({ children }: { children: ReactNode }) {
   const defaultAvatar: Avatar = {
     evolutionStage: 'spark',
-    mood: 'neutral',
+    mood: 'idle',
   };
 
   const contextValue: AvatarContextType = {

@@ -20,6 +20,19 @@ import { verifyChallengeCompletion, getVerificationPrompt } from '@/lib/ai-verif
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
+// Shared Challenge type for both easy and hard challenges
+interface Challenge {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  duration: number;
+  difficulty: 'easy' | 'hard';
+  scrollTimeReward: number;
+  instruction: string;
+  photoHint: string;
+}
+
 const MOTIVATIONAL_QUOTES = [
   'The quieter you become, the more you can hear.',
   'You are here now. That is enough.',
@@ -29,7 +42,7 @@ const MOTIVATIONAL_QUOTES = [
 ];
 
 // Easy Challenges - Quick activities (~2-5 minutes)
-const EASY_CHALLENGES = [
+const EASY_CHALLENGES: Challenge[] = [
   {
     id: 'movement',
     icon: '🚶',
@@ -363,7 +376,7 @@ const EASY_CHALLENGES = [
 ];
 
 // Hard Challenges - More involved activities (~10-20 minutes)
-const HARD_CHALLENGES = [
+const HARD_CHALLENGES: Challenge[] = [
   {
     id: 'deep-reading',
     icon: '📚',
@@ -710,7 +723,7 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
   const [selectedDuration, setSelectedDuration] = useState<2 | 5 | 10>(5);
   const [showDifficultyModal, setShowDifficultyModal] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState<'easy' | 'hard' | null>(null);
-  const [currentChallenge, setCurrentChallenge] = useState(EASY_CHALLENGES[0]);
+  const [currentChallenge, setCurrentChallenge] = useState<Challenge>(EASY_CHALLENGES[0]);
   const [challengeComplete, setChallengeComplete] = useState(false);
   const [challengeActive, setChallengeActive] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
