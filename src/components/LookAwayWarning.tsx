@@ -17,9 +17,14 @@ interface LookAwayWarningProps {
 
 export function LookAwayWarning({ isLookingAway, attentionScore, lookAwayCount }: LookAwayWarningProps) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnimValue = useRef(0);
   const shakeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    const listenerId = fadeAnim.addListener(({ value }) => {
+      fadeAnimValue.current = value;
+    });
+    
     if (isLookingAway) {
       // Fade in and shake
       Animated.parallel([
@@ -61,7 +66,7 @@ export function LookAwayWarning({ isLookingAway, attentionScore, lookAwayCount }
     }
   }, [isLookingAway]);
 
-  if (!isLookingAway && fadeAnim._value === 0) {
+  if (!isLookingAway && fadeAnimValue.current === 0) {
     return null;
   }
 

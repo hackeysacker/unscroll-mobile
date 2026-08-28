@@ -18,6 +18,7 @@ export function OfflineIndicator() {
   const syncState = useSyncStatus();
 
   const slideAnim = useRef(new Animated.Value(-100)).current;
+  const slideAnimValue = useRef(-100);
   const opacityAnim = useRef(new Animated.Value(0)).current;
 
   const isOffline = networkState.status === NetworkStatus.OFFLINE;
@@ -28,6 +29,10 @@ export function OfflineIndicator() {
   const shouldShow = isOffline || isPoorConnection || hasPendingSync || isSyncing;
 
   useEffect(() => {
+    const listenerId = slideAnim.addListener(({ value }) => {
+      slideAnimValue.current = value;
+    });
+    
     if (shouldShow) {
       // Slide in
       Animated.parallel([
@@ -59,7 +64,7 @@ export function OfflineIndicator() {
     }
   }, [shouldShow]);
 
-  if (!shouldShow && slideAnim.__getValue() === -100) {
+  if (!shouldShow && slideAnimValue.current === -100) {
     return null;
   }
 

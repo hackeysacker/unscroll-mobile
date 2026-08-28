@@ -21,11 +21,17 @@ interface UrgeSurfingExerciseProps {
 function UrgeSurfingContent({ state, helpers }: { state: ExerciseState; helpers: ExerciseHelpers }) {
   const [urgeLevel, setUrgeLevel] = useState(30);
   const waveAnim = useRef(new Animated.Value(0)).current;
+  const waveAnimValue = useRef(0);
   const surfboardAnim = useRef(new Animated.Value(0)).current;
 
   const config = getExerciseConfig('urge_surfing');
 
   useEffect(() => {
+    // Track wave animation value
+    waveAnim.addListener(({ value }) => {
+      waveAnimValue.current = value;
+    });
+    
     // Wave animation - rises and falls
     const waveSequence = Animated.loop(
       Animated.sequence([
@@ -86,7 +92,7 @@ function UrgeSurfingContent({ state, helpers }: { state: ExerciseState; helpers:
   });
 
   const getPhaseText = () => {
-    const progress = waveAnim._value;
+    const progress = waveAnimValue.current;
     if (progress < 0.3) return 'Urge is rising...';
     if (progress < 0.6) return 'Approaching the peak...';
     if (progress < 0.7) return 'At the peak - just observe';

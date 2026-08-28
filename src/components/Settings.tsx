@@ -5,6 +5,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { useGame } from '@/contexts/GameContext';
 import { Header } from '@/components/ui/Header';
 import { UIIcon } from '@/components/ui/UIIcon';
+import type { UIIconName } from '@/components/icons';
 import { getThemeColors } from '@/lib/theme-colors';
 import type { ThemeType } from '@/types';
 import { useHaptics } from '@/hooks/useHaptics';
@@ -393,7 +394,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
                 onPress={handleCameraPermission}
               >
                 <View style={styles.settingInfo}>
-                  <UIIcon name="camera" size={20} color={colors.mutedForeground} style={styles.settingIcon} />
+                  <UIIcon name="flash" size={20} color={colors.mutedForeground} style={styles.settingIcon} />
                   <View style={styles.settingText}>
                     <Text style={[styles.settingLabel, { color: colors.foreground }]}>
                       Camera Access
@@ -586,7 +587,7 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
           {/* Help & Support */}
           <View style={[styles.section, { backgroundColor: colors.card }]}>
             <View style={styles.sectionHeader}>
-              <UIIcon name="help-circle" size={20} color={colors.primary} />
+              <UIIcon name="bulb" size={20} color={colors.primary} />
               <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
                 Help & Support
               </Text>
@@ -730,7 +731,7 @@ function SettingRow({
   colors,
   isLast = false
 }: {
-  icon: string;
+  icon: UIIconName;
   label: string;
   description: string;
   value: boolean;
