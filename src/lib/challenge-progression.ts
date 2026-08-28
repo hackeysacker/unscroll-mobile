@@ -291,6 +291,8 @@ export function getChallengeName(challengeType: ChallengeType): string {
     audio_focus: 'Audio Focus',
     impulse_delay: 'Impulse Delay',
     stability_hold: 'Stability Hold',
+    // Dev testing
+    reset_challenge: 'Reset Challenge',
   };
 
   return names[challengeType] || challengeType;
@@ -303,7 +305,7 @@ export function getChallengeDescription(challengeType: ChallengeType, level: num
     case 'focus_hold':
       return `Focus Hold: hold your focus for ${scaling.duration}s without breaking`;
     case 'memory_flash':
-      return `Memory Flash: remember ${scaling.itemCount} items in ${scaling.displayTime.toFixed(1)}s`;
+      return `Memory Flash: remember ${scaling.itemCount} items in ${(scaling.displayTime || 1).toFixed(1)}s`;
     case 'tap_only_correct':
       return `Tap Only Correct: tap ${scaling.targetCount} correct targets (${scaling.rulesCount} rules)`;
     case 'stillness_test':
@@ -322,6 +324,8 @@ export function getChallengeDescription(challengeType: ChallengeType, level: num
       return `Logic Puzzle: solve ${scaling.gridSize}x${scaling.gridSize} grid`;
     case 'memory_puzzle':
       return `Memory Puzzle: match ${scaling.pairsCount} pairs in ${scaling.gridSize}x${scaling.gridSize} grid`;
+    case 'reset_challenge':
+      return `Reset Challenge: resist resetting your progress`;
     case 'spatial_puzzle':
       return `Spatial Puzzle: arrange ${scaling.pieces} pieces${scaling.timedMode ? ` in ${scaling.timeLimit}s` : ''}`;
     default:

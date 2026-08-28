@@ -855,7 +855,7 @@ export function MinimalHomeScreen({ onNavigate }: MinimalHomeScreenProps) {
         setTimeRemaining((prev) => {
           if (prev <= 1) {
             // Challenge complete!
-            handleChallengeComplete();
+            handleChallengeSuccess({ score: 100, duration: currentChallenge.duration });
             return 0;
           }
           return prev - 1;
