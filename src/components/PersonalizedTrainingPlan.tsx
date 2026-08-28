@@ -112,22 +112,24 @@ export function PersonalizedTrainingPlanComponent({ onBack, onStartChallenge }: 
   React.useEffect(() => {
     if (!user || !progress || !skillTree || !stats) return;
 
+    const userId = user.id;
+
     async function loadPlan() {
       const savedPlan = await loadFromStorage<PersonalizedTrainingPlan>(STORAGE_KEYS.TRAINING_PLAN);
 
       const needsRegeneration = !savedPlan ||
-        savedPlan.userId !== user.id ||
+        savedPlan.userId !== userId ||
         Date.now() - savedPlan.lastUpdated > 24 * 60 * 60 * 1000;
 
       if (needsRegeneration) {
-        const newPlan = generateTrainingPlan(user.id, progress, skillTree, stats);
+        const newPlan = generateTrainingPlan(userId, progress, skillTree, stats);
         setPlan(newPlan);
         await saveToStorage(STORAGE_KEYS.TRAINING_PLAN, newPlan);
 
         // Sync to Supabase
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
-          db.saveTrainingPlan(user.id, {
+          db.saveTrainingPlan(userId, {
             plan_type: 'personalized',
             exercises: newPlan.recommendations.map(r => r.challengeType),
             is_active: true,

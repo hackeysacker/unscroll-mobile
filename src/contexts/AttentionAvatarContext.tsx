@@ -11,13 +11,14 @@ import {
   type AvatarStage, 
   type AvatarMood,
   type AvatarSkin,
+  type AvatarEvolution,
   AVATAR_EVOLUTIONS,
 } from '@/lib/avatar-evolution';
 import * as Haptics from 'expo-haptics';
 
 interface AttentionAvatarContextValue {
   avatarState: AvatarState;
-  currentEvolution: ReturnType<typeof AVATAR_EVOLUTIONS[AvatarStage]>;
+  currentEvolution: AvatarEvolution;
   updateMood: (mood: AvatarMood) => void;
   updateName: (name: string) => Promise<void>;
   triggerReaction: (reaction: 'success' | 'failure' | 'milestone' | 'evolution') => void;
