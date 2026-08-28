@@ -187,7 +187,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
         scaledXP: getScaledXP(activity.baseXP, level),
         difficultyLevel,
         requiredForProgression: true,
-      });
+      } as JourneyActivity);
     });
 
     // 1 breathing exercise
@@ -200,7 +200,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
       difficultyLevel: Math.min(5, difficultyLevel),
       requiredForProgression: false,
       isBonus: true,
-    });
+    } as JourneyActivity);
 
     // 1 grounding exercise
     const grounding = ACTIVITY_POOL.grounding_exercises[level % 5];
@@ -212,7 +212,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
       difficultyLevel: Math.min(5, difficultyLevel),
       requiredForProgression: false,
       isBonus: true,
-    });
+    } as JourneyActivity);
   }
 
   // Intermediate Levels (51-150): Mix of intermediate challenges + cognitive exercises
@@ -233,7 +233,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
         scaledXP: getScaledXP(activity.baseXP, level),
         difficultyLevel,
         requiredForProgression: true,
-      });
+      } as JourneyActivity);
     });
 
     // 1 cognitive exercise
@@ -247,7 +247,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
       difficultyLevel: Math.min(8, difficultyLevel),
       requiredForProgression: false,
       isBonus: true,
-    });
+    } as JourneyActivity);
 
     // 1 reflection exercise (every 5 levels)
     if (level % 5 === 0) {
@@ -260,7 +260,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
         difficultyLevel: Math.min(6, difficultyLevel),
         requiredForProgression: false,
         isBonus: true,
-      });
+      } as JourneyActivity);
     }
   }
 
@@ -288,7 +288,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
         scaledXP: getScaledXP(activity.baseXP, level),
         difficultyLevel,
         requiredForProgression: true,
-      });
+      } as JourneyActivity);
     });
 
     // 1-2 advanced exercises
@@ -302,7 +302,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
       difficultyLevel,
       requiredForProgression: false,
       isBonus: true,
-    });
+    } as JourneyActivity);
 
     // Bonus reflection exercise (every 3 levels at high levels)
     if (level % 3 === 0) {
@@ -315,7 +315,7 @@ export function getActivitiesForLevel(level: number): JourneyActivity[] {
         difficultyLevel: Math.min(10, difficultyLevel),
         requiredForProgression: false,
         isBonus: true,
-      });
+      } as JourneyActivity);
     }
   }
 

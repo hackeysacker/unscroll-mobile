@@ -102,13 +102,13 @@ export function LeaderboardProvider({ children }: { children: ReactNode }) {
       // Fetch leaderboards
       const [weekly, monthly, alltime, friends] = await Promise.all([
         period === 'weekly' || !period
-          ? leaderboardCache.getLeaderboard('weekly', 'xp', 100)
+          ? leaderboardCache.getLeaderboard('weekly', 'xp', false)
           : Promise.resolve(weeklyLeaderboard),
         period === 'monthly' || !period
-          ? leaderboardCache.getLeaderboard('monthly', 'xp', 100)
+          ? leaderboardCache.getLeaderboard('monthly', 'xp', false)
           : Promise.resolve(monthlyLeaderboard),
         period === 'alltime' || !period
-          ? leaderboardCache.getLeaderboard('alltime', 'xp', 100)
+          ? leaderboardCache.getLeaderboard('alltime', 'xp', false)
           : Promise.resolve(alltimeLeaderboard),
         !period ? fetchFriendsLeaderboard(user.id, 50) : Promise.resolve(friendsLeaderboard),
       ]);

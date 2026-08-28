@@ -74,24 +74,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setSession(currentSession);
 
           // Fetch profile from database with timeout
-          const { data: profile } = await withTimeout(
+          const profileResult = await withTimeout<{ data: any; error: Error | null }>(
             supabase
               .from('profiles')
               .select('*')
               .eq('id', currentSession.user.id)
-              .single(),
+              .single() as any,
             3000
           );
+          const profile = profileResult?.data;
 
           // Check onboarding status with timeout
-          const { data: onboarding } = await withTimeout(
+          const onboardingResult = await withTimeout<{ data: { completed_at: number } | null; error: Error | null }>(
             supabase
               .from('user_onboarding')
               .select('completed_at')
               .eq('user_id', currentSession.user.id)
-              .single(),
+              .single() as any,
             3000
           );
+          const onboarding = onboardingResult?.data;
 
           const appUser = convertSupabaseUser(currentSession.user, profile);
           setUser(appUser);
@@ -300,13 +302,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (data.worstScrollTime !== undefined) onboardingUpdate.worst_scroll_time = data.worstScrollTime;
       if (data.improvementReason !== undefined) onboardingUpdate.improvement_reason = data.improvementReason;
       if (data.wantsAutoTracking !== undefined) onboardingUpdate.wants_auto_tracking = data.wantsAutoTracking;
-      if (data.baselineScore !== undefined) onboardingUpdate.baseline_score = data.baselineScore;
+      if (data.attentionBaselineScore !== undefined) onboardingUpdate.baseline_score = data.attentionBaselineScore;
       if (data.goalResult !== undefined) onboardingUpdate.goal_result = data.goalResult;
       if (data.dailyTrainingMinutes !== undefined) onboardingUpdate.daily_training_minutes = data.dailyTrainingMinutes;
-      if (data.personalityType !== undefined) onboardingUpdate.personality_type = data.personalityType;
-      if (data.notificationsAccepted !== undefined) onboardingUpdate.notifications_accepted = data.notificationsAccepted;
-      if (data.screentimeAccepted !== undefined) onboardingUpdate.screentime_accepted = data.screentimeAccepted;
-      if (data.dailyCheckinAccepted !== undefined) onboardingUpdate.daily_checkin_accepted = data.dailyCheckinAccepted;
+      if (data.userPersonalityType !== undefined) onboardingUpdate.personality_type = data.userPersonalityType;
+      if (data.hasAcceptedNotifications !== undefined) onboardingUpdate.notifications_accepted = data.hasAcceptedNotifications;
+      if (data.hasAcceptedScreenTime !== undefined) onboardingUpdate.screentime_accepted = data.hasAcceptedScreenTime;
+      if (data.hasAcceptedDailyCheckIn !== undefined) onboardingUpdate.daily_checkin_accepted = data.hasAcceptedDailyCheckIn;
 
       await supabase
         .from('user_onboarding')
