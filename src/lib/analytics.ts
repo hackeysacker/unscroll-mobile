@@ -105,7 +105,7 @@ class AnalyticsManager {
   private events: TrackedEvent[] = [];
   private currentSession: SessionData | null = null;
   private userId: string | null = null;
-  private syncInterval: NodeJS.Timeout | null = null;
+  private syncInterval: ReturnType<typeof setInterval> | null = null;
   private isInitialized = false;
 
   /**

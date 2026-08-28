@@ -83,6 +83,15 @@ export const HapticPatterns = {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
   },
 
+  // Aliases for convenience
+  light: () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  },
+
+  medium: () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  },
+
   // Notification types
   notificationSuccess: () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

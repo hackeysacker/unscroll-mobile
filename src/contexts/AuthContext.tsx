@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // Timeout wrapper for Supabase calls
     const withTimeout = async <T,>(promise: Promise<T>, ms: number): Promise<T> => {
-      let timeoutId: NodeJS.Timeout;
+      let timeoutId: ReturnType<typeof setTimeout>;
       const timeoutPromise = new Promise<never>((_, reject) => {
         timeoutId = setTimeout(() => reject(new Error('Timeout')), ms);
       });

@@ -5,7 +5,8 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { achievementManager, checkAchievements, type Achievement } from '@/lib/achievement-manager';
+import { achievementManager, checkAchievements } from '@/lib/achievement-manager';
+import type { Achievement } from '@/components/AchievementNotification';
 import { AchievementNotification } from '@/components/AchievementNotification';
 import { useGame } from './GameContext';
 
