@@ -64,6 +64,7 @@ function generateTrainingPlan(
   if (skillTree.distractionResistance < 50) focusAreas.push('distractionResistance');
 
   const recommendations: Array<{
+    id: string;
     challengeType: ChallengeType;
     priority: 'high' | 'medium' | 'low';
     reason: string;
@@ -71,6 +72,7 @@ function generateTrainingPlan(
 
   if (skillTree.focus < 50) {
     recommendations.push({
+      id: 'rec-focus',
       challengeType: 'focus_hold',
       priority: 'high',
       reason: 'Improve your focus skills',
@@ -79,6 +81,7 @@ function generateTrainingPlan(
 
   if (skillTree.impulseControl < 50) {
     recommendations.push({
+      id: 'rec-impulse',
       challengeType: 'delay_unlock',
       priority: 'high',
       reason: 'Build impulse control',
@@ -87,6 +90,7 @@ function generateTrainingPlan(
 
   if (skillTree.distractionResistance < 50) {
     recommendations.push({
+      id: 'rec-distraction',
       challengeType: 'fake_notifications',
       priority: 'high',
       reason: 'Resist distractions',
@@ -95,11 +99,11 @@ function generateTrainingPlan(
 
   return {
     userId,
+    generatedAt: Date.now(),
     lastUpdated: Date.now(),
     focusAreas,
     recommendations,
     streakBonus: progress.streak >= 3,
-    weeklyGoal: 5,
   };
 }
 
@@ -245,7 +249,7 @@ export function PersonalizedTrainingPlanComponent({ onBack, onStartChallenge }: 
       <Card style={styles.sectionCard}>
         <Text style={styles.sectionTitle}>📊 Weekly Goal</Text>
         <Text style={styles.goalText}>
-          Complete {plan.weeklyGoal} challenges this week
+          Complete {plan.streakBonus ? '5' : '3'} challenges this week
         </Text>
       </Card>
     </ScrollView>

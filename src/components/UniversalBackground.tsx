@@ -102,7 +102,7 @@ export function UniversalBackground({
   }, []);
 
   // Define gradient colors based on variant
-  const getGradientColors = () => {
+  const getGradientColors = (): readonly [string, string, string, string] => {
     switch (variant) {
       case 'calm':
         return ['#0f172a', '#1e293b', '#0f172a', '#1e1b4b'];

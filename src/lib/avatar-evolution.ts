@@ -68,7 +68,7 @@ export interface AvatarState {
     hasWings: boolean;
     hasCrown: boolean;
     hasAura: boolean;
-    particleEffect: 'none' | 'sparkles' | 'flames' | 'stars';
+    particleEffect: 'none' | 'sparkles' | 'flames' | 'stars' | 'aura';
   };
 }
 

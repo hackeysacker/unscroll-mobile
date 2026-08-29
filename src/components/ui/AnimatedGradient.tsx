@@ -3,7 +3,7 @@ import { Animated, View, StyleSheet, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface AnimatedGradientProps {
-  colors: string[];
+  colors: readonly [string, string, ...string[]];
   start?: { x: number; y: number };
   end?: { x: number; y: number };
   style?: any;
@@ -24,7 +24,7 @@ export function AnimatedGradient({
   transitionDuration = 600,
 }: AnimatedGradientProps) {
   const opacityAnim = useRef(new Animated.Value(1)).current;
-  const prevColorsRef = useRef(colors);
+  const prevColorsRef = useRef<readonly [string, string, ...string[]]>(colors);
 
   useEffect(() => {
     if (JSON.stringify(prevColorsRef.current) !== JSON.stringify(colors)) {

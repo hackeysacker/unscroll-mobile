@@ -83,8 +83,8 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
       hearts: heartState.currentHearts,
       maxHearts: heartState.maxHearts,
       streak: progress.streak,
-      lastSessionTime: stats?.lastSessionTimestamp,
-      recentPerformance: stats?.averageAccuracy,
+      lastSessionTime: stats?.lastSessionTimestamp ?? undefined,
+      recentPerformance: stats?.averageAccuracy ?? undefined,
     });
 
     const effect = shouldShowEffect({

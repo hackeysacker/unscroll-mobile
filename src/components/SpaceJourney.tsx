@@ -65,15 +65,24 @@ export function SpaceJourney({ onBack, onStartChallenge }: SpaceJourneyProps) {
   }
 
   // Get all nodes (all available)
-  const allNodes = useMemo(() => {
+  const allNodes = useMemo((): Array<ProgressTreeNode & { position: { x: number; y: number } }> => {
     return progressTree.nodes
       .filter((node: ProgressTreeNode) => node.level <= 100)
-      .map((node: ProgressTreeNode) => ({
-        ...node,
-        challengeType: getChallengeForLevel(node.level),
-        status: 'available' as const,
-        position: getPosition(node.level),
-      }))
+      .map((node: ProgressTreeNode): ProgressTreeNode & { position: { x: number; y: number } } => {
+        return {
+          id: node.id,
+          level: node.level,
+          nodeType: node.nodeType,
+          challengeType: getChallengeForLevel(node.level),
+          status: node.status,
+          xpReward: node.xpReward,
+          starsEarned: node.starsEarned,
+          completedAt: node.completedAt,
+          testSequence: node.testSequence,
+          // @ts-expect-error: Overriding position type for UI positioning
+          position: getPosition(node.level),
+        };
+      })
       .sort((a, b) => a.level - b.level);
   }, [progressTree]);
 
@@ -181,7 +190,7 @@ export function SpaceJourney({ onBack, onStartChallenge }: SpaceJourneyProps) {
         {/* Challenge Nodes */}
         {allNodes.map((node) => {
           const isCurrent = node.level === progress.level;
-          const isCompleted = node.status === 'completed';
+          const isCompleted = node.status === 'completed' || node.status === 'perfect';
           const isTest = node.nodeType === 'test';
           const realm = getRealmForLevel(node.level);
           const name = getChallengeName(node.challengeType);

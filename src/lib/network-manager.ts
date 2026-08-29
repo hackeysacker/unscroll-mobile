@@ -137,21 +137,21 @@ class NetworkManager {
   /**
    * Add network listener
    */
-  addNetworkListener(listener: (state: NetworkState) => void) {
+  addNetworkListener(listener: (state: NetworkState) => void): () => void {
     this.listeners.add(listener);
     // Immediately call with current state
     listener(this.networkState);
-    return () => this.listeners.delete(listener);
+    return () => { this.listeners.delete(listener); };
   }
 
   /**
    * Add sync listener
    */
-  addSyncListener(listener: (state: SyncState) => void) {
+  addSyncListener(listener: (state: SyncState) => void): () => void {
     this.syncListeners.add(listener);
     // Immediately call with current state
     listener(this.syncState);
-    return () => this.syncListeners.delete(listener);
+    return () => { this.syncListeners.delete(listener); };
   }
 
   /**

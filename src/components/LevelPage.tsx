@@ -145,7 +145,7 @@ export function LevelPage({ level, onBack, onSelectChallenge }: LevelPageProps) 
         style={[styles.scrollView, { backgroundColor: colors.background }]}
         contentContainerStyle={styles.contentContainer}
         accessibilityLabel={`Level ${level} page`}
-        accessibilityRole="main"
+        accessibilityRole="none"
         showsVerticalScrollIndicator={false}
       >
         <Animated.View

@@ -606,7 +606,7 @@ const PlanetNode = memo(({
             <Text style={{ fontSize: 16 }}>⭐</Text>
           </View>
         )}
-        {node.status === 'completed' && node.status !== 'perfect' && (
+        {node.status === 'completed' && (
           <View style={styles.completedCheck}>
             <Text style={{ fontSize: 10, color: '#fff' }}>✓</Text>
           </View>
@@ -664,7 +664,7 @@ export function ImmersiveProgressPath({ onBack, onSelectLevel, onStartChallenge 
   // Get all nodes with proper challenge mapping - ALL AVAILABLE for testing
   // Generate 200 levels even if progressTree has fewer
   const allNodes = useMemo(() => {
-    const nodes = [];
+    const nodes: ProgressTreeNode[] = [];
     for (let level = 1; level <= TOTAL_LEVELS; level++) {
       const challengeType = getChallengeForLevel(level <= 100 ? level : ((level - 1) % 100) + 1);
       const existingNode = progressTree?.nodes?.find((n: ProgressTreeNode) => n.level === level);
@@ -673,9 +673,12 @@ export function ImmersiveProgressPath({ onBack, onSelectLevel, onStartChallenge 
         id: existingNode?.id || `level-${level}`,
         level,
         challengeType,
-        nodeType: level % 20 === 0 ? 'test' : 'challenge',
+        nodeType: level % 20 === 0 ? 'test' : 'exercise',
         status: level < progress.level ? 'completed' :
-                level === progress.level ? 'available' : 'available',
+                level === progress.level ? 'available' : 'locked',
+        position: level,
+        xpReward: 100,
+        starsEarned: 0,
         testSequence: existingNode?.testSequence,
       });
     }
