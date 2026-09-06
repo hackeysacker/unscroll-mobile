@@ -31,18 +31,4 @@ function RootLayoutInner() {
 }
 
 export default Sentry.wrap(RootLayoutInner);
-  return (
-    <ErrorBoundary>
-      <SafeAreaProvider>
-        <AppProvider>
-          <ScreenFrame>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="index" />
-            </Stack>
-          </ScreenFrame>
-        </AppProvider>
-      </SafeAreaProvider>
-    </ErrorBoundary>
-  );
-}
 
