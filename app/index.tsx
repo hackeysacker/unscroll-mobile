@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGame } from '@/contexts/GameContext';
@@ -6,28 +6,40 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { OnboardingFlow } from '@/components/onboarding/OnboardingFlow';
 import { AnimatedSplashScreen } from '@/components/AnimatedSplashScreen';
 import { createPersonalizedProgram } from '@/lib/onboarding-personalization';
-import { Settings } from '@/components/Settings';
-import { LevelPage } from '@/components/LevelPage';
-import { ChallengePlayer } from '@/components/ChallengePlayer';
-import { ActivityPlayer } from '@/components/ActivityPlayer';
-import { ChallengeInsights } from '@/components/ChallengeInsights';
-import { Insights } from '@/components/Insights';
-import { Premium } from '@/components/Premium';
-import { WindDownMode } from '@/components/WindDownMode';
-import { AvatarScreen } from '@/components/AvatarScreen';
-import { VerticalProgressPath } from '@/components/VerticalProgressPath';
-import { SkillTree } from '@/components/SkillTree';
-import { PersonalizedTrainingPlanComponent } from '@/components/PersonalizedTrainingPlan';
-import { DevTestingMode } from '@/components/DevTestingMode';
-import { FocusJourneyPage } from '@/components/FocusJourneyPage';
-import { ActivityDetailScreen } from '@/components/ActivityDetailScreen';
-import { PracticeScreen } from '@/components/PracticeScreen';
-import { LeaderboardScreen } from '@/components/LeaderboardScreen';
-import { ProfileScreen } from '@/components/ProfileScreen';
-import { AchievementsScreen } from '@/components/AchievementsScreen';
-import { PracticeOverview } from '@/components/PracticeOverview';
-import { FocusShieldScreen } from '@/components/FocusShieldScreen';
 import { HomeScreen } from '@/components/HomeScreen';
+
+// Lazy load non-critical screens for better initial load performance
+const Settings = lazy(() => import('@/components/Settings').then(m => ({ default: m.Settings })));
+const LevelPage = lazy(() => import('@/components/LevelPage').then(m => ({ default: m.LevelPage })));
+const ActivityPlayer = lazy(() => import('@/components/ActivityPlayer').then(m => ({ default: m.ActivityPlayer })));
+const ChallengeInsights = lazy(() => import('@/components/ChallengeInsights').then(m => ({ default: m.ChallengeInsights })));
+const Insights = lazy(() => import('@/components/Insights').then(m => ({ default: m.Insights })));
+const Premium = lazy(() => import('@/components/Premium').then(m => ({ default: m.Premium })));
+const WindDownMode = lazy(() => import('@/components/WindDownMode').then(m => ({ default: m.WindDownMode })));
+const AvatarScreen = lazy(() => import('@/components/AvatarScreen').then(m => ({ default: m.AvatarScreen })));
+const VerticalProgressPath = lazy(() => import('@/components/VerticalProgressPath').then(m => ({ default: m.VerticalProgressPath })));
+const SkillTree = lazy(() => import('@/components/SkillTree').then(m => ({ default: m.SkillTree })));
+const PersonalizedTrainingPlanComponent = lazy(() => import('@/components/PersonalizedTrainingPlan').then(m => ({ default: m.PersonalizedTrainingPlanComponent })));
+const DevTestingMode = lazy(() => import('@/components/DevTestingMode').then(m => ({ default: m.DevTestingMode })));
+const FocusJourneyPage = lazy(() => import('@/components/FocusJourneyPage').then(m => ({ default: m.FocusJourneyPage })));
+const ActivityDetailScreen = lazy(() => import('@/components/ActivityDetailScreen').then(m => ({ default: m.ActivityDetailScreen })));
+const PracticeScreen = lazy(() => import('@/components/PracticeScreen').then(m => ({ default: m.PracticeScreen })));
+const LeaderboardScreen = lazy(() => import('@/components/LeaderboardScreen').then(m => ({ default: m.LeaderboardScreen })));
+const ProfileScreen = lazy(() => import('@/components/ProfileScreen').then(m => ({ default: m.ProfileScreen })));
+const AchievementsScreen = lazy(() => import('@/components/AchievementsScreen').then(m => ({ default: m.AchievementsScreen })));
+const PracticeOverview = lazy(() => import('@/components/PracticeOverview').then(m => ({ default: m.PracticeOverview })));
+const FocusShieldScreen = lazy(() => import('@/components/FocusShieldScreen').then(m => ({ default: m.FocusShieldScreen })));
+
+// Fallback component for lazy-loaded screens
+function ScreenLoader() {
+  const { colors } = useTheme();
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <ActivityIndicator size="large" color={colors.primary} />
+      <Text style={[styles.loadingText, { color: colors.mutedForeground }]}>Loading...</Text>
+    </View>
+  );
+}
 
 type ViewMode = 'home' | 'progress-tree' | 'settings' | 'level' | 'challenge' | 'insights-screen' | 'insights' | 'premium' | 'winddown' | 'skill-tree' | 'training-plan' | 'dev-testing' | 'avatar' | 'focus-journey' | 'activity-detail' | 'practice' | 'practice-overview' | 'practice-session' | 'leaderboard' | 'profile-screen' | 'achievements' | 'focus-shield';
 
