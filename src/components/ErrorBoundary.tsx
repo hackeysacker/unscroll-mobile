@@ -8,6 +8,7 @@ import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Sentry from '@sentry/react-native';
 
 // Lazy load expo-updates to handle case where it's not installed
 let Updates: any = null;
@@ -63,7 +64,7 @@ export class ErrorBoundary extends Component<Props, State> {
     });
 
     // Log to analytics or crash reporting service here
-    this.logErrorToService(error, errorInfo);
+    this.logErrorToService(error, errorInfo, errorCount);
 
     // If too many errors, suggest app reload
     if (errorCount >= MAX_ERRORS_BEFORE_RESET) {
@@ -91,8 +92,16 @@ export class ErrorBoundary extends Component<Props, State> {
     }
   }
 
-  logErrorToService(error: Error, errorInfo: ErrorInfo) {
-    // TODO: Integrate with error tracking service (Sentry, Bugsnag, etc.)
+  logErrorToService(error: Error, errorInfo: ErrorInfo, errorCount: number) {
+    // Log to Sentry for crash reporting
+    Sentry.captureException(error, {
+      extra: {
+        componentStack: errorInfo.componentStack,
+        errorCount: errorCount,
+      },
+    });
+
+    // Also log to console for development debugging
     const errorData = {
       message: error.message,
       stack: error.stack,
@@ -100,7 +109,7 @@ export class ErrorBoundary extends Component<Props, State> {
       timestamp: new Date().toISOString(),
     };
 
-    console.log('Error logged:', errorData);
+    console.log('Error logged to Sentry:', errorData);
   }
 
   handleReset = () => {

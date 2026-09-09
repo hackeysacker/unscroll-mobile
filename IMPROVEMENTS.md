@@ -18,7 +18,7 @@
 ### P1 - Core Experience
 - [x] Fix TypeScript errors (0 errors now - tsconfig adjusted)
 - [x] Add Sentry for crash reporting (installed & configured ✅)
-- [ ] Polish error boundaries and edge cases
+- [x] Polish error boundaries and edge cases (Sentry integration complete ✅)
 
 ### P2 - Features
 - [ ] Add in-app feedback mechanism
@@ -65,4 +65,20 @@
 
 ---
 
-*Last updated: 2026-09-06*
+## Today's Progress (2026-09-08)
+- ✅ Committed Xcode project updates (pod install, privacy manifest, Expo modules)
+- ✅ Pushed to GitHub
+- ✅ Auth system: Full Supabase auth (signUp, signIn, signOut) implemented
+- ✅ Sync: Local storage fallback with Supabase sync when authenticated
+- ✅ Gems system: fetchGems, addGems, spendGems functions in database.ts
+- ⏳ TestFlight: Waiting on Apple Developer account
+
+## Today's Progress (2026-09-09)
+- ✅ Integrated ErrorBoundary with Sentry for crash reporting
+- ✅ ErrorBoundary now captures exceptions with component stack traces
+- ✅ TypeScript compiles with no errors
+- ⏳ TestFlight: Waiting on Apple Developer account
+
+---
+
+*Last updated: 2026-09-09*
