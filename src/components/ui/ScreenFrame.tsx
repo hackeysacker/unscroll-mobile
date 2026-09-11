@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState, memo } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Animated } from 'react-native';
 
 interface ScreenFrameProps {
@@ -8,7 +8,7 @@ interface ScreenFrameProps {
 // A reusable wrapper that draws a subtle border around the whole screen and
 // provides interactive edge zones (top/right/bottom/left). These can be wired
 // to navigation or feature launchers later.
-export function ScreenFrame({ children }: ScreenFrameProps) {
+export const ScreenFrame = memo(function ScreenFrame({ children }: ScreenFrameProps) {
   const [lastEdge, setLastEdge] = useState<string | null>(null);
   const pulse = useRef(new Animated.Value(0)).current;
 
@@ -79,7 +79,7 @@ export function ScreenFrame({ children }: ScreenFrameProps) {
       )}
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   root: {

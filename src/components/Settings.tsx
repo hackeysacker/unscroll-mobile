@@ -273,6 +273,11 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
     Linking.openURL('mailto:support@focusflow.app');
   };
 
+  const handleFeedback = () => {
+    // Open feedback URL - can be replaced with in-app feedback form later
+    Linking.openURL('https://focusflow.app/feedback');
+  };
+
   const handlePrivacy = () => {
     Linking.openURL('https://focusflow.app/privacy');
   };
@@ -598,6 +603,16 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
                 <UIIcon name="mail" size={20} color={colors.mutedForeground} />
                 <Text style={[styles.linkLabel, { color: colors.foreground }]}>
                   Contact Support
+                </Text>
+              </View>
+              <UIIcon name="chevron-forward" size={20} color={colors.mutedForeground} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.linkRow} onPress={handleFeedback}>
+              <View style={styles.linkInfo}>
+                <UIIcon name="chatbubbles-ellipsis" size={20} color={colors.mutedForeground} />
+                <Text style={[styles.linkLabel, { color: colors.foreground }]}>
+                  Send Feedback
                 </Text>
               </View>
               <UIIcon name="chevron-forward" size={20} color={colors.mutedForeground} />

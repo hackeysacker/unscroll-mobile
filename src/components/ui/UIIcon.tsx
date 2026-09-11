@@ -5,7 +5,7 @@
  * Replaces emoji-based UI icons with professional SVG graphics
  */
 
-import React from 'react';
+import React, { memo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import type { UIIconName } from '@/components/icons';
 import { IconRenderer } from '@/components/icons';
@@ -19,7 +19,7 @@ interface UIIconProps {
   style?: any;
 }
 
-export function UIIcon({
+export const UIIcon = memo(function UIIcon({
   name,
   size = 24,
   color = '#6366F1',
@@ -51,7 +51,7 @@ export function UIIcon({
       {icon}
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

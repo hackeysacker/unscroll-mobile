@@ -1,3 +1,4 @@
+import React, { memo } from 'react';
 import { TouchableOpacity, Text, StyleSheet, ActivityIndicator, ViewStyle, TextStyle, StyleProp } from 'react-native';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -12,7 +13,7 @@ interface ButtonProps {
   textStyle?: StyleProp<TextStyle>;
 }
 
-export function Button({
+export const Button = memo(function Button({
   onPress,
   children,
   variant = 'primary',
@@ -57,7 +58,7 @@ export function Button({
       )}
     </TouchableOpacity>
   );
-}
+});
 
 const styles = StyleSheet.create({
   base: {

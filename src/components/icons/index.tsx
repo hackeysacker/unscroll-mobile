@@ -109,6 +109,7 @@ import {
   LogOutIcon,
   ChevronForwardIcon,
   StarOutlineIcon,
+  ChatBubblesEllipsisIcon,
 } from './SettingsIcons';
 
 // Map activity types to their icon components
@@ -218,7 +219,8 @@ export type UIIconName =
   | 'trash'
   | 'log-out'
   | 'chevron-forward'
-  | 'star-outline';
+  | 'star-outline'
+  | 'chatbubbles-ellipsis';
 
 const uiIconMap: Record<UIIconName, React.ComponentType<{ size?: number; color?: string }>> = {
   trophy: TrophyIcon,
@@ -261,6 +263,7 @@ const uiIconMap: Record<UIIconName, React.ComponentType<{ size?: number; color?:
   'log-out': LogOutIcon,
   'chevron-forward': ChevronForwardIcon,
   'star-outline': StarOutlineIcon,
+  'chatbubbles-ellipsis': ChatBubblesEllipsisIcon,
 };
 
 // Icon Renderer Component

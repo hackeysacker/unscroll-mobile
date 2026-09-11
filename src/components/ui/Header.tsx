@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -11,7 +11,7 @@ interface HeaderProps {
   showBack?: boolean;
 }
 
-export function Header({ title, onBack, rightAction, showBack = true }: HeaderProps) {
+export const Header = memo(function Header({ title, onBack, rightAction, showBack = true }: HeaderProps) {
   const insets = useSafeAreaInsets();
   const { colors } = useTheme();
 
@@ -60,7 +60,7 @@ export function Header({ title, onBack, rightAction, showBack = true }: HeaderPr
       </View>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

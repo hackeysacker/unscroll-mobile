@@ -21,9 +21,9 @@
 - [x] Polish error boundaries and edge cases (Sentry integration complete ✅)
 
 ### P2 - Features
-- [ ] Add in-app feedback mechanism
+- [x] Add in-app feedback mechanism
 - [x] Implement lazy loading for non-critical screens ✅
-- [ ] React.memo for frequently re-rendering components
+- [x] React.memo for frequently re-rendering components
 
 ### P3 - Nice to Have
 - [ ] Advanced analytics dashboard
@@ -79,6 +79,20 @@
 - ✅ TypeScript compiles with no errors
 - ⏳ TestFlight: Waiting on Apple Developer account
 
+## Today's Progress (2026-09-10)
+- ✅ Added React.memo to 5 frequently re-rendering UI components:
+  - Button.tsx
+  - Card.tsx (Card, CardHeader, CardTitle, CardDescription, CardContent)
+  - UIIcon.tsx
+  - Header.tsx
+  - ScreenFrame.tsx
+- ✅ Added in-app feedback mechanism in Settings:
+  - New "Send Feedback" link in Help & Support section
+  - Opens https://focusflow.app/feedback in browser
+  - Added new ChatBubblesEllipsisIcon for feedback UI
+- ✅ TypeScript compiles with no errors
+- ⏳ TestFlight: Waiting on Apple Developer account
+
 ---
 
-*Last updated: 2026-09-09*
+*Last updated: 2026-09-10*
