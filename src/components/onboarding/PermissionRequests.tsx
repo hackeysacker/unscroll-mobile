@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Button } from '@/components/ui/Button';
 import * as Notifications from 'expo-notifications';
+import { getPushToken } from '@/lib/notifications';
 
 interface PermissionRequestsProps {
   onComplete: (permissions: {
     notifications: boolean;
     screenTime: boolean;
     dailyCheckIn: boolean;
+    pushToken?: string;
   }) => void;
 }
 
@@ -19,6 +21,7 @@ export function PermissionRequests({ onComplete }: PermissionRequestsProps) {
     notifications: false,
     screenTime: false,
     dailyCheckIn: false,
+    pushToken: undefined as string | undefined,
   });
 
   const handleAllow = async () => {
@@ -27,6 +30,13 @@ export function PermissionRequests({ onComplete }: PermissionRequestsProps) {
     if (currentStep === 'notifications') {
       const { status } = await Notifications.requestPermissionsAsync();
       newPermissions.notifications = status === 'granted';
+      
+      // Get push token if permission granted
+      if (status === 'granted') {
+        const pushToken = await getPushToken();
+        newPermissions.pushToken = pushToken || undefined;
+      }
+      
       setPermissions(newPermissions);
       setCurrentStep('screenTime');
     } else if (currentStep === 'screenTime') {

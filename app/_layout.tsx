@@ -4,6 +4,7 @@ import * as Sentry from '@sentry/react-native';
 import { AppProvider } from '@/AppProvider';
 import { ScreenFrame } from '@/components/ui/ScreenFrame';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { addNotificationReceivedListener, addNotificationResponseListener } from '@/lib/notifications';
 
 // Initialize Sentry - DSN should be set in SENTRY_DSN environment variable
 // For production, add SENTRY_DSN to your .env file
@@ -14,7 +15,22 @@ Sentry.init({
   debug: __DEV__,
 });
 
+// Configure notification handlers
+function setupNotifications() {
+  // Handle notifications received while app is in foreground
+  addNotificationReceivedListener((notification) => {
+    console.log('Notification received:', notification.request.content.title);
+  });
+
+  // Handle notification taps
+  addNotificationResponseListener((response) => {
+    console.log('Notification tapped:', response.notification.request.content.title);
+  });
+}
+
 function RootLayoutInner() {
+  setupNotifications();
+
   return (
     <ErrorBoundary>
       <SafeAreaProvider>

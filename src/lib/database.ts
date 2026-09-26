@@ -613,6 +613,7 @@ export async function updateUserSettings(userId: string, updates: {
   dark_mode?: boolean;
   notifications_enabled?: boolean;
   daily_reminder_time?: string;
+  push_token?: string;
 }) {
   try {
     const { data, error } = await supabase
