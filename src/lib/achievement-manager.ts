@@ -41,7 +41,7 @@ class AchievementManager {
   unlock(achievement: Achievement, force = false) {
     // Prevent duplicate unlocks unless forced
     if (!force && this.isUnlocked(achievement.id)) {
-      console.log(`Achievement ${achievement.id} already unlocked`);
+      if (__DEV__) console.log(`Achievement ${achievement.id} already unlocked`);
       return;
     }
 

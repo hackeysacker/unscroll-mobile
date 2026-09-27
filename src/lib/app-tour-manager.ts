@@ -262,7 +262,7 @@ export class TourManager {
     }
 
     if (this.completedTours.has(tourId)) {
-      console.log(`Tour ${tourId} already completed`);
+      if (__DEV__) console.log(`Tour ${tourId} already completed`);
       return false;
     }
 
