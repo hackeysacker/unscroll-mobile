@@ -439,3 +439,7 @@ export function trackError(errorType: string, errorMessage: string, stack?: stri
     stack: stack?.substring(0, 500), // Limit stack trace length
   });
 }
+
+export function getAnalyticsSummary() {
+  return analytics.getAnalyticsSummary();
+}

@@ -620,6 +620,19 @@ export function Settings({ onBack, onNavigate }: SettingsProps) {
 
             <TouchableOpacity
               style={styles.linkRow}
+              onPress={() => onNavigate?.('analytics-dashboard')}
+            >
+              <View style={styles.linkInfo}>
+                <UIIcon name="document-text" size={20} color={colors.mutedForeground} />
+                <Text style={[styles.linkLabel, { color: colors.foreground }]}>
+                  Analytics Dashboard
+                </Text>
+              </View>
+              <UIIcon name="chevron-forward" size={20} color={colors.mutedForeground} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.linkRow}
               onPress={() => onNavigate?.('tutorial')}
             >
               <View style={styles.linkInfo}>

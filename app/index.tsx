@@ -28,6 +28,7 @@ const LeaderboardScreen = lazy(() => import('@/components/LeaderboardScreen').th
 const ProfileScreen = lazy(() => import('@/components/ProfileScreen').then(m => ({ default: m.ProfileScreen })));
 const AchievementsScreen = lazy(() => import('@/components/AchievementsScreen').then(m => ({ default: m.AchievementsScreen })));
 const PracticeOverview = lazy(() => import('@/components/PracticeOverview').then(m => ({ default: m.PracticeOverview })));
+const AnalyticsDashboard = lazy(() => import('@/components/AnalyticsDashboard').then(m => ({ default: m.AnalyticsDashboard })));
 const FocusShieldScreen = lazy(() => import('@/components/FocusShieldScreen').then(m => ({ default: m.FocusShieldScreen })));
 
 // Fallback component for lazy-loaded screens
@@ -41,7 +42,7 @@ function ScreenLoader() {
   );
 }
 
-type ViewMode = 'home' | 'progress-tree' | 'settings' | 'level' | 'challenge' | 'insights-screen' | 'insights' | 'premium' | 'winddown' | 'skill-tree' | 'training-plan' | 'dev-testing' | 'avatar' | 'focus-journey' | 'activity-detail' | 'practice' | 'practice-overview' | 'practice-session' | 'leaderboard' | 'profile-screen' | 'achievements' | 'focus-shield';
+type ViewMode = 'home' | 'progress-tree' | 'settings' | 'level' | 'challenge' | 'insights-screen' | 'insights' | 'premium' | 'winddown' | 'skill-tree' | 'training-plan' | 'dev-testing' | 'avatar' | 'focus-journey' | 'activity-detail' | 'practice' | 'practice-overview' | 'practice-session' | 'leaderboard' | 'profile-screen' | 'achievements' | 'focus-shield' | 'analytics-dashboard';
 
 function AppContent() {
   const { user, isOnboarded, isLoading, completeOnboarding, updateOnboardingData } = useAuth();
@@ -174,6 +175,11 @@ function AppContent() {
   // Insights view
   if (viewMode === 'insights') {
     return <Insights onBack={() => setViewMode('home')} />;
+  }
+
+  // Analytics Dashboard view
+  if (viewMode === 'analytics-dashboard') {
+    return <AnalyticsDashboard onBack={() => setViewMode('home')} />;
   }
 
   // Premium view
