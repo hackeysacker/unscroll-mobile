@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		107BA016F6F2C03771A57945 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251782A99464E4685C05C569 /* ExpoModulesProvider.swift */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		34D9A38A155316B608FF89BA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 16623EC505D10F9200D0762A /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		675B1645A050B7F703B004B4 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB8D2CF7E95F5E5C39730D /* ExpoModulesProvider.swift */; };
-		89B391E9A41D6A78079A53A9 /* libPods-FocusFlow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A70C352CAB73F8EFD24859F0 /* libPods-FocusFlow.a */; };
+		78F969EB7D46AFDB3675CDA2 /* libPods-FocusFlow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3FE5CF3530325200E05CBF4 /* libPods-FocusFlow.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		F0C58D27E31EE7FD197BB566 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0F51AB9249EB37BFF22CACB0 /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F51AB9249EB37BFF22CACB0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = FocusFlow/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* FocusFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FocusFlow/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FocusFlow/Info.plist; sourceTree = "<group>"; };
-		3DDB8D2CF7E95F5E5C39730D /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-FocusFlow/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		7EF03C13C9584312C45A0DBF /* Pods-FocusFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.release.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.release.xcconfig"; sourceTree = "<group>"; };
-		A70C352CAB73F8EFD24859F0 /* libPods-FocusFlow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocusFlow.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		16623EC505D10F9200D0762A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = FocusFlow/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		251782A99464E4685C05C569 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-FocusFlow/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		7623A573182C2B3DAEFBB12B /* Pods-FocusFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.release.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = FocusFlow/SplashScreen.storyboard; sourceTree = "<group>"; };
+		B5476CF8CEE4318A2E5F6005 /* Pods-FocusFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.debug.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.debug.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		D75BB1CAF6403A0DA44D2155 /* Pods-FocusFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusFlow.debug.xcconfig"; path = "Target Support Files/Pods-FocusFlow/Pods-FocusFlow.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = FocusFlow/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* FocusFlow-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FocusFlow-Bridging-Header.h"; path = "FocusFlow/FocusFlow-Bridging-Header.h"; sourceTree = "<group>"; };
+		F3FE5CF3530325200E05CBF4 /* libPods-FocusFlow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FocusFlow.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89B391E9A41D6A78079A53A9 /* libPods-FocusFlow.a in Frameworks */,
+				78F969EB7D46AFDB3675CDA2 /* libPods-FocusFlow.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +53,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				0F51AB9249EB37BFF22CACB0 /* PrivacyInfo.xcprivacy */,
+				16623EC505D10F9200D0762A /* PrivacyInfo.xcprivacy */,
 			);
 			name = FocusFlow;
 			sourceTree = "<group>";
@@ -62,17 +62,27 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				A70C352CAB73F8EFD24859F0 /* libPods-FocusFlow.a */,
+				F3FE5CF3530325200E05CBF4 /* libPods-FocusFlow.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4AEFB647DFEB103F0F22697A /* FocusFlow */ = {
+		34A81D3B5C4B640A93BB9346 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3DDB8D2CF7E95F5E5C39730D /* ExpoModulesProvider.swift */,
+				B5476CF8CEE4318A2E5F6005 /* Pods-FocusFlow.debug.xcconfig */,
+				7623A573182C2B3DAEFBB12B /* Pods-FocusFlow.release.xcconfig */,
 			);
-			name = FocusFlow;
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		568887C92E6B6277E46F78E9 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				F5B698F46F4502F4D3BE3CB1 /* FocusFlow */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -89,8 +99,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				E613484763318632A92BA634 /* Pods */,
-				D2D7A0033C164945EF5E8219 /* ExpoModulesProviders */,
+				34A81D3B5C4B640A93BB9346 /* Pods */,
+				568887C92E6B6277E46F78E9 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -114,22 +124,12 @@
 			path = FocusFlow/Supporting;
 			sourceTree = "<group>";
 		};
-		D2D7A0033C164945EF5E8219 /* ExpoModulesProviders */ = {
+		F5B698F46F4502F4D3BE3CB1 /* FocusFlow */ = {
 			isa = PBXGroup;
 			children = (
-				4AEFB647DFEB103F0F22697A /* FocusFlow */,
+				251782A99464E4685C05C569 /* ExpoModulesProvider.swift */,
 			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		E613484763318632A92BA634 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D75BB1CAF6403A0DA44D2155 /* Pods-FocusFlow.debug.xcconfig */,
-				7EF03C13C9584312C45A0DBF /* Pods-FocusFlow.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
+			name = FocusFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FocusFlow" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				303A94ACF4B2372DCD8CC312 /* [Expo] Configure project */,
+				24703476D33D17A6D87CF539 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				777BF51001F86FA4F3E504D0 /* [CP] Embed Pods Frameworks */,
+				F67D19A65A43081D942D5CB5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				F0C58D27E31EE7FD197BB566 /* PrivacyInfo.xcprivacy in Resources */,
+				34D9A38A155316B608FF89BA /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +242,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		303A94ACF4B2372DCD8CC312 /* [Expo] Configure project */ = {
+		24703476D33D17A6D87CF539 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -265,28 +265,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-FocusFlow/expo-configure-project.sh\"\n";
-		};
-		777BF51001F86FA4F3E504D0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FocusFlow/Pods-FocusFlow-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FocusFlow/Pods-FocusFlow-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -360,6 +338,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FocusFlow/Pods-FocusFlow-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F67D19A65A43081D942D5CB5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FocusFlow/Pods-FocusFlow-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FocusFlow/Pods-FocusFlow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -368,7 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				675B1645A050B7F703B004B4 /* ExpoModulesProvider.swift in Sources */,
+				107BA016F6F2C03771A57945 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +377,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D75BB1CAF6403A0DA44D2155 /* Pods-FocusFlow.debug.xcconfig */;
+			baseConfigurationReference = B5476CF8CEE4318A2E5F6005 /* Pods-FocusFlow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -413,7 +413,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EF03C13C9584312C45A0DBF /* Pods-FocusFlow.release.xcconfig */;
+			baseConfigurationReference = 7623A573182C2B3DAEFBB12B /* Pods-FocusFlow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
