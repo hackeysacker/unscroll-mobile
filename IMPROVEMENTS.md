@@ -192,7 +192,20 @@ These files exist but aren't imported anywhere:
 - ✅ TypeScript compiles with no errors
 - ⏳ TestFlight: Waiting on Apple Developer account
 
-*Last updated: 2026-10-02 4:00 PM*
+*Last updated: 2026-10-07 12:00 PM*
+
+## Today's Progress (2026-10-07 - 12:00 PM)
+- ✅ Fixed 2 TODOs in codebase:
+  - Permission checker: Created src/lib/permission-checker.ts to dynamically check device permissions (MOTION, CAMERA, SPEECH, LOCATION) for challenge selection
+  - Updated UnlockChallengeScreen to use actual available permissions instead of hardcoded ['MOTION']
+  - Fixed AttentionAvatarContext to track recent achievements via achievementManager listener, triggering avatar reactions when achievements unlock
+- ✅ Added ACHIEVEMENTS storage key to storage.ts
+- ✅ TypeScript compiles with no errors
+- ✅ iOS build: BUILD SUCCEEDED (iPhone 17 Pro, iOS 26.5 Simulator)
+- ✅ Committed and pushed to GitHub
+- ⏳ TestFlight: Waiting on Apple Developer account
+
+---
 
 ## Today's Progress (2026-10-02 - 4:00 PM)
 - ✅ Evening check: TypeScript clean, Git synced
