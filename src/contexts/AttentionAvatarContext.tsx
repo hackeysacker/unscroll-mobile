@@ -14,6 +14,7 @@ import {
   type AvatarEvolution,
   AVATAR_EVOLUTIONS,
 } from '@/lib/avatar-evolution';
+import { achievementManager } from '@/lib/achievement-manager';
 import * as Haptics from 'expo-haptics';
 
 interface AttentionAvatarContextValue {
@@ -56,6 +57,7 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
   });
 
   const previousStageRef = useRef<AvatarStage>('spark');
+  const recentAchievementRef = useRef(false);
 
   // Load avatar state from storage
   useEffect(() => {
@@ -70,6 +72,29 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
     };
 
     loadAvatarState();
+  }, [user]);
+
+  // Listen for achievement unlocks to trigger avatar reactions
+  useEffect(() => {
+    if (!user) return;
+
+    const unsubscribe = achievementManager.addListener((achievement) => {
+      // Mark that we just got an achievement
+      recentAchievementRef.current = true;
+      
+      // Trigger avatar reaction
+      triggerReaction('milestone');
+      
+      // Save achievement to storage
+      saveToStorage(
+        `${STORAGE_KEYS.ACHIEVEMENTS}_${user.id}`, 
+        achievementManager.getUnlockedIds()
+      );
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, [user]);
 
   // Update avatar based on progress
@@ -87,11 +112,17 @@ export function AttentionAvatarProvider({ children }: { children: ReactNode }) {
       recentPerformance: stats?.averageAccuracy ?? undefined,
     });
 
+    // Check for recent achievements
     const effect = shouldShowEffect({
       streak: progress.streak,
-      recentAchievement: false, // TODO: Track recent achievements
+      recentAchievement: recentAchievementRef.current,
       isPremium: user?.isPremium,
     });
+    
+    // Reset recent achievement flag after use
+    if (recentAchievementRef.current) {
+      recentAchievementRef.current = false;
+    }
 
     // Check if avatar evolved
     if (newStage !== previousStageRef.current) {

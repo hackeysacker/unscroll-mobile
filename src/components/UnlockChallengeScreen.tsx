@@ -26,6 +26,7 @@ import * as Haptics from 'expo-haptics';
 
 import FocusShield from '../modules/FocusShield';
 import { selectChallenge, getTimeSegment, type ChallengeType } from '../lib/challenge-engine';
+import { getAvailablePermissions } from '../lib/permission-checker';
 import {
   loadUnlockSession,
   loadUnlockConfig,
@@ -136,6 +137,7 @@ export function UnlockChallengeScreen({ onBack, onSettings }: UnlockChallengeScr
     const attemptCount = getRecentAttemptCount(history, 30);
     const lastChallenges = getLastChallengeTypes(history, 3);
     const timeSegment = getTimeSegment();
+    const availablePermissions = await getAvailablePermissions();
 
     // Select challenge
     const challengeConfig = selectChallenge({
@@ -143,7 +145,7 @@ export function UnlockChallengeScreen({ onBack, onSettings }: UnlockChallengeScr
       lastChallenges,
       intensity: config.intensity,
       timeSegment,
-      availablePermissions: ['MOTION'], // TODO: Check actual permissions
+      availablePermissions,
       extremeModeEnabled: config.extremeModeEnabled,
     });
 
