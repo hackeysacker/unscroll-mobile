@@ -143,7 +143,9 @@ export function ScrollTimeProvider({ children }: { children: React.ReactNode }) 
     // - Sync with earned minutes
     // - Set app limits based on remaining time
 
-    console.log('Screen Time API sync placeholder - ready for integration');
+    if (__DEV__) {
+      console.log('Screen Time API sync placeholder - ready for integration');
+    }
 
     // Example structure for future implementation:
     /*

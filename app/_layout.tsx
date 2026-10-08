@@ -19,12 +19,16 @@ Sentry.init({
 function setupNotifications() {
   // Handle notifications received while app is in foreground
   addNotificationReceivedListener((notification) => {
-    console.log('Notification received:', notification.request.content.title);
+    if (__DEV__) {
+      console.log('Notification received:', notification.request.content.title);
+    }
   });
 
   // Handle notification taps
   addNotificationResponseListener((response) => {
-    console.log('Notification tapped:', response.notification.request.content.title);
+    if (__DEV__) {
+      console.log('Notification tapped:', response.notification.request.content.title);
+    }
   });
 }
 
