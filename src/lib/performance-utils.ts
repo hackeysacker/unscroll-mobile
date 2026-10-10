@@ -131,7 +131,9 @@ export class PerformanceMonitor {
   measure(label: string): number {
     const markTime = this.marks.get(label);
     if (!markTime) {
-      console.warn(`No mark found for: ${label}`);
+      if (__DEV__) {
+        console.warn(`No mark found for: ${label}`);
+      }
       return 0;
     }
     return Date.now() - markTime;

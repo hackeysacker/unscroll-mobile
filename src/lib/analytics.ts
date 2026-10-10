@@ -154,7 +154,9 @@ class AnalyticsManager {
    */
   track(event: AnalyticsEvent, properties: EventProperties = {}) {
     if (!this.currentSession) {
-      console.warn('Analytics not initialized');
+      if (__DEV__) {
+        console.warn('Analytics not initialized');
+      }
       return;
     }
 

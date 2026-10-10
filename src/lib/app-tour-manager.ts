@@ -257,7 +257,9 @@ export class TourManager {
   startTour(tourId: string) {
     const tour = APP_TOURS[tourId];
     if (!tour) {
-      console.warn(`Tour ${tourId} not found`);
+      if (__DEV__) {
+        console.warn(`Tour ${tourId} not found`);
+      }
       return false;
     }
 

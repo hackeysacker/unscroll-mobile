@@ -145,12 +145,14 @@ class PerformanceMonitor {
    * Log performance summary
    */
   logSummary() {
-    console.log('=== Performance Summary ===');
-    console.log(`FPS: ${this.metrics.fps.toFixed(2)}`);
-    console.log(`Average Frame Time: ${this.metrics.averageFrameTime.toFixed(2)}ms`);
-    console.log(`Worst Frame Time: ${this.metrics.worstFrameTime.toFixed(2)}ms`);
-    console.log(`Dropped Frames: ${this.metrics.droppedFrames}/${this.metrics.totalFrames} (${((this.metrics.droppedFrames / this.metrics.totalFrames) * 100).toFixed(2)}%)`);
-    console.log('========================');
+    if (__DEV__) {
+      console.log('=== Performance Summary ===');
+      console.log(`FPS: ${this.metrics.fps.toFixed(2)}`);
+      console.log(`Average Frame Time: ${this.metrics.averageFrameTime.toFixed(2)}ms`);
+      console.log(`Worst Frame Time: ${this.metrics.worstFrameTime.toFixed(2)}ms`);
+      console.log(`Dropped Frames: ${this.metrics.droppedFrames}/${this.metrics.totalFrames} (${((this.metrics.droppedFrames / this.metrics.totalFrames) * 100).toFixed(2)}%)`);
+      console.log('========================');
+    }
   }
 }
 
@@ -282,7 +284,9 @@ export function measureRenderTime(componentName: string, renderFn: () => void) {
   const renderTime = endTime - startTime;
 
   if (renderTime > 16.67) {
-    console.warn(`⚠️ ${componentName} render took ${renderTime.toFixed(2)}ms (>16.67ms threshold)`);
+    if (__DEV__) {
+      console.warn(`⚠️ ${componentName} render took ${renderTime.toFixed(2)}ms (>16.67ms threshold)`);
+    }
   }
 
   if (__DEV__) {
@@ -308,7 +312,9 @@ export function getMemoryUsage(): number | null {
 export function logMemoryUsage() {
   const memoryMB = getMemoryUsage();
   if (memoryMB !== null) {
-    console.log(`💾 Memory Usage: ${memoryMB.toFixed(2)} MB`);
+    if (__DEV__) {
+      console.log(`💾 Memory Usage: ${memoryMB.toFixed(2)} MB`);
+    }
   }
 }
 

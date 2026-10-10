@@ -344,7 +344,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
             savedProgressTree.nodes.length === 0;
 
           if (needsRegeneration) {
-            console.log('Regenerating progress tree...');
+            if (__DEV__) {
+              console.log('Regenerating progress tree...');
+            }
             const newProgressTree = generateProgressTree(user.id, savedProgress.level);
             setProgressTree(newProgressTree);
             await saveToStorage(STORAGE_KEYS.PROGRESS_TREE, newProgressTree);
