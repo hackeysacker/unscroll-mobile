@@ -109,7 +109,9 @@ export class ErrorBoundary extends Component<Props, State> {
       timestamp: new Date().toISOString(),
     };
 
-    console.log('Error logged to Sentry:', errorData);
+    if (__DEV__) {
+      console.log('Error logged to Sentry:', errorData);
+    }
   }
 
   handleReset = () => {

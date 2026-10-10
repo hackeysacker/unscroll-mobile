@@ -90,12 +90,16 @@ export function GazeHoldChallenge({ duration, onComplete, level = 1, onBack }: G
         setTrackingStatus('checking');
         
         const { status: existingStatus } = await Camera.getCameraPermissionsAsync();
-        console.log('Existing camera permission status:', existingStatus);
+        if (__DEV__) {
+          console.log('Existing camera permission status:', existingStatus);
+        }
         
         if (existingStatus !== 'granted') {
           setTrackingStatus('requesting');
           const { status: newStatus } = await Camera.requestCameraPermissionsAsync();
-          console.log('New camera permission status:', newStatus);
+          if (__DEV__) {
+            console.log('New camera permission status:', newStatus);
+          }
           
           if (!mounted) return;
           
@@ -110,14 +114,18 @@ export function GazeHoldChallenge({ duration, onComplete, level = 1, onBack }: G
 
         // Permission granted - now check if face tracking API is supported
         const isSupported = await FaceTrackingAPI.isSupported();
-        console.log('Face tracking API supported:', isSupported);
+        if (__DEV__) {
+          console.log('Face tracking API supported:', isSupported);
+        }
         
         if (!mounted) return;
 
         if (!isSupported) {
           // Native face tracking not available (e.g., Expo Go)
           // Use touch fallback mode
-          console.log('Native face tracking not available, using touch fallback');
+          if (__DEV__) {
+            console.log('Native face tracking not available, using touch fallback');
+          }
           startWithTouchMode();
           return;
         }
@@ -128,7 +136,9 @@ export function GazeHoldChallenge({ duration, onComplete, level = 1, onBack }: G
 
         if (!result.success) {
           // If tracking failed to start, use touch fallback
-          console.log('Face tracking failed to start, using touch fallback');
+          if (__DEV__) {
+            console.log('Face tracking failed to start, using touch fallback');
+          }
           startWithTouchMode();
           return;
         }

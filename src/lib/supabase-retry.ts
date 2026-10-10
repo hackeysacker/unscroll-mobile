@@ -114,9 +114,11 @@ export async function withRetry<T>(
         options.onRetry(attempt, error);
       }
 
-      console.log(
-        `Retry attempt ${attempt}/${maxRetries} after ${Math.round(delay)}ms. Error: ${error.message || error}`
-      );
+      if (__DEV__) {
+        console.log(
+          `Retry attempt ${attempt}/${maxRetries} after ${Math.round(delay)}ms. Error: ${error.message || error}`
+        );
+      }
 
       // Wait before retrying
       await sleep(delay);
@@ -148,7 +150,9 @@ export async function queueOperation(
     queue.push(queuedOp);
     await saveSyncQueue(queue);
 
-    console.log(`Queued operation: ${operation}`);
+    if (__DEV__) {
+      console.log(`Queued operation: ${operation}`);
+    }
   } catch (error) {
     console.error('Failed to queue operation:', error);
   }
@@ -184,7 +188,9 @@ async function saveSyncQueue(queue: QueuedOperation[]): Promise<void> {
 export async function clearSyncQueue(): Promise<void> {
   try {
     await AsyncStorage.removeItem(SYNC_QUEUE_KEY);
-    console.log('Sync queue cleared');
+    if (__DEV__) {
+      console.log('Sync queue cleared');
+    }
   } catch (error) {
     console.error('Failed to clear sync queue:', error);
   }
@@ -216,7 +222,9 @@ export async function processSyncQueue(
     return { success: 0, failed: 0 };
   }
 
-  console.log(`Processing ${queue.length} queued operations...`);
+  if (__DEV__) {
+    console.log(`Processing ${queue.length} queued operations...`);
+  }
 
   let successCount = 0;
   let failedCount = 0;
@@ -238,13 +246,17 @@ export async function processSyncQueue(
         {
           maxRetries: 3,
           onRetry: (attempt, error) => {
-            console.log(`Retrying queued operation ${op.operation} (attempt ${attempt})`);
+            if (__DEV__) {
+              console.log(`Retrying queued operation ${op.operation} (attempt ${attempt})`);
+            }
           },
         }
       );
 
       successCount++;
-      console.log(`Successfully processed queued operation: ${op.operation}`);
+      if (__DEV__) {
+        console.log(`Successfully processed queued operation: ${op.operation}`);
+      }
     } catch (error) {
       console.error(`Failed to process queued operation ${op.operation}:`, error);
 
@@ -264,7 +276,9 @@ export async function processSyncQueue(
   // Save remaining queue
   await saveSyncQueue(remainingQueue);
 
-  console.log(`Sync queue processed: ${successCount} success, ${failedCount} failed, ${remainingQueue.length} remaining`);
+  if (__DEV__) {
+    console.log(`Sync queue processed: ${successCount} success, ${failedCount} failed, ${remainingQueue.length} remaining`);
+  }
 
   return { success: successCount, failed: failedCount };
 }
