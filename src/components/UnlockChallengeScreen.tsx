@@ -220,8 +220,6 @@ export function UnlockChallengeScreen({ onBack, onSettings }: UnlockChallengeScr
 
           <Text style={styles.challengeDuration}>{challengeDuration}s</Text>
 
-          {/* TODO: Render actual challenge component here */}
-          {/* For MVP, just show "Wait" challenge */}
           <WaitChallengeSimple
             duration={challengeDuration}
             onComplete={handleChallengeComplete}
