@@ -29,6 +29,17 @@ export function Premium({ onBack }: PremiumProps) {
     onBack();
   };
 
+  const handleRestore = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    // In production, this would call the app store to restore purchases
+    // For demo, we just show a message
+    Alert.alert(
+      'Restore Purchases',
+      'No previous purchases found. If you previously upgraded, please contact support.',
+      [{ text: 'OK' }]
+    );
+  };
+
   return (
     <View style={[styles.container, { paddingTop: Math.max(insets.top, 12) }]}>
       <LinearGradient
@@ -96,6 +107,15 @@ export function Premium({ onBack }: PremiumProps) {
         </TouchableOpacity>
 
         <Text style={styles.footerText}>Cancel anytime</Text>
+
+        {/* Restore Purchases */}
+        <TouchableOpacity
+          onPress={handleRestore}
+          style={styles.restoreButton}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.restoreButtonText}>Restore Purchases</Text>
+        </TouchableOpacity>
 
         <View style={{ height: Math.max(insets.bottom, 40) }} />
       </ScrollView>
@@ -231,5 +251,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'rgba(255, 255, 255, 0.5)',
     textAlign: 'center',
+  },
+  restoreButton: {
+    marginTop: 16,
+    padding: 12,
+  },
+  restoreButtonText: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.6)',
+    textAlign: 'center',
+    textDecorationLine: 'underline',
   },
 });

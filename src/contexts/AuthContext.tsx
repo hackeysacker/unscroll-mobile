@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     email: supabaseUser.email,
     createdAt: new Date(supabaseUser.created_at).getTime(),
     goal: profile?.goal,
-    isPremium: profile?.is_premium ?? true,
+    isPremium: profile?.is_premium ?? false,
     onboardingData: undefined,
   });
 
