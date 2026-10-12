@@ -192,7 +192,18 @@ These files exist but aren't imported anywhere:
 - ✅ TypeScript compiles with no errors
 - ⏳ TestFlight: Waiting on Apple Developer account
 
-*Last updated: 2026-10-12 8:00 AM*
+*Last updated: 2026-10-12 1:00 PM*
+
+## Today's Progress (2026-10-12 - 1:00 PM) - Midday Sprint
+- ✅ Fixed critical bug: new users were incorrectly marked as premium (defaults to `true`)
+  - Changed `isPremium: profile?.is_premium ?? true` → `false` in AuthContext
+- ✅ Added "Restore Purchases" button to Premium screen
+- ✅ TypeScript compiles with no errors
+- ✅ iOS build: EXPORT SUCCEEDED (JS bundle: 7.03 MB)
+- ✅ Git: Committed and pushed to GitHub (78c2ece)
+- ⏳ TestFlight: Waiting on Apple Developer account
+
+---
 
 ## Today's Progress (2026-10-12 - 8:00 AM) - Monday Morning Dev Check
 - ✅ TypeScript compiles with no errors (npx tsc --noEmit)
