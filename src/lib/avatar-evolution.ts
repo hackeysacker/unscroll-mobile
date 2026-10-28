@@ -309,14 +309,17 @@ export function determineAvatarMood(params: {
     return 'excited';
   }
   
+  // Glowing if on a streak
+  // NOTE: must be checked before the 'happy' branch below, otherwise a full
+  // heart bar (hearts >= maxHearts - 1) always wins and 'glowing' is
+  // unreachable for the exact users it was designed for.
+  if (streak >= 3) {
+    return 'glowing';
+  }
+  
   // Happy if doing well
   if (hearts >= maxHearts - 1 || (recentPerformance && recentPerformance >= 70)) {
     return 'happy';
-  }
-  
-  // Glowing if on a streak
-  if (streak >= 3) {
-    return 'glowing';
   }
   
   return 'idle';

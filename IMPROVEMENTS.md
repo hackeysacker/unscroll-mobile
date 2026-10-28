@@ -330,3 +330,24 @@ These files exist but aren't imported anywhere:
 - Widgets still blocked by SDK version (needs 55+)
 - All P0/P1 items complete
 - App is production-ready, just needs Apple Developer account for TestFlight
+
+---
+
+## Today's Progress (2026-10-28 - 3:00 PM)
+- ✅ Set up a working unit test suite (previously 0 test runner configured)
+  - Installed jest@29 + jest-expo@54 (Expo SDK 54-compatible) + @types/jest
+  - Added `jest.config.js` with `@/` path alias mapping and jest-expo preset
+  - Added npm scripts: `test`, `test:watch`, `typecheck`
+  - Existing 2 test files (game-mechanics, challenge-progression) now run: 123 tests pass
+- ✅ Added 57 new unit tests across 3 untested pure-logic modules:
+  - `src/lib/__tests__/avatar-evolution.test.ts` (22 tests) - stages, evolution progress, moods, skins, effects
+  - `src/lib/__tests__/badge-mechanics.test.ts` (22 tests) - unlock conditions, progress %, rarity grouping, duplicate guard
+  - `src/lib/__tests__/challenge-utils.test.ts` (13 tests) - scoring, color/emoji bands, time formatting, a11y labels
+- 🐛 **BUG FIX:** `determineAvatarMood` in `src/lib/avatar-evolution.ts` could never return `'glowing'`
+  - The `happy` branch (`hearts >= maxHearts - 1`) shadowed the streak check that returns `glowing`
+  - Any user with a 3+ day streak and a full heart bar got `'happy'` instead
+  - Fixed by evaluating the streak (`glowing`) branch before the `happy` branch
+- ✅ TypeScript compiles with no errors (npx tsc --noEmit)
+- ✅ iOS build: BUILD SUCCEEDED (iPhone 17 Pro simulator, Xcode workspace)
+- ✅ Test suite: 5 suites / 180 tests passing
+- ⏳ TestFlight: Waiting on Apple Developer account
